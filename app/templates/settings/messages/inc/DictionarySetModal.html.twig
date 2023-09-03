@@ -1,0 +1,54 @@
+<!-- Large modal -->
+<button type="button" class="btn btn-primary mb-2 d-none dictionary-modal" data-bs-toggle="modal" data-bs-target=".dictionary-edit-modal">Large modal</button>
+<div class="modal fade dictionary-edit-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Metin Düzenleme</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal">
+                </button>
+            </div>
+            <div class="modal-body">
+                <form
+                        id="editLanguageMessageForm"
+                        onsubmit="AddNewLanguage.editMessage(event);"
+
+                >
+                    <input type="hidden" name="token" value="{{ csrf_token('delete-item') }}">
+
+                    <div class="row">
+                                    <div class="basic-form">
+                                        <div class="alert-container">
+
+                                        </div>
+
+                                            <div class="row">
+                                                <div class="mb-3 col-sm-12 col-md-6 ">
+                                                    <label class="form-label">Adı</label>
+                                                    <input type="text" name="key"  class="form-control" placeholder="Adını giriniz">
+                                                    <div id="key" class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 col-sm-12 col-md-6 ">
+                                                    <label class="form-label">Değeri</label>
+                                                    <input type="text" name="value"   class="form-control" placeholder="Değerini giriniz">
+                                                    <div id="value" class="invalid-feedback">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <div class="d-flex justify-content-end align-items-center mt-4 gap-2">
+                                            <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Kapat</button>
+
+                                            <button
+                                                    type="submit" name="kaydetbtn" class="btn btn-primary form-btn">Kaydet</button>
+                                        </div>
+                                    </div>
+
+
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

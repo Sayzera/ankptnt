@@ -1,0 +1,61 @@
+<div class="col-sm-12 col-xl-8">
+    <div class="card">
+        <div class="card-body">
+            <div class="profile-tab">
+                <div class="custom-tab-1">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item"><a href="#dosya" data-bs-toggle="tab" class="nav-link show active">Dosya</a>
+                        </li>
+                        <li class="nav-item"><a href="#ruchan" data-bs-toggle="tab" class="nav-link">Rüçhan</a>
+                        </li>
+                        <li class="nav-item"><a href="#faturalar" data-bs-toggle="tab" class="nav-link">Faturalar</a>
+                        </li>
+                        <li class="nav-item"><a href="#islemler" data-bs-toggle="tab" class="nav-link ">İşlemler</a>
+                        </li>
+                        <li class="nav-item"><a href="#ulke" data-bs-toggle="tab" class="nav-link">Ülke </a>
+                        </li>
+                        <li class="nav-item"><a href="#belge-yayin" data-bs-toggle="tab" class="nav-link">Belge Yayın</a>
+                        </li>
+                        <li class="nav-item"><a href="#taksit" data-bs-toggle="tab" class="nav-link ">Taksit</a>
+                        </li>
+                        <li class="nav-item"><a href="#ek" data-bs-toggle="tab" class="nav-link">Ek</a>
+                        </li>
+
+                    </ul>
+                    <div class="tab-content">
+                        <div id="dosya" class="tab-pane fade active show">
+                            {{ include('patent/inc/application_document/information.html.twig') }}
+                        </div>
+                        <div id="ruchan" class="tab-pane fade">
+                                    Henüz rüchan bulunmamaktadır.
+                        </div>
+                        <div id="faturalar" class="tab-pane fade">
+                                    Henüz fatura bulunmamaktadır.
+                        </div>
+                        <div id="islemler" class="tab-pane fade">
+                                    Henüz işlem bulunmamaktadır.
+
+                        </div>
+
+                        <div id="ulke" class="tab-pane fade">
+                            {{ include('patent/inc/application_document/country_entry.html.twig') }}                        </div>
+                        <div id="belge-yayin" class="tab-pane fade">
+                            {{ include('patent/inc/application_document/document_publishing.html.twig') }}
+                        </div>
+
+                        <div id="taksit" class="tab-pane fade">
+                            {{ include('patent/inc/application_document/installment-plans.html.twig') }}
+                        </div>
+
+                        <div id="ek" class="tab-pane fade">
+                                    Henüz ek bulunmamaktadır.
+                        </div>
+
+
+                    </div>
+                </div>
+                <!-- Modal -->
+            </div>
+        </div>
+    </div>
+</div>

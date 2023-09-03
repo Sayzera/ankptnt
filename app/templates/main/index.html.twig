@@ -1,0 +1,94 @@
+{% extends 'layout/base.html.twig' %}
+{% block title %}Apiz
+{% endblock %}
+{% block body %}
+	<div
+			class="content-body">
+		<!-- row -->
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-12">
+					<div class="row">
+						<div class="col-xl-6">
+							<div class="col-xl-12">
+								<div class="card tryal-gradient">
+									<div class="card-body tryal row">
+										<div class="col-xl-7 col-sm-6">
+											<h2>Marka Gözlem</h2>
+											<div >
+											</div>
+											<span>Apiz ile hızlı ve kolay bir şekilde marka gözlemi yapabilirsiniz.
+
+
+                                 </span>
+											<a href="javascript:void(0);" class="btn btn-rounded  fs-18 font-w500">Gözlemi başlat</a>
+										</div>
+										<div class="col-xl-5 col-sm-6">
+											<img src="{{ asset('assets/images/chart.png') }}" alt="" class="sd-shape">
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								{{ include('main/inc/total.html.twig') }}
+							</div>
+
+
+						</div>
+
+						<div class="col-xl-6">
+							<div class="row">
+								<div class="col-xl-12">
+									<div class="col-xl-12">
+										<div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col-xl-12 col-sm-12">
+														<div class=" owl-carousel card-slider">
+															{{ include('main/inc/patentDurumOzet.html.twig') }}
+															{{ include('main/inc/yurtIciMarkaDurum.html.twig') }}
+															{{ include('main/inc/yurtDisiMarkaDurum.html.twig') }}
+															{{ include('main/inc/tasarimDurum.html.twig') }}
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+{#						<div class="col-xl-12">#}
+{#							<div class="col-xl-12">#}
+{#								<div class="card">#}
+{#									<div class="card-body">#}
+{#										<div class="row">#}
+{#											<div class="col-xl-12 col-sm-12">#}
+{#												<div class=" owl-carousel card-slider">#}
+{#													{{ include('main/inc/sonYapilanIsler.html.twig') }}#}
+
+{#												</div>#}
+{#											</div>#}
+{#										</div>#}
+{#									</div>#}
+{#								</div>#}
+{#							</div>#}
+{#						</div>#}
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+{% block javascripts %}
+	<script src="{{ asset('assets/vendor/chart.js/Chart.bundle.min.js') }}"></script>
+	<script src="{{ asset('assets/js/dashboard/dashboard-1.js')}}"></script>
+	<!-- Apex Chart -->
+	<script src="{{ asset('assets/vendor/apexchart/apexchart.js')}}"></script>
+	<script src="{{ asset('assets/vendor/chart.js/Chart.bundle.min.js')}}"></script>
+	<script></script>
+{% endblock %}

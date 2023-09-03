@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Ankara Patent
+			{% endblock %}
+		</title>
+		<link
+		rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+
+		<!-- FAVICONS ICON -->
+		<link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
+
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+
+		{{ include('layout/css.html.twig') }}
+
+
+		<style>
+
+
+
+			.dataTable td, .dataTable th {
+				padding: 10px !important;
+			}
+
+
+			.dataTable th {
+				font-size: 12px !important;
+				font-weight: normal !important;
+			}
+
+
+
+
+
+			.dataTable td, .dataTable th {
+	          width: 80px !important;
+			}
+			.dataTable  div  {
+				font-size: 10px !important;
+				width: 50px !important;
+			}
+			.dataTable  td, table th, table span {
+				font-size: 10px !important;
+			}
+
+			.dataTable td {
+				font-weight: normal !important;
+			}
+
+			table.dataTable thead th, table.dataTable thead td {
+				border-bottom: 2px solid #EEEEEE;
+				border-top: 1px solid #EEEEEE;
+				padding: 16px 3px !important;
+			}
+
+			table.dataTable thead th, table.dataTable thead td {
+				border-bottom: 2px solid #EEEEEE;
+				border-top: 1px solid #EEEEEE;
+				padding: 14px 20px !important;
+			}
+
+			table.dataTable tbody td {
+				border-bottom: 1px solid #F5F5F5;
+			}
+
+			table.dataTable td {
+				min-width: 100px !important;
+			}
+
+			.dataTable input {
+				max-width: 110px !important;
+			}
+
+			table.dataTable thead th, table.dataTable thead td {
+				padding: 10px 5px !important;
+			}
+			.dataTables_wrapper .dataTables_paginate span .paginate_button {
+				height: 30px !important;
+				width: 30px !important;
+				line-height: 30px !important;
+
+			}
+			.dataTables_wrapper .dataTables_paginate .paginate_button.previous, .dataTables_wrapper .dataTables_paginate .paginate_button.next {
+				font-size: 12px !important;
+			}
+			.paging_simple_numbers.dataTables_paginate {
+				 background: white;
+			}
+		</style>
+
+
+
+	</head>
+	<body>
+
+		{{ include('layout/inc/preloader.html.twig') }}
+
+
+		<div id="main-wrapper">
+			{{ include('layout/inc/navbar.html.twig') }}
+			{{ include('layout/inc/chatbox.html.twig') }}
+			{{ include('layout/inc/header.html.twig', {
+				'page_title': block('page_title') ?? null,
+			}) }}
+			{{ include('layout/inc/sidebar.html.twig') }}
+			{% block body %}{% endblock %}
+			{{ include('layout/inc/footer.html.twig') }}
+		</div>
+
+
+		{{ include('layout/js.html.twig') }}</body>
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+
+</html>
