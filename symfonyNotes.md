@@ -38,3 +38,8 @@ sudo chown -R $(whoami) ~/.docker
 
 ** PHP storm **
 open -a "PhpStorm"
+
+
+** SSH oluşturma***
+ssh-keygen -t ed25519 -C "white.code.text@gmail.com"
+                   
