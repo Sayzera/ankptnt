@@ -34,7 +34,8 @@ class LangRepository extends ServiceEntityRepository
      * @return Lang|object
      *
      */
-    public function addLang($langName = 'tr') {
+    public function addLang($langName = 'tr')
+    {
         // existing lang
         $lang = $this->entityManager->getRepository(Lang::class)->findOneBy(['name' => $langName]);
 
@@ -55,13 +56,15 @@ class LangRepository extends ServiceEntityRepository
         return $lang;
     }
 
-    public function getActiveLang() {
-    // get all
-     return $this->entityManager->getRepository(Lang::class)
-         ->findBy(['status' => true]);
+    public function getActiveLang()
+    {
+        // get all
+        return $this->entityManager->getRepository(Lang::class)
+            ->findBy(['status' => true]);
     }
 
-    public function getLang($langName = 'tr') {
+    public function getLang($langName = 'tr')
+    {
         $lang = $this->entityManager->getRepository(Lang::class)->findOneBy(['name' => $langName]);
 
         if ($lang) {
@@ -71,7 +74,8 @@ class LangRepository extends ServiceEntityRepository
         return null;
     }
 
-    public function deleteAllLangs() {
+    public function deleteAllLangs()
+    {
         $deleteQuery = $this->entityManager->createQuery('DELETE FROM App\Entity\Custom\Lang')->execute();
     }
 
@@ -81,7 +85,8 @@ class LangRepository extends ServiceEntityRepository
      * @return array|object|null
      * @throws \Exception
      */
-    public function addLangMessage($par) {
+    public function addLangMessage($par)
+    {
         $lang = $this->entityManager->getRepository(Lang::class)->findOneBy(['name' => $par['lang']]);
 
         if (!$lang) {
@@ -91,7 +96,7 @@ class LangRepository extends ServiceEntityRepository
         $langMessage = $this->entityManager->getRepository(LangMessages::class)->findOneBy(['name' => $par['key'], 'lang' => $lang]);
 
 
-        if($langMessage) {
+        if ($langMessage) {
             throw new \Exception('Bu dil mesajı zaten var');
         }
 
@@ -116,7 +121,8 @@ class LangRepository extends ServiceEntityRepository
      * @return array
      * @throws \Exception
      */
-    public function  getAllLangMessage($par) {
+    public function  getAllLangMessage($par)
+    {
         $lang = $this->entityManager->getRepository(Lang::class)->findOneBy(['name' => $par['lang']]);
 
         if (!$lang) {
@@ -137,7 +143,6 @@ class LangRepository extends ServiceEntityRepository
         }
 
         return $data;
-
     }
 
 
@@ -147,16 +152,17 @@ class LangRepository extends ServiceEntityRepository
      * @return object|null
      *
      */
-    public function getLangMessage($par) {
+    public function getLangMessage($par)
+    {
         $lang = $this->entityManager->getRepository(Lang::class)->findOneBy(['name' => $par['lang']]);
 
         if (!$lang) {
-           throw new \Exception('Dil bulunamadı');
+            throw new \Exception('Dil bulunamadı');
         }
 
         $langMessage = $this->entityManager->getRepository(LangMessages::class)->findOneBy(['name' => $par['key'], 'lang' => $lang]);
 
-        if($langMessage) {
+        if ($langMessage) {
             throw new \Exception('Bu dil mesajı zaten var');
         }
 
@@ -167,28 +173,29 @@ class LangRepository extends ServiceEntityRepository
      * @description  Eklenen lang mesajını siler
      * @param $par
      */
-    public function  deleteLangMessage($par) : array {
-         $id = $par['id'];
-         // veriyi bul
-         $langMessage = $this->entityManager->getRepository(LangMessages::class)->find($id);
-         if(!$langMessage) {
-             return throw new \Exception('Dil mesajı bulunamadı');
-         }
+    public function  deleteLangMessage($par): array
+    {
+        $id = $par['id'];
+        // veriyi bul
+        $langMessage = $this->entityManager->getRepository(LangMessages::class)->find($id);
+        if (!$langMessage) {
+            throw new \Exception('Dil mesajı bulunamadı');
+        }
         // veriyi sil
         $this->entityManager->remove($langMessage);
         $this->entityManager->flush();
 
-          return [
-                'key' => $langMessage->getName(),
-                'value' => $langMessage->getMessage(),
-                'lang' => $langMessage->getLang()->getName(),
-                'id' => $langMessage->getId()
-          ];
-
+        return [
+            'key' => $langMessage->getName(),
+            'value' => $langMessage->getMessage(),
+            'lang' => $langMessage->getLang()->getName(),
+            'id' => $langMessage->getId()
+        ];
     }
 
 
-    public function updateLangMessage($par) {
+    public function updateLangMessage($par)
+    {
         $lang = $this->entityManager->getRepository(Lang::class)->findOneBy(['name' => $par['lang']]);
 
         if (!$lang) {
@@ -197,7 +204,7 @@ class LangRepository extends ServiceEntityRepository
 
         $langMessage = $this->entityManager->getRepository(LangMessages::class)->find($par['id']);
 
-        if(!$langMessage) {
+        if (!$langMessage) {
             throw new \Exception('Bu dil mesajı bulunamadı');
         }
 
@@ -223,28 +230,28 @@ class LangRepository extends ServiceEntityRepository
 
 
 
-//    /**
-//     * @return Lang[] Returns an array of Lang objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('l')
-//            ->andWhere('l.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('l.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    //    /**
+    //     * @return Lang[] Returns an array of Lang objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('l')
+    //            ->andWhere('l.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('l.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
 
-//    public function findOneBySomeField($value): ?Lang
-//    {
-//        return $this->createQueryBuilder('l')
-//            ->andWhere('l.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    public function findOneBySomeField($value): ?Lang
+    //    {
+    //        return $this->createQueryBuilder('l')
+    //            ->andWhere('l.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }
