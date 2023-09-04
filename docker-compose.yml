@@ -15,9 +15,7 @@ services:
       - ./mysql:/var/lib/mysql
   php:
     container_name: php
-    image: sayzera1/php-symfony:latest 
-    # build:
-    #   context: ./php
+    image: sayzera1/php-symfony:latest  
     ports:
       - '9000:9000'
     volumes:
