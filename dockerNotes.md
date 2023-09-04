@@ -14,6 +14,7 @@
   - docker logs -f <container-id>
   - | docker çıktılarını anlık görmemizi sağlar
   - docker build -t node-app-image .
+    yerele kaydetmek - docker build -t sayzera1/php-symfony .
   - docker push sayzera1/node-app-image
   - |-- docker huba yükler
   - docker pull sayzera1/node-app-image
