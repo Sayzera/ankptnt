@@ -17,7 +17,7 @@ services:
     container_name: php
     image: sayzera1/php-symfony:latest  
     # build:
-    #   context: ./php
+    #   context: ./php2
     ports:
       - '9000:9000'
     volumes:
