@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class SystemSettingsController extends AbstractController
-{   
+{
 
     #[Route('/system/settings', name: 'app_system_settings')]
     public function index(SystemSettingsRepository $repo): Response
