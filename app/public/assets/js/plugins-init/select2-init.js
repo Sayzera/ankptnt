@@ -5,7 +5,6 @@
   
   // single select box
   $("#brand-select").select2();
-    $("#class-select").select2();
 
   // multi select box
   $('.multi-select').select2();
