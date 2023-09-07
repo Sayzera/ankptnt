@@ -46,3 +46,6 @@ git ad..
 ** terminal **
 mv ankptnt/\* . klasorun içindekileri bulunduğu dizine taşır
 rm -r ankptnt
+
+Yarım kalmış boyutu uzun bir dosyayı iptal etmek için
+git filter-branch -f --tree-filter 'rm -f Arşiv.zip' HEAD --all
