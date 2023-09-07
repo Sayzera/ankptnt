@@ -1,0 +1,102 @@
+{% extends 'layout/base.html.twig' %}
+{# Styles Start #}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet"/>
+{% endblock %}
+{# Styles End #}
+{# Title Start #}
+{% block title %}Apiz | Fatura{% endblock %}
+{# Title End #}
+{# Page Title Start #}
+{% block page_title %} Fatura {% endblock %}
+{# Page Title End #}
+{# Page Content Start #}
+{% block body %}
+
+    <div class="content-body">
+        <div class="container-fluid">
+            <div class="row page-titles">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active"><a href="{{ path('app_main') }}">Anasayfa</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Fatura</a></li>
+                </ol>
+            </div>
+            <!-- row -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Kayıt Listesi - Fatura</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="applicationFileList" class="table table-bordered table-responsive-sm" >
+                                    <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>ETTN</th>
+                                        <th>Tarih</th>
+                                        <th>Tutar(TL)</th>
+                                        <th>Açıklama</th>
+                                        <th>Durum</th>
+                                        <th>Detay</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr  style="">
+                                        <td>
+                                            C0040
+                                        </td>
+                                        <td>
+                                            0
+                                        </td>
+                                        <td style="min-width: 150px">
+                                            25/03/2021
+                                        </td>
+                                        <td>
+                                            -776,28
+                                        </td>
+                                        <td >
+                                            CHINA PATENT DP02037 SAYILI CREDİT NOTE
+
+                                        </td>
+                                        <td >
+                                            AÇIK
+                                        </td>
+                                        <td  class="text-center">
+                                            <i class="fas fa-search-plus text-primary c-pointer " style="font-size: 14px"></i>
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{# Page Content End #}
+{# Javascripts Start #}
+{% block javascripts %}
+    {{ parent() }}
+    {% set scriptData = {
+        'dataTableJsonLang' : asset('assets/lang/datatableTr.json')
+    } %}
+    <script>
+        var scriptData = {{ scriptData|raw|json_encode|raw }};
+        console.log(scriptData)
+    </script>
+    <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('assets/vendor/moment/moment.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/vendor/daterangepicker/daterangepicker.js') }}"></script>
+    <script src="{{ asset('assets/js/brand/application_file.js')}}"></script>
+
+{% endblock %}
+{# Javascripts End #}
+{#    {% set myServiceInstance = my_service() %}#}
+{#    {{ dump(myServiceInstance) }}#}

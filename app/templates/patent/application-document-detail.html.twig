@@ -1,0 +1,97 @@
+{% extends 'layout/base.html.twig' %}
+{# Styles Start #}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet"/>
+{% endblock %}
+{# Styles End #}
+{# Title Start #}
+{% block title %}Apiz |   Başvuru Öncesi Kayıt Detay{% endblock %}
+{# Title End #}
+{# Page Title Start #}
+{% block page_title %}  Detay{% endblock %}
+{# Page Title End #}
+{# Page Content Start #}
+{% block body %}
+    <div class="content-body">
+        <div class="container-fluid">
+            <div class="row page-titles">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active"><a href="{{ path('app_main') }}">Anasayfa</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0)"> Başvuru Öncesi Kayıt Detay</a></li>
+                </ol>
+            </div>
+            <!-- row -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-12 col-xl-4">
+                                    <div class="card-body pb-0">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item d-flex flex-column px-0 justify-content-between align-items-start gap-2">
+                                                <strong style="font-size: 16px">Dosya Numarası</strong>
+                                                <p>
+                                                    <a href="javascript:void(0)" class="badge badge-rounded badge-outline-primary" style="font-size: 14px">#123456</a>
+                                                </p>
+                                            </li>
+                                            <li class="list-group-item d-flex flex-column px-0 justify-content-between align-items-start gap-2">
+                                                <strong style="font-size: 16px">Firma Referansı</strong>
+                                                <p>
+                                                    <a href="javascript:void(0)" class="badge badge-rounded badge-outline-primary" style="font-size: 14px">-</a>
+                                                </p>
+                                            </li>
+                                            <li class="list-group-item d-flex flex-column px-0 justify-content-between align-items-start gap-2">
+                                                <strong style="font-size: 16px">Başvuru Dosya No</strong>
+                                                <p>
+                                                    <a href="javascript:void(0)" class="badge badge-rounded badge-outline-primary" style="font-size: 14px">-</a>
+                                                </p>
+                                            </li>
+                                            <li class="list-group-item d-flex flex-column px-0 justify-content-between align-items-start gap-2">
+                                                <strong style="font-size: 16px">Dosya Son Durum</strong>
+                                                <p>
+                                                    <a href="javascript:void(0)" class="badge badge-rounded badge-outline-primary" style="font-size: 14px">
+                                                        Bülten takibi
+                                                    </a>
+                                                </p>
+                                            </li>
+                                            <li class="list-group-item d-flex flex-column px-0 justify-content-between align-items-start gap-2">
+                                                <strong style="font-size: 16px">Durum</strong>
+                                                <p>
+                                                    <a href="javascript:void(0)" class="badge badge-rounded badge-outline-primary" style="font-size: 14px">
+                                                        -
+                                                    </a>
+                                                </p>
+                                            </li>
+                                            <li class="list-group-item d-flex flex-column px-0 justify-content-between align-items-start gap-2">
+                                                <strong style="font-size: 16px">Konu</strong>
+                                                <p>
+                                                    Ücretli Patent Bülten Takibi Yapılan Firmalar
+                                                </p>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                {# right #}
+                                {{ include('patent/inc/application-detail-right-menu.html.twig') }}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{# Page Content End #}
+{# Javascripts Start #}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/brand/application_file.js')}}"></script>
+{% endblock %}
+

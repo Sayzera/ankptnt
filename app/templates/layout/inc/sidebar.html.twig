@@ -1,0 +1,144 @@
+<style>
+	/*Büyük ekran media query*/
+
+	@media screen and (min-width: 1900px) {
+		.profile-info1 {
+			margin-left: 30px;
+		}
+	}
+</style>
+
+<div class="dlabnav">
+	<div class="dlabnav-scroll">
+		<ul class="metismenu" id="menu">
+			{# Gözlem #}
+			{#			<li>#}
+			{#				<a class="has-arrow " href="javascript:void(0)" aria-expanded="false">#}
+			{#					<i class="fab fa-searchengin"></i>#}
+			{#					<span class="nav-text">Gözlem</span>#}
+			{#				</a>#}
+			{#				<ul aria-expanded="false">#}
+			{#					<li>#}
+			{#						<a href="{{ path('app_company_observation') }}">Firma Gözlemcisi</a>#}
+			{#					</li>#}
+			{#					<li>#}
+			{#						<a href="javascript:void(0)">Gözlem Sonuçlarında Ara</a>#}
+			{#					</li>#}
+
+
+			{#				</ul>#}
+
+			{#			</li>#}
+			<li><a class="has-arrow " href="javascript:void(0)" aria-expanded="false">
+					<i class="fas fa-copyright"></i>
+					<span class="nav-text">Marka</span>
+				</a>
+				<ul aria-expanded="false">
+					<li><a class="has-arrow" href="javascript:void(0)" aria-expanded="false">Yurtiçi Marka</a>
+						<ul aria-expanded="false">
+							<li><a href="{{ path('app_brand_domestic_brand') }}">Markalarım</a></li>
+							<li><a href="{{ path('app_brand_domestic_brand_appeal_file') }}">Marka İtiraz</a></li>
+						</ul>
+					</li>
+					<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Yurtdışına Marka</a>
+						<ul aria-expanded="false">
+							<li><a href="{{ path('app_brand_international') }}">Markalarım</a></li>
+							<li><a href="{{ path('app_brand_international_appeal_file') }}">Marka İtiraz</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a class="has-arrow " href="javascript:void(0)" aria-expanded="false">
+					<i class="far fa-lightbulb"></i>
+					<span class="nav-text">Patent</span>
+				</a>
+				<ul aria-expanded="false">
+					<li>
+						<a href="{{ path('app_patent_pre_application_registration') }}">Başvuru Öncesi Kayıt</a>
+					</li>
+					<li>
+						<a href="{{ path('app_patent_application_document') }}">Başvuru Dosyası</a>
+					</li>
+					<li>
+						<a href="{{ path('app_patent_documents') }}">Dökümanlar</a>
+					</li>
+
+				</ul>
+
+			</li>
+			<li>
+				<a class="has-arrow " href="javascript:void(0)" aria-expanded="false">
+					<i class="fas fa-image"></i>
+					<span class="nav-text">Tasarım</span>
+				</a>
+				<ul aria-expanded="false">
+					<li>
+						<a href="{{ path('app_design_design') }}">Başvuru Dosyası</a>
+					</li>
+				</ul>
+
+			</li>
+			<li>
+				<a class="has-arrow " href="javascript:void(0)" aria-expanded="false">
+					<i class="far fa-money-bill-alt"></i>
+					<span class="nav-text">Finans</span>
+				</a>
+				<ul aria-expanded="false">
+					<li>
+						<a href="{{ path('app_invocies_invocies') }}">Fatura</a>
+					</li>
+				</ul>
+
+			</li>
+			<li>
+				<a class="has-arrow " href="javascript:void(0)" aria-expanded="false">
+					<i class="fas fa-cog"></i>
+					<span class="nav-text">Ayarlar</span>
+				</a>
+				<ul aria-expanded="false">
+					<li>
+						<a href="{{path('add_app_lang_message')}}">Uygulama Başlıkları</a>
+					</li>
+
+				</ul>
+
+			</li>
+
+
+		</ul>
+		<div class="side-bar-profile">
+			<div class="d-flex align-items-center justify-content-between mb-3">
+				<div class="side-bar-profile-img">
+					<img src="{{ asset('assets/images/users/user.png') }}" alt="">
+				</div>
+				<div class="profile-info1 ">
+					<h4 class="fs-18 font-w500">Ali Yılmaz</h4>
+					<span>ali.yilmaz@ankarapatent.com</span>
+				</div>
+{#				<div class="profile-button">#}
+{#					<i class="fas fa-caret-down scale5 text-light"></i>#}
+{#				</div>#}
+			</div>
+{#			<div class="d-flex justify-content-between mb-2 progress-info">#}
+{#				<span class="fs-12">#}
+{#					<i class="fas fa-star text-orange me-2"></i>Task Progress</span>#}
+{#				<span class="fs-12">20/45</span>#}
+{#			</div>#}
+{#			<div class="progress default-progress">#}
+{#				<div class="progress-bar bg-gradientf progress-animated" style="width: 45%; height:10px;" role="progressbar">#}
+{#					<span class="sr-only">45% Complete</span>#}
+{#				</div>#}
+{#			</div>#}
+		</div>
+
+		<div class="copyright">
+			<p>
+				<strong>Apiz Yönetim Paneli</strong>
+				© 2023 Tüm Hakları Saklıdır.</p>
+			<p class="fs-12">Made with
+				<span class="heart"></span>
+				by Niltek Yazılım Teknolojileri</p>
+		</div>
+	</div>
+</div>

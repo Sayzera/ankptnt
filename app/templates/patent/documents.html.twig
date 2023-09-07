@@ -1,0 +1,119 @@
+{% extends 'layout/base.html.twig' %}
+{# Styles Start #}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet"/>
+{% endblock %}
+{# Styles End #}
+{# Title Start #}
+{% block title %}Apiz | Dökümanlar{% endblock %}
+{# Title End #}
+{# Page Title Start #}
+{% block page_title %} Dökümanlar{% endblock %}
+{# Page Title End #}
+{# Page Content Start #}
+{% block body %}
+
+    {# Javascripts End #}
+    {#    {% set myServiceInstance = my_service() %}#}
+    {#    {{ dump(myServiceInstance) }}#}
+
+    <div class="modal fade detay-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Bilgi</h5>
+                    <div class="flex align-items-center gap-2">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    {{
+                    include('patent/pre-application-registration/detail.html.twig')
+                    }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Kapat</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-body">
+        <div class="container-fluid">
+            <div class="row page-titles">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active"><a href="{{ path('app_main') }}">Anasayfa</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Dökümanlar</a></li>
+                </ol>
+            </div>
+            <!-- row -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Kayıt Listesi - Patent Döküman</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="applicationFileList" class="table table-bordered table-responsive-sm" style="min-width: 845px">
+                                    <thead>
+                                    <tr>
+                                        <th>Döküman Adı</th>
+                                        <th>Boyut (Byte)</th>
+                                        <th>Döküman Tarihi</th>
+                                        <th>Kayıt</th>
+                                        <th>İndirme</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr  style="">
+                                        <td>
+                                            wipo - recordal of assignment recorded.pdf
+                                        </td>
+                                        <td>
+                                            46.671
+
+                                        </td>
+                                        <td style="min-width: 150px">
+                                            10/02/2023
+
+                                        </td>
+                                        <td>
+                                            <a href="#" data-bs-toggle="modal" data-bs-target=".detay-modal" class="text-primary text-decoration-underline" > Ücretli Patent Bülten Takibi Yapılan Firmalar</a>
+
+                                        </td>
+                                        <td >
+                                           <a href="#" class="text-primary text-decoration-underline">İndir</a>
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{# Page Content End #}
+{# Javascripts Start #}
+{% block javascripts %}
+    {{ parent() }}
+    {% set scriptData = {
+        'dataTableJsonLang' : asset('assets/lang/datatableTr.json')
+    } %}
+
+    <script>
+        var scriptData = {{ scriptData|raw|json_encode|raw }};
+    </script>
+    <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('assets/vendor/moment/moment.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/vendor/daterangepicker/daterangepicker.js') }}"></script>
+    <script src="{{ asset('assets/js/brand/application_file.js')}}"></script>
+
+{% endblock %}

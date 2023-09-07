@@ -1,0 +1,49 @@
+<div class="col-sm-12 col-xl-8">
+    <div class="card">
+        <div class="card-body">
+            <div class="profile-tab">
+                <div class="custom-tab-1">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item"><a href="#information" data-bs-toggle="tab" class="nav-link show active">Bilgiler</a>
+                        </li>
+                        <li class="nav-item"><a href="#designs" data-bs-toggle="tab" class="nav-link">Tasarımlar</a>
+                        </li>
+                        <li class="nav-item"><a href="#files" data-bs-toggle="tab" class="nav-link">Dosyalar</a>
+                        </li>
+                        <li class="nav-item"><a href="#ruchan" data-bs-toggle="tab" class="nav-link ">Rüçhan</a>
+                        </li>
+                        <li class="nav-item"><a href="#invoices" data-bs-toggle="tab" class="nav-link">Faturalar </a>
+                        </li>
+                        <li class="nav-item"><a href="#actions" data-bs-toggle="tab" class="nav-link">İşlemler</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="information" class="tab-pane fade active show">
+                            {{ include('design/inc/application_document/information.html.twig') }}
+                        </div>
+                        <div id="designs" class="tab-pane fade">
+                            {{ include('design/inc/application_document/designs.html.twig') }}
+                        </div>
+                        <div id="ruchan" class="tab-pane fade">
+                            {{ include('design/inc/application_document/ruchan.html.twig') }}
+                        </div>
+                        <div id="files" class="tab-pane fade">
+                            Henüz doya bulunmamaktadır.
+                        </div>
+
+                        <div id="invoices" class="tab-pane fade">
+                            Henüz fatura bulunmamaktadır.
+                                                  </div>
+                        <div id="actions" class="tab-pane fade">
+                            Henüz işlem bulunmamaktadır.
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <!-- Modal -->
+            </div>
+        </div>
+    </div>
+</div>

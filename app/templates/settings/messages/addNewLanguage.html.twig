@@ -1,0 +1,127 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %} Ayarlar {% endblock %}
+{% block page_title %} Ayarlar {% endblock %}
+
+{% block stylesheets %}
+ <style>
+     body {
+            background-color: #F8F8F8 !important;
+     }
+     .card-title {
+         text-transform: none !important;
+     }
+ </style>
+
+    <link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet"/>
+
+{% endblock %}
+
+{% block body %}
+
+    <div class="content-body">
+        <div class="container-fluid">
+            <div class="row page-titles">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active"><a href="{{path('app_main')}}">Anasayfa </a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Metinler</a></li>
+                </ol>
+            </div>
+
+            <!-- row -->
+        <form
+            id="addNewLanguageForm"
+            onsubmit="AddNewLanguage.AddMessageWithAjax(event);"
+
+        >
+            <input type="hidden" name="token" value="{{ csrf_token('delete-item') }}">
+
+            <div class="row">
+                <div class="col-sm-12 col-xl-12 col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Site içerisinde kullanılan metinler</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="basic-form">
+
+                                <div class="alert-container">
+
+                                </div>
+
+
+
+
+                                    <div class="row">
+                                        <div class="mb-3 col-sm-12 col-md-6 ">
+                                            <label class="form-label">Adı</label>
+                                            <input type="text" name="key"  class="form-control" placeholder="Adını giriniz">
+                                            <div id="key" class="invalid-feedback">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 col-sm-12 col-md-6 ">
+                                            <label class="form-label">Değeri</label>
+                                            <input type="text" name="value"   class="form-control" placeholder="Değerini giriniz">
+                                            <div id="value" class="invalid-feedback">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button
+                                            type="submit" name="kaydetbtn" class="btn btn-primary form-btn">Kaydet</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+
+            {# Dictionary List Start #}
+            {{ include('settings/messages/inc/DictionaryList.html.twig', {
+                'data':data,
+            }) }}
+        </div>
+
+
+
+    </div>
+
+
+
+
+{% endblock %}
+
+{% set addNewMessageData =
+    {
+        'url': path('add_app_lang'),
+        'token': csrf_token('delete-item'),
+    }
+%}
+
+{% set addMessageJsonUrl = {
+    'url': path('add_app_lang_message_json'),
+    'token': csrf_token('delete-item'),
+    'deleteUrl': path('delete_app_lang_message'),
+    'editMessageUrl': path('update_app_lang')
+} %}
+
+{%  set dataTableData = {
+    filePath: asset('assets/lang/datatableTr.json'),
+} %}
+
+
+
+{% block javascripts %}
+    <script src="{{ asset('assets/vendor/chart.js/Chart.bundle.min.js')}}"></script>
+    <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ asset('assets/js/plugins-init/datatables.init.js')}}"></script>
+    <script>
+        var addNewMessageData = {{ addNewMessageData|json_encode|raw }};
+        var addMessageJsonUrl = {{ addMessageJsonUrl|json_encode|raw }};
+        var dataTableData = {{ dataTableData|json_encode|raw }};
+
+    </script>
+
+    <script src="{{ asset('assets/js/settings/addNewLanguage.js')}}"></script>
+{% endblock %}
