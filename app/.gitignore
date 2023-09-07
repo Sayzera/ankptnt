@@ -25,6 +25,10 @@
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+<<<<<<< HEAD
 
 .DS_Store
 Thumbs.db
+=======
+Arşiv.zip
+>>>>>>> origin/master

@@ -18,7 +18,11 @@ services:
     build:
       context: ./php
     ports:
+<<<<<<< HEAD
       - '9000:9000'
+=======
+        - '9000:9000'
+>>>>>>> origin/master
     volumes:
       - ./app:/var/www/symfony_docker
     depends_on:

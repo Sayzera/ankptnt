@@ -1,4 +1,5 @@
 {% extends 'layout/base.html.twig' %}
+<<<<<<< HEAD
 
 {# Styles Start #}
 {% block stylesheets %}
@@ -683,5 +684,349 @@
        })
     </script>
 
+=======
+{# Styles Start #}
+{% block stylesheets %}
+	{{ parent() }}
+	<link
+	href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
+	<!-- Custom Stylesheet -->
+	<link href="{{ asset('assets/vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
+	<link rel="stylesheet" href="{{ asset('assets/vendor/select2/css/select2.min.css') }}">
+	<link href="{{ asset('assets/vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
+	<link href="{{ asset('assets/vendor/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
+	<script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.js"></script>
+	<link href="{{ asset('assets/vendor/toastr/css/toastr.min.css') }}" rel="stylesheet">
+	<style>
+		.dataTable input[type="checkbox"] {
+			width: 20px !important;
+		}
+		.custom-input {
+			border-radius: 1.25rem;
+			border: 0.0625rem solid #c8c8c8;
+			height: 2.5rem;
+			background: #fff;
+			width: 100%;
+			padding: 0 10px;
+		}
+	</style>
+{% endblock %}
+{# Styles End #}
+{# Title Start #}
+{% block title %}Apiz | Marka Gözlem
+{% endblock %}
+{# Title End #}
+{# Page Title Start #}
+{% block page_title %}
+	Marka Gözlem
+{% endblock %}
+{# Page Title End #}
+{# Page Content Start #}
+{% block body %}
+	<div
+		class="content-body">
+		<!-- row -->
+		<div
+			class="container-fluid">
+			<!-- Modal -->
+			{{ include('observation/inc/similarity_model.html.twig') }}
+			{{ include('observation/inc/other_brans.html.twig') }}
+			<div class="modal fade detay-modal" tabindex="-1" role="dialog" aria-hidden="true">
+				<div class="modal-dialog modal-xl">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Marka Bilgileri</h5>
+							<div class="flex align-items-center gap-2">
+								<a href="#" class="text-primary text-decoration-underline" style="font-size: 18px">Bülten</a>
+								<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+							</div>
+						</div>
+						<div class="modal-body">
+							{{
+                  include('brand/international_trademark/detail.html.twig')
+                  }}
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Kapat</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-xl-12">
+					<div class="card ">
+						<div class="card-header d-block">
+							<h4 class="card-title">Gözlem Yap</h4>
+							<p class="m-0 subtitle">İlgili alanlarda seçim yapıp sonrasında "Gözlemi başlat" butonuna tıklayıp arama yapabilirsiniz.</p>
+						</div>
+						<form onsubmit="observation.getObservationListOnSubmit(event)">
+							<div class="px-4 form-errors d-none mt-4"></div>
+							<div class="card-body d-flex justify-content-between align-items-center gap-2">
+								<div class="w-75 d-flex align-items-center gap-2">
+									<div class="w-50">
+										<select id="brand-select" name="bulten-no">
+											<option value="AL">Bülten Seç</option>
+											{%  for i in 0..426 %}
+												<option {% if i == 426 %} selected {% endif %} value="{{ i + 1 }}">
+													{{ i +1  }}</option>
+											{% endfor %}
+										</select>
+									</div>
+									<div class="w-50">
+										<input type="text" class="custom-input" name="marka-adi" placeholder="Marka Adı">
+									</div>
+									<div class="w-50">
+										<select id="class-select" name="sinif" class="form-control" multiple>
+											{%  for i in 0..49 %}
+												<option value="{{ i + 1 }}">
+													{{ i +1  }}
+												</option>
+											{% endfor %}
+										</select>
+									</div>
+								</div>
+								<div class="w-25">
+									<button type="submit" class="btn btn-rounded btn-primary">
+										<span class="btn-icon-start text-primary">
+											<i class="fas fa-search"></i>
+										</span>Gözlemi başlat</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="d-flex justify-content-center gozlem-container-preloader">
+				<dotlottie-player src="{{ asset('assets/lottie/machineAi.json') }}" background="transparent" speed="1" style="width: 300px; height: 300px" direction="1" mode="normal" loop autoplay></dotlottie-player>
+			</div>
+			<div class="row gozlem-container d-none">
+				<div>
+					<div class="card">
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table table-bordered table-responsive-sm">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>Logo</th>
+											<th>Marka Adı</th>
+											<th>Firma</th>
+											<th>Sınıf</th>
+											<th>Bülten</th>
+											<th>Başvuru No</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												<p class="badge-primary" style="font-size: 16px;color: white;padding: 5px">Markanız</p>
+											</td>
+											<td style="width: 200px ">
+												<img src="{{ asset('assets/images/logo/anadol.png') }}" style="width: 150px; height: 100px; object-fit: contain"/>
+											</td>
+											<td data-search="2">Anada</td>
+											<td style="min-width: 200px">
+												<a href="#" data-bs-toggle="modal" data-bs-target=".detay-modal" class="text-primary text-decoration-underline">
+													(7501626) ANADA OTOMOTİV SANAYİ VE TİCARET LİMİTED ŞİRKETİ
+												</a>
+											</td>
+											<td style="width: 200px;">
+												<div class="d-flex align-items-center gap-2 flex-wrap w-100" style="width: 100% !important;">
+													<a href="javascript:void(0)" class="badge badge-circle badge-outline-primary">35</a>
+													<a href="javascript:void(0)" class="badge badge-circle badge-outline-primary">12</a>
+												</div>
+											</td>
+											<td>
+												<a href="#" class="text-primary text-decoration-underline">
+													426
+												</a>
+											</td>
+											<td>
+												<p>2023/090976</p>
+												<p>13/07/2023</p>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12 col-xl-12">
+					<div class="row">
+						<div class="col-xl-12 ">
+							<div
+								class="tab-content ">
+								{#                              style="overflow:auto;max-height: 600px"#}
+								<div class="tab-pane fade active show ">
+									<div class="card full-screen-observation-list">
+										<div class="card-header">
+											<div class="d-flex justify-content-between align-items-center w-100">
+												<div class="d-flex justify-content-between w-100">
+													<div>
+														<h4 class="card-title">Marka Gözlem</h4>
+														<p class="toplu-marka-bildir d-none mt-2">
+															<a href="javascript:void(0)" class="btn btn-primary btn-sm btn-rounded p-1">
+																Seçili olan 6 markayı bildir
+															</a>
+														</p>
+													</div>
+													<div>
+														<i class="fas fa-file-excel text-primary" style="font-size: 30px"></i>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="card-body">
+											<div class="table-responsive">
+												<table id="example5" class="table table-bordered table-responsive-sm" style="min-width: 845px">
+													<thead>
+														<tr>
+															<th>
+																<div class="form-check custom-checkbox ms-2">
+																	<input type="checkbox" class="form-check-input" id="checkAll" required="">
+																	<label class="form-check-label" for="checkAll"></label>
+																</div>
+															</th>
+															<th>Logo</th>
+															<th>Marka Adı</th>
+															<th>Firma</th>
+															<th>Sınıf</th>
+															<th>Bülten</th>
+															<th>Başvuru No</th>
+															<th>Benzerlik</th>
+															<th>İşlemler</th>
+														</tr>
+													</thead>
+													<tbody>
+														{# 
+																																																								<tr>
+																																																									<td>
+																																																										<div class="form-check custom-checkbox ms-2">
+																																																											<input type="checkbox" class="form-check-input" id="customCheckBox3" required="">
+																																																											<label class="form-check-label" for="customCheckBox2"></label>
+																																																										</div>
+																																																									</td>
+																																																									<td style="width: 200px ">
+																																																										<img src="{{ asset('assets/images/logo/anadol.png') }}" style="width: 150px; height: 100px; object-fit: contain"/>
+																																																									</td>
+																																																									<td data-search="2">Anada</td>
+																																																									<td style="min-width: 200px">
+																																																										<a href="#" data-bs-toggle="modal" data-bs-target=".detay-modal" class="text-primary text-decoration-underline">
+																																																											(7501626) ANADA OTOMOTİV SANAYİ VE TİCARET LİMİTED ŞİRKETİ
+																																																										</a>
+																																																									</td>
+																																																									<td style="width: 200px;">
+																																																										<div class="d-flex align-items-center gap-2 flex-wrap w-100" style="width: 100% !important;">
+																																																											<a href="javascript:void(0)" class="badge badge-circle badge-warning">35</a>
+																																																											<a href="javascript:void(0)" class="badge badge-circle badge-outline-primary">12</a>
+																																																										</div>
+																																																									</td>
+																																																									<td>
+																																																										<a href="#" class="text-primary text-decoration-underline">
+																																																											426
+																																																										</a>
+																																																									</td>
+																																																									<td>
+																																																										<p>2023/090976</p>
+																																																										<p>13/07/2023</p>
+																																																									</td>
+																																																									<td>
+																																																										100%
+																																																									</td>
+																																																									<td>
+																																																										<a href="#" class="text-primary bold text-decoration-underline">
+																																																											İtiraz Et</a>
+																																																									</td>
+																																																								</tr> #}
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--**********************************
+					   Content body end
+					   ***********************************-->
+{% endblock %}
+{# Page Content End #}
+{# Javascripts Start #}
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('assets/vendor/select2/js/select2.full.min.js') }}"></script>
+	<script src="{{ asset('assets/js/plugins-init/select2-init.js') }}"></script>
+	<script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
+	<script src="{{ asset('assets/vendor/sweetalert2/dist/sweetalert2.min.js') }}"></script>
+	<script src="{{ asset('assets/vendor/toastr/js/toastr.min.js') }}"></script>
+	{% set twigData = {
+'getObservationListUrl': path('app_company_observation_list'),
+'token':csrf_token('delete-item'),
+'dataTableLangUrl': asset('assets/lang/datatableTr.json')
+} %}
+	<script>
+		var twigData = {{ twigData|json_encode|raw }};
+
+$(document).ready(() => {
+let checkedRowData = [];
+
+$('#example5').on('click', 'input[type="checkbox"]', function () { // handle checkbox click event
+setTimeout(() => { // all checked tr get
+$('#example5').find('tr').each(function () {
+checkedRowData = [];
+
+$('#example5 input[type="checkbox"]').each(function () {
+
+if ($(this).is(':checked')) {
+let rowData = table.row($(this).closest('tr'))
+// get td list
+let tdList = $(this).closest('tr').find('td');
+let tdValue = tdList.eq(2).attr('data-search'); // içerisindeki veriyi alıyor
+
+if (rowData.data() != undefined) {
+checkedRowData.push(rowData.data());
+
+}
+}
+
+
+});
+});
+topluGozlemBildir();
+}, 500)
+
+function topluGozlemBildir() {
+
+console.log(checkedRowData)
+
+if (checkedRowData.length > 0) {
+$('.toplu-marka-bildir').removeClass('d-none');
+$('.toplu-marka-bildir').html (`
+                         <a href="javascript:void(0)" class="btn btn-primary btn-rounded"  data-bs-toggle="modal" data-bs-target="#similarityModel">
+                                                   Seçili olan ${
+checkedRowData.length
+} markayı bildir
+                                               </a>
+                     `)
+} else {
+$('.toplu-marka-bildir').addClass('d-none');
+}
+
+}
+
+
+});
+
+})
+	</script>
+	<script src="{{ asset('assets/js/observation/observation.js') }}"></script>
+>>>>>>> origin/master
 {% endblock %}
 {# Javascripts End #}

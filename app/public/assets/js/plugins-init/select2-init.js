@@ -5,7 +5,10 @@
   
   // single select box
   $("#brand-select").select2();
+<<<<<<< HEAD
     $("#class-select").select2();
+=======
+>>>>>>> origin/master
 
   // multi select box
   $('.multi-select').select2();

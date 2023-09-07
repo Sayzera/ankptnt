@@ -27,7 +27,11 @@ class LangMessageController extends AbstractController
         $par = [
             'lang' => 'tr'
         ];
+<<<<<<< HEAD
         $data = $repo->getAllLangMessage( $par);
+=======
+        $data = $repo->getAllLangMessage($par);
+>>>>>>> origin/master
 
 
         return $this->render('settings/messages/addNewLanguage.html.twig', [
@@ -43,7 +47,11 @@ class LangMessageController extends AbstractController
             'lang' => 'tr'
         ];
 
+<<<<<<< HEAD
         $data = $repo->getAllLangMessage( $par);
+=======
+        $data = $repo->getAllLangMessage($par);
+>>>>>>> origin/master
 
         return new JsonResponse([
             'status' => 'success',
@@ -53,7 +61,12 @@ class LangMessageController extends AbstractController
     }
 
     #[Route('/delete-message', name: 'delete_app_lang_message', methods: ['POST', 'GET'])]
+<<<<<<< HEAD
     public function deleteMessage(Request $request, LangRepository $repo) {
+=======
+    public function deleteMessage(Request $request, LangRepository $repo)
+    {
+>>>>>>> origin/master
         // CSRF token kontrolü
         $submittedToken = $request->request->get('token');
         if (!$this->isCsrfTokenValid('delete-item', $submittedToken)) {
@@ -73,7 +86,10 @@ class LangMessageController extends AbstractController
                 'message' => 'Metin başarıyla silindi',
                 'data' => $result
             ], 200);
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
         } catch (\Exception $e) {
             return new JsonResponse([
                 'status' => 'error',
@@ -109,7 +125,11 @@ class LangMessageController extends AbstractController
             // form validation
             $validation =  $this->validator->getLangMessageValidator($data);
 
+<<<<<<< HEAD
             if(count($validation) > 0) {
+=======
+            if (count($validation) > 0) {
+>>>>>>> origin/master
                 return new JsonResponse([
                     'status' => 'error',
                     'message' => 'Hay aksi! Formda bazı hatalar var.',
@@ -124,14 +144,21 @@ class LangMessageController extends AbstractController
                 'lang' => $lang
             ]);
 
+<<<<<<< HEAD
            return new JsonResponse([
+=======
+            return new JsonResponse([
+>>>>>>> origin/master
                 'status' => 'success',
                 'message' => 'Metin başarıyla eklendi',
                 'data' => $lang
             ], 200);
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> origin/master
         } catch (\Exception $e) {
             return new JsonResponse([
                 'status' => 'error',
@@ -139,6 +166,7 @@ class LangMessageController extends AbstractController
                 'data' => []
             ], 500);
         }
+<<<<<<< HEAD
 
     }
 
@@ -149,6 +177,10 @@ class LangMessageController extends AbstractController
     }
 
 
+=======
+    }
+
+>>>>>>> origin/master
 
     #[Route('/update-lang', name: 'update_app_lang', methods: ['POST', 'GET'])]
     public function updateLang(LangRepository $repo, Request $request)
@@ -176,7 +208,11 @@ class LangMessageController extends AbstractController
             // form validation
             $validation =  $this->validator->getLangMessageValidator($data);
 
+<<<<<<< HEAD
             if(count($validation) > 0) {
+=======
+            if (count($validation) > 0) {
+>>>>>>> origin/master
                 return new JsonResponse([
                     'status' => 'error',
                     'message' => 'Hay aksi! Formda bazı hatalar var.',
@@ -197,9 +233,12 @@ class LangMessageController extends AbstractController
                 'message' => 'Metin başarıyla güncellendi',
                 'data' => $lang
             ], 200);
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> origin/master
         } catch (\Exception $e) {
             return new JsonResponse([
                 'status' => 'error',
@@ -207,9 +246,13 @@ class LangMessageController extends AbstractController
                 'data' => []
             ], 500);
         }
+<<<<<<< HEAD
 
     }
 
 
 
+=======
+    }
+>>>>>>> origin/master
 }

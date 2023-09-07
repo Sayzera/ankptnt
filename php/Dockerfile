@@ -3,7 +3,11 @@
 # composer install
 # symfony cli
 
+<<<<<<< HEAD
 FROM php:8.2-fpm
+=======
+FROM php:8.0-fpm
+>>>>>>> origin/master
 
 RUN apt update \
     && apt install -y zlib1g-dev g++ git libicu-dev zip libzip-dev zip \
