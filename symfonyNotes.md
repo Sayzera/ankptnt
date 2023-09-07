@@ -49,3 +49,16 @@ rm -r ankptnt
 
 Yarım kalmış boyutu uzun bir dosyayı iptal etmek için
 git filter-branch -f --tree-filter 'rm -f Arşiv.zip' HEAD --all
+
+Yeni bir branch açmak
+git branch eski-kodlar # Yeni bir dal oluşturun
+git checkout eski-kodlar # Yeni dalı seçin
+git add . # Tüm değişiklikleri sahneye ekleyin
+git commit -m "Eski kodları sakla" # Değişiklikleri kaydedin
+git push origin eski-kodlar # Uzak depoya yeni dalı gönderin
+
+// açılan brancı uzak repo ile birleştirme
+git fetch origin eski-kodlar # uzak repoyu bağla
+git checkout -b eski-kodlar origin/eski-kodlar // uzak repoda yerel olarak geçiş yap
+git merge eski-kodlar // kodları birleştir
+git push origin eski-kodlar

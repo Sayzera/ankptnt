@@ -178,7 +178,9 @@
 											<div class="d-flex justify-content-between align-items-center w-100">
 												<div class="d-flex justify-content-between w-100">
 													<div>
-														<h4 class="card-title">Marka Gözlem</h4>
+														<h4 class="card-title">Marka Gözlem
+															<span class="observation-brand-result"></span>
+														</h4>
 														<p class="toplu-marka-bildir d-none mt-2">
 															<a href="javascript:void(0)" class="btn btn-primary btn-sm btn-rounded p-1">
 																Seçili olan 6 markayı bildir
@@ -193,7 +195,7 @@
 										</div>
 										<div class="card-body">
 											<div class="table-responsive">
-												<table id="example5" class="table table-bordered table-responsive-sm" style="min-width: 845px">
+												<table id="example5" class="table table-bordered table-responsive-sm marka-gozlem-list" style="min-width: 845px">
 													<thead>
 														<tr>
 															<th>
@@ -214,45 +216,45 @@
 													</thead>
 													<tbody>
 														{# 
-																																																								<tr>
-																																																									<td>
-																																																										<div class="form-check custom-checkbox ms-2">
-																																																											<input type="checkbox" class="form-check-input" id="customCheckBox3" required="">
-																																																											<label class="form-check-label" for="customCheckBox2"></label>
-																																																										</div>
-																																																									</td>
-																																																									<td style="width: 200px ">
-																																																										<img src="{{ asset('assets/images/logo/anadol.png') }}" style="width: 150px; height: 100px; object-fit: contain"/>
-																																																									</td>
-																																																									<td data-search="2">Anada</td>
-																																																									<td style="min-width: 200px">
-																																																										<a href="#" data-bs-toggle="modal" data-bs-target=".detay-modal" class="text-primary text-decoration-underline">
-																																																											(7501626) ANADA OTOMOTİV SANAYİ VE TİCARET LİMİTED ŞİRKETİ
-																																																										</a>
-																																																									</td>
-																																																									<td style="width: 200px;">
-																																																										<div class="d-flex align-items-center gap-2 flex-wrap w-100" style="width: 100% !important;">
-																																																											<a href="javascript:void(0)" class="badge badge-circle badge-warning">35</a>
-																																																											<a href="javascript:void(0)" class="badge badge-circle badge-outline-primary">12</a>
-																																																										</div>
-																																																									</td>
-																																																									<td>
-																																																										<a href="#" class="text-primary text-decoration-underline">
-																																																											426
-																																																										</a>
-																																																									</td>
-																																																									<td>
-																																																										<p>2023/090976</p>
-																																																										<p>13/07/2023</p>
-																																																									</td>
-																																																									<td>
-																																																										100%
-																																																									</td>
-																																																									<td>
-																																																										<a href="#" class="text-primary bold text-decoration-underline">
-																																																											İtiraz Et</a>
-																																																									</td>
-																																																								</tr> #}
+																																																																																																																																																										<tr>
+																																																																																																																																																											<td>
+																																																																																																																																																												<div class="form-check custom-checkbox ms-2">
+																																																																																																																																																													<input type="checkbox" class="form-check-input" id="customCheckBox3" required="">
+																																																																																																																																																													<label class="form-check-label" for="customCheckBox2"></label>
+																																																																																																																																																												</div>
+																																																																																																																																																											</td>
+																																																																																																																																																											<td style="width: 200px ">
+																																																																																																																																																												<img src="{{ asset('assets/images/logo/anadol.png') }}" style="width: 150px; height: 100px; object-fit: contain"/>
+																																																																																																																																																											</td>
+																																																																																																																																																											<td data-search="2">Anada</td>
+																																																																																																																																																											<td style="min-width: 200px">
+																																																																																																																																																												<a href="#" data-bs-toggle="modal" data-bs-target=".detay-modal" class="text-primary text-decoration-underline">
+																																																																																																																																																													(7501626) ANADA OTOMOTİV SANAYİ VE TİCARET LİMİTED ŞİRKETİ
+																																																																																																																																																												</a>
+																																																																																																																																																											</td>
+																																																																																																																																																											<td style="width: 200px;">
+																																																																																																																																																												<div class="d-flex align-items-center gap-2 flex-wrap w-100" style="width: 100% !important;">
+																																																																																																																																																													<a href="javascript:void(0)" class="badge badge-circle badge-warning">35</a>
+																																																																																																																																																													<a href="javascript:void(0)" class="badge badge-circle badge-outline-primary">12</a>
+																																																																																																																																																												</div>
+																																																																																																																																																											</td>
+																																																																																																																																																											<td>
+																																																																																																																																																												<a href="#" class="text-primary text-decoration-underline">
+																																																																																																																																																													426
+																																																																																																																																																												</a>
+																																																																																																																																																											</td>
+																																																																																																																																																											<td>
+																																																																																																																																																												<p>2023/090976</p>
+																																																																																																																																																												<p>13/07/2023</p>
+																																																																																																																																																											</td>
+																																																																																																																																																											<td>
+																																																																																																																																																												100%
+																																																																																																																																																											</td>
+																																																																																																																																																											<td>
+																																																																																																																																																												<a href="#" class="text-primary bold text-decoration-underline">
+																																																																																																																																																													İtiraz Et</a>
+																																																																																																																																																											</td>
+																																																																																																																																																										</tr> #}
 
 													</tbody>
 												</table>
@@ -268,8 +270,8 @@
 		</div>
 	</div>
 	<!--**********************************
-					   Content body end
-					   ***********************************-->
+												   Content body end
+												   ***********************************-->
 {% endblock %}
 {# Page Content End #}
 {# Javascripts Start #}
@@ -287,58 +289,6 @@
 } %}
 	<script>
 		var twigData = {{ twigData|json_encode|raw }};
-
-$(document).ready(() => {
-let checkedRowData = [];
-
-$('#example5').on('click', 'input[type="checkbox"]', function () { // handle checkbox click event
-setTimeout(() => { // all checked tr get
-$('#example5').find('tr').each(function () {
-checkedRowData = [];
-
-$('#example5 input[type="checkbox"]').each(function () {
-
-if ($(this).is(':checked')) {
-let rowData = table.row($(this).closest('tr'))
-// get td list
-let tdList = $(this).closest('tr').find('td');
-let tdValue = tdList.eq(2).attr('data-search'); // içerisindeki veriyi alıyor
-
-if (rowData.data() != undefined) {
-checkedRowData.push(rowData.data());
-
-}
-}
-
-
-});
-});
-topluGozlemBildir();
-}, 500)
-
-function topluGozlemBildir() {
-
-console.log(checkedRowData)
-
-if (checkedRowData.length > 0) {
-$('.toplu-marka-bildir').removeClass('d-none');
-$('.toplu-marka-bildir').html (`
-                         <a href="javascript:void(0)" class="btn btn-primary btn-rounded"  data-bs-toggle="modal" data-bs-target="#similarityModel">
-                                                   Seçili olan ${
-checkedRowData.length
-} markayı bildir
-                                               </a>
-                     `)
-} else {
-$('.toplu-marka-bildir').addClass('d-none');
-}
-
-}
-
-
-});
-
-})
 	</script>
 	<script src="{{ asset('assets/js/observation/observation.js') }}"></script>
 {% endblock %}

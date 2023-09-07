@@ -26,10 +26,32 @@ let observation = {
     return table;
   },
 
+  ScrollGoTo: function (className) {
+    var top = $(className).offset().top - 100;
+    $("html, body").animate(
+      {
+        scrollTop: top,
+      },
+      1000
+    );
+  },
+
+  clickToHamburger: function (className) {
+    // eğer is-active clası yoksa
+    if (!$(className).hasClass("is-active")) {
+      $(className).trigger("click");
+      x;
+    }
+  },
+
   SelectClassInput: function () {
     $("#class-select").select2({
       placeholder: "Sınıf Seç",
     });
+  },
+
+  observationResultCount: function (className, count) {
+    $(className).html(count + " adet sonuç bulundu.");
   },
   getObservationListFormData: function (e) {
     // get form values
@@ -72,6 +94,12 @@ let observation = {
         $(".gozlem-container-preloader").addClass("d-none");
         $(".gozlem-container").removeClass("d-none");
 
+        observation.ScrollGoTo(".marka-gozlem-list");
+        observation.clickToHamburger(".hamburger");
+        observation.observationResultCount(
+          ".observation-brand-result",
+          response?.data?.trademarkSearchList?.length
+        );
         if (response?.data?.trademarkSearchList?.length > 0) {
           let list = response.data.trademarkSearchList;
 
