@@ -40,7 +40,6 @@ let observation = {
     // eğer is-active clası yoksa
     if (!$(className).hasClass("is-active")) {
       $(className).trigger("click");
-      x;
     }
   },
 
