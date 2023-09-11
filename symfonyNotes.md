@@ -42,6 +42,7 @@ ssh-keygen -t ed25519 -C "white.code.text@gmail.com"
 **_ git _**
 git rm --cached app
 git ad..
+git pull --no-rebase
 
 ** terminal **
 mv ankptnt/\* . klasorun içindekileri bulunduğu dizine taşır
@@ -63,16 +64,14 @@ git checkout -b eski-kodlar origin/eski-kodlar // uzak repoda yerel olarak geçi
 git merge eski-kodlar // kodları birleştir
 git push origin eski-kodlar
 
-
-
 php bin/console doctrine:cache:clear-metadata
 php bin/console doctrine:cache:clear-query
 php bin/console doctrine:cache:clear-result
 
-
-
 # fixtures
+
 php bin/console doctrine:fixtures:load --purge-exclusions=Lang --purge-exclusions=LangMessages
+
 - sadece belirtilen tabloları temizle
 
 SET FOREIGN_KEY_CHECKS = 0;
