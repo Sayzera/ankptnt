@@ -31,41 +31,40 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     {
         foreach ($tblEmployee as $employee) {
             // Eğer kullanıcı daha önceden kayıt olmuşsa kayıt etme
-            if($this->existsUser($employee['col_email'])) {
-                continue;
+            if (!$this->existsUser($employee['col_email'])) {
+                $user = new User();
+                $hashedPassword = $this->passwordHasher->hashPassword(
+                    $user,
+                    $employee['col_password']
+                );
+                $user->setEmail($employee['col_email']);
+                $user->setPassword($hashedPassword);
+                $user->setRoles(['ROLE_USER']);
+                $user->setColExpiryDate($employee['col_expiry_date']);
+                $user->setColIsCustomerRepresentative($employee['col_is_customer_representative']);
+                $user->setColIsDeleted($employee['col_is_deleted']);
+                $user->setColLastLogin($employee['col_last_login']);
+                $user->setColLevel($employee['col_level']);
+                $user->setColName($employee['col_name']);
+                $user->setColStartingofEmployment($employee['col_startingof_employment']);
+                $user->setColSurname($employee['col_surname']);
+                $user->setColWorkgroupId($employee['col_workgroup_id']);
+                $user->setColDepartmentId($employee['col_department_id']);
+                $user->setColUsername($employee['col_username']);
+                $user->setColUnixUsername($employee['col_unix_username']);
+                $user->setColFirstPage($employee['col_first_page']);
+                $user->setColRegistrationNumber($employee['col_registration_number']);
+                $user->setColWatchAuth($employee['col_watch_auth']);
+                $user->setColIsWorkingOn($employee['col_is_working_on']);
+                $user->setColExpiryDate($employee['col_expiry_date']);
+                $this->getEntityManager()->persist($user);
+                $this->getEntityManager()->flush();
             }
-
-            $user = new User();
-            $hashedPassword = $this->passwordHasher->hashPassword(
-                $user,
-                $employee['col_password']
-            );
-            $user->setEmail($employee['col_email']);
-            $user->setPassword($hashedPassword);
-            $user->setRoles(['ROLE_USER']);
-            $user->setColExpiryDate($employee['col_expiry_date']);
-            $user->setColIsCustomerRepresentative($employee['col_is_customer_representative']);
-            $user->setColIsDeleted($employee['col_is_deleted']);
-            $user->setColLastLogin($employee['col_last_login']);
-            $user->setColLevel($employee['col_level']);
-            $user->setColName($employee['col_name']);
-            $user->setColStartingofEmployment($employee['col_startingof_employment']);
-            $user->setColSurname($employee['col_surname']);
-            $user->setColWorkgroupId($employee['col_workgroup_id']);
-            $user->setColDepartmentId($employee['col_department_id']);
-            $user->setColUsername($employee['col_username']);
-            $user->setColUnixUsername($employee['col_unix_username']);
-            $user->setColFirstPage($employee['col_first_page']);
-            $user->setColRegistrationNumber($employee['col_registration_number']);
-            $user->setColWatchAuth($employee['col_watch_auth']);
-            $user->setColIsWorkingOn($employee['col_is_working_on']);
-            $user->setColExpiryDate($employee['col_expiry_date']);
-            $this->getEntityManager()->persist($user);
-            $this->getEntityManager()->flush();
         }
     }
 
-    public function  existsUser($email) {
+    public function  existsUser($email)
+    {
         $userExist = $this->findOneBy(['email' => $email]);
 
         if ($userExist) {
@@ -89,28 +88,28 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->getEntityManager()->flush();
     }
 
-//    /**
-//     * @return User[] Returns an array of User objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('u')
-//            ->andWhere('u.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('u.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    //    /**
+    //     * @return User[] Returns an array of User objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('u')
+    //            ->andWhere('u.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('u.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
 
-//    public function findOneBySomeField($value): ?User
-//    {
-//        return $this->createQueryBuilder('u')
-//            ->andWhere('u.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    public function findOneBySomeField($value): ?User
+    //    {
+    //        return $this->createQueryBuilder('u')
+    //            ->andWhere('u.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }
