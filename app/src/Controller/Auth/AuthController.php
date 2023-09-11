@@ -23,7 +23,6 @@ class AuthController extends AbstractController
     {
         $error = $authenticationUtils->getLastAuthenticationError();
 
-
         return $this->render('auth/login.html.twig', [
             'controller_name' => 'AuthController',
                        'error'         => $error,
@@ -51,7 +50,7 @@ class AuthController extends AbstractController
         $tblEmployee = $this->apizUserService->getPatiTblEmployee();
         $this->userRepo->registerUser($tblEmployee);
         // redirect to login page
-        return $this->redirectToRoute('app_auth_login');
+        return $this->redirectToRoute('app_login');
 
 
     }
