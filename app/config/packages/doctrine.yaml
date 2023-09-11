@@ -3,8 +3,8 @@ doctrine:
     connections:
       default:
         url: "%env(resolve:DATABASE_URL)%"
-      custom:
-        url: "%env(resolve:CUSTOM_DATABASE_URL)%"
+      apz:
+        url: "%env(resolve:PT_DATABASE_URL)%"
     default_connection: default
 
     # IMPORTANT: You MUST configure your server version,
@@ -18,18 +18,9 @@ doctrine:
         mappings:
           Main:
             is_bundle: false
-            dir: "%kernel.project_dir%/src/Entity/Main"
-            prefix: 'App\Entity\Main'
+            dir: "%kernel.project_dir%/src/Entity"
+            prefix: 'App\Entity'
             alias: Main
-      custom:
-        connection: custom
-        mappings:
-          Custom:
-            is_bundle: false
-            dir: "%kernel.project_dir%/src/Entity/Custom"
-            prefix: 'App\Entity\Custom'
-            alias: Custom
-
 when@test:
   doctrine:
     dbal:

@@ -36,6 +36,7 @@ class LangMessageController extends AbstractController
         ]);
     }
 
+
     #[Route('/add-message-json', name: 'add_app_lang_message_json', methods: ['POST', 'GET'])]
     public function dictionaryListJson(LangRepository $repo): JsonResponse
     {

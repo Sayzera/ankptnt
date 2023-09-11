@@ -87,7 +87,7 @@
 										</select>
 									</div>
 									<div class="w-50">
-										<input type="text" class="custom-input" name="marka-adi" placeholder="Marka Adı">
+										<input type="text" class="custom-input" name="marka-adi" placeholder="Marka">
 									</div>
 									<div class="w-50">
 										<select id="class-select" name="sinif" class="form-control" multiple>
@@ -100,7 +100,7 @@
 									</div>
 								</div>
 								<div class="w-25">
-									<button type="submit" class="btn btn-rounded btn-primary">
+									<button type="submit" class="btn btn-rounded btn-primary" name="start-observation">
 										<span class="btn-icon-start text-primary">
 											<i class="fas fa-search"></i>
 										</span>Gözlemi başlat</button>
@@ -123,41 +123,37 @@
 										<tr>
 											<th>#</th>
 											<th>Logo</th>
-											<th>Marka Adı</th>
+											<th>Marka</th>
 											<th>Firma</th>
 											<th>Sınıf</th>
-											<th>Bülten</th>
 											<th>Başvuru No</th>
 										</tr>
 									</thead>
 									<tbody>
+									{% set brand = data.my_brand %}
 										<tr>
 											<td>
 												<p class="badge-primary" style="font-size: 16px;color: white;padding: 5px">Markanız</p>
 											</td>
 											<td style="width: 200px ">
-												<img src="{{ asset('assets/images/logo/anadol.png') }}" style="width: 150px; height: 100px; object-fit: contain"/>
+												<div  style="text-align: left; width: 76px;"><img class="v-image v-widget" src="http://apiz.ankarapatent.com/fileServer/tmImage?res=64&amp;appNo={{ brand.basvuru_numarasi }}" alt=""></div>
 											</td>
-											<td data-search="2">Anada</td>
-											<td style="min-width: 200px">
+											<td data-search="2">
 												<a href="#" data-bs-toggle="modal" data-bs-target=".detay-modal" class="text-primary text-decoration-underline">
-													(7501626) ANADA OTOMOTİV SANAYİ VE TİCARET LİMİTED ŞİRKETİ
+													{{ brand.marka }}
 												</a>
+												</td>
+											<td style="min-width: 200px">
+													{{ brand.firma_unvan }}
 											</td>
 											<td style="width: 200px;">
 												<div class="d-flex align-items-center gap-2 flex-wrap w-100" style="width: 100% !important;">
-													<a href="javascript:void(0)" class="badge badge-circle badge-outline-primary">35</a>
-													<a href="javascript:void(0)" class="badge badge-circle badge-outline-primary">12</a>
+													{{ brand.sinif }}
 												</div>
 											</td>
+
 											<td>
-												<a href="#" class="text-primary text-decoration-underline">
-													426
-												</a>
-											</td>
-											<td>
-												<p>2023/090976</p>
-												<p>13/07/2023</p>
+												{{ brand.basvuru_numarasi }}
 											</td>
 										</tr>
 									</tbody>
@@ -204,11 +200,9 @@
 																	<label class="form-check-label" for="checkAll"></label>
 																</div>
 															</th>
-															<th>Logo</th>
-															<th>Marka Adı</th>
+															<th>Marka</th>
 															<th>Firma</th>
 															<th>Sınıf</th>
-															<th>Bülten</th>
 															<th>Başvuru No</th>
 															<th>Benzerlik</th>
 															<th>İşlemler</th>
@@ -283,9 +277,12 @@
 	<script src="{{ asset('assets/vendor/sweetalert2/dist/sweetalert2.min.js') }}"></script>
 	<script src="{{ asset('assets/vendor/toastr/js/toastr.min.js') }}"></script>
 	{% set twigData = {
-'getObservationListUrl': path('app_company_observation_list'),
-'token':csrf_token('delete-item'),
-'dataTableLangUrl': asset('assets/lang/datatableTr.json')
+		'getObservationListUrl': path('app_company_observation_list'),
+		'token':csrf_token('delete-item'),
+		'dataTableLangUrl': asset('assets/lang/datatableTr.json'),
+		'id': app.request.get('id'),
+		'marka': app.request.get('marka'),
+		'sinif': app.request.get('sinif'),
 } %}
 	<script>
 		var twigData = {{ twigData|json_encode|raw }};

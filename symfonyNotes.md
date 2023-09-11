@@ -62,3 +62,19 @@ git fetch origin eski-kodlar # uzak repoyu bağla
 git checkout -b eski-kodlar origin/eski-kodlar // uzak repoda yerel olarak geçiş yap
 git merge eski-kodlar // kodları birleştir
 git push origin eski-kodlar
+
+
+
+php bin/console doctrine:cache:clear-metadata
+php bin/console doctrine:cache:clear-query
+php bin/console doctrine:cache:clear-result
+
+
+
+# fixtures
+php bin/console doctrine:fixtures:load --purge-exclusions=Lang --purge-exclusions=LangMessages
+- sadece belirtilen tabloları temizle
+
+SET FOREIGN_KEY_CHECKS = 0;
+TRUNCATE TABLE Lang;
+SET FOREIGN_KEY_CHECKS = 1;

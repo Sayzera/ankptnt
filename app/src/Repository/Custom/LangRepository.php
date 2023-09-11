@@ -23,7 +23,7 @@ class LangRepository extends ServiceEntityRepository
 
     public function __construct(ManagerRegistry $registry)
     {
-        $this->entityManager = $registry->getManager('custom');
+        $this->entityManager = $registry->getManager();
         parent::__construct($registry, Lang::class);
     }
 
@@ -96,6 +96,7 @@ class LangRepository extends ServiceEntityRepository
         $langMessage = $this->entityManager->getRepository(LangMessages::class)->findOneBy(['name' => $par['key'], 'lang' => $lang]);
 
 
+
         if ($langMessage) {
             throw new \Exception('Bu dil mesajı zaten var');
         }
@@ -131,7 +132,9 @@ class LangRepository extends ServiceEntityRepository
 
         $data = [];
 
-        $langMessages = $this->entityManager->getRepository(LangMessages::class)->findBy(['lang' => $lang]);
+        // get All Lang Messages
+        $langMessages = $this->entityManager->getRepository(LangMessages::class)
+            ->findBy(['lang' => $lang]);
 
         foreach ($langMessages as $langMessage) {
             $data[] = [

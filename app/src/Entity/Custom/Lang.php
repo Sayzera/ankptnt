@@ -30,6 +30,14 @@ class Lang
     #[ORM\OneToMany(mappedBy: 'lang', targetEntity: LangMessages::class)]
     private Collection $langMessages;
 
+    public function __toString(): string
+    {
+        // TODO: Implement __toString() method.
+        return $this->getName() ?? '';
+
+
+    }
+
     public function __construct()
     {
         $this->langMessages = new ArrayCollection();

@@ -113,8 +113,10 @@
 					<img src="{{ asset('assets/images/users/user.png') }}" alt="">
 				</div>
 				<div class="profile-info1 ">
-					<h4 class="fs-18 font-w500">Ali Yılmaz</h4>
-					<span>ali.yilmaz@ankarapatent.com</span>
+					<h4 class="fs-18 font-w500">
+						{{ app.user.colName }}
+					</h4>
+					<span>{{ app.user.email }}</span>
 				</div>
 {#				<div class="profile-button">#}
 {#					<i class="fas fa-caret-down scale5 text-light"></i>#}

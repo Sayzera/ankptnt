@@ -69,40 +69,60 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr  style="">
-                                        <td>
-                                            <div  style="text-align: left; width: 76px;"><img class="v-image v-widget" src="http://apiz.ankarapatent.com/fileServer/tmImage?res=64&amp;appNo=2023/048562" alt=""></div>
-                                        </td>
-                                        <td>
-                                            <div >
-                                                <div class="v-link v-widget"><a class="text-primary text-decoration-underline" href="#" data-bs-toggle="modal" data-bs-target=".detay-modal"><span>derle</span></a></div>
-                                            </div>
-                                        </td>
-                                        <td style="min-width: 150px">
-                                            <div>07, 08, 09, 16, 21, 35, 38, 41, 42, 45</div>
-                                        </td>
-                                        <td>
-                                            <div >000067</div>
-                                        </td>
-                                        <td >
-                                            <div >2023/048562</div>
-                                        </td>
-                                        <td >
-                                            <div >13/04/2023</div>
-                                        </td>
-                                        <td >
-                                            <div></div>
-                                        </td>
-                                        <td >
-                                            <div >-</div>
-                                        </td>
-                                        <td >
-                                            <div>Yayın</div>
-                                        </td>
-                                        <td>
-                                            <a href="{{ path('app_company_observation') }}" class="text-primary text-decoration-underline">Gözlem Yap</a>
-                                        </td>
-                                    </tr>
+                                    {%for key, marka in yim  %}
+
+                                        <tr  style="">
+                                            <td>
+                                                <div  style="text-align: left; width: 76px;"><img class="v-image v-widget" src="http://apiz.ankarapatent.com/fileServer/tmImage?res=64&amp;appNo={{ marka.basvuru_numarasi }}" alt=""></div>
+                                            </td>
+                                            <td>
+                                                <div >
+                                                    <div class="v-link v-widget"><a class="text-primary text-decoration-underline" href="#" data-bs-toggle="modal" data-bs-target=".detay-modal"><span>{{ marka.marka }}</span></a></div>
+                                                </div>
+                                            </td>
+                                            <td style="min-width: 150px">
+                                                <div>{{ marka.sinif }}</div>
+                                            </td>
+                                            <td>
+                                                <div >{{ marka.dosya_numarasi }}</div>
+                                            </td>
+                                            <td >
+                                                <div >{{ marka.basvuru_numarasi }}</div>
+                                            </td>
+                                            <td >
+                                                <div >{{ marka.basvuru_tarihi }}</div>
+                                            </td>
+                                            <td >
+                                                <div>{{ marka.tescil_numarasi }}</div>
+                                            </td>
+                                            <td >
+                                                <div>
+                                                    {% if marka.yenileme_tarihi is not null %}
+                                                        {{ marka.yenileme_tarihi }}
+                                                    {% else %}
+                                                        -
+                                                    {% endif %}
+                                                </div>
+                                            </td>
+                                            <td >
+                                                <div>{{ marka.son_durum_detay }}</div>
+                                            </td>
+                                            <td>
+                                                {% set sinif = marka.sinif|replace({' ': ''})|replace({',':'-'}) %}
+                                                {% set markaVal = marka.marka|replace({' ': ''}) | replace({',':'-'})  %}
+
+
+                                                <a href="{{ path('app_company_observation',
+                                                    {
+                                                        'sinif' : sinif,
+                                                        'marka': markaVal,
+                                                        'id': marka.id
+                                                    })
+                                                 }}" class="text-primary text-decoration-underline">Gözlemi Başlat</a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+
                                     </tbody>
                                 </table>
                             </div>

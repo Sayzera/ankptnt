@@ -14,6 +14,8 @@ class LangMessages
     #[ORM\Column]
     private ?int $id = null;
 
+
+
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $created_at = null;
 
@@ -29,8 +31,15 @@ class LangMessages
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $message = null;
 
-    #[ORM\ManyToOne(inversedBy: 'langMessages')]
-    private ?Lang $lang = null;
+    #[ORM\ManyToOne(inversedBy: 'langMessages', targetEntity: Lang::class, cascade: ['persist'])]
+    #[ORM\JoinColumn(nullable: false)]
+    protected ?Lang $lang = null;
+
+    public function __toString(): string
+    {
+        // TODO: Implement __toString() method.
+        return $this->getName() ?? '';
+    }
 
     public function getId(): ?int
     {

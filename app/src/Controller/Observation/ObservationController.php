@@ -2,6 +2,7 @@
 
 namespace App\Controller\Observation;
 
+use App\Service\DomesticBrandService;
 use App\Service\ObservationService;
 use App\Validators\ObservationValidators;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,14 +13,31 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ObservationController extends AbstractController
 {
-    public function __construct(private  ObservationService $observationService, private ObservationValidators $observationValidators)
+    public function __construct(private  ObservationService $observationService,
+                                private ObservationValidators $observationValidators)
     {
     }
-    #[Route('/company/observation', name: 'app_company_observation')]
-    public function index(): Response
+    #[Route('/company/observation/{sinif}/{marka}/{id}', name: 'app_company_observation',
+        defaults: ['sinif' => '1', 'marka' => 'test'],
+        requirements: [
+            'sinif' => '.*',
+            'marka' => '.*',
+            'id' => '\d+'
+        ]
+    )]
+    public function index(Request $request, DomesticBrandService $domesticBrandService): Response
     {
+        $id = $request->attributes->get('id');
+
+        $data = [];
+        if($id) {
+            $data['my_brand'] = $domesticBrandService->getDomesticBrand($id)[0];
+        }
+
+
         return $this->render('observation/company-observation.html.twig', [
             'controller_name' => 'ObservationController',
+            'data' => $data
         ]);
     }
     #[Route('/company/observation/observation-list', name: 'app_company_observation_list', methods: ['POST'])]

@@ -43,10 +43,31 @@ let observation = {
     }
   },
 
+
+  ClickStartObservation: function () {
+    $('button[name="start-observation"]').trigger('click')
+  },
+
+  SelectTradeMarkInput: function () {
+    let marka = $('input[name="marka-adi"]')
+    // read only
+    marka.attr('readonly', true)
+    marka.val(twigData.marka)
+
+  },
+
   SelectClassInput: function () {
     $("#class-select").select2({
       placeholder: "Sınıf Seç",
-    });
+      // data ekle birden fazla
+        allowClear: true,
+    }).attr("readonly", true)
+
+
+
+    $("#class-select").val(
+        twigData.sinif.split('-')
+    ).trigger("change");
   },
 
   observationResultCount: function (className, count) {
@@ -104,6 +125,22 @@ let observation = {
 
           observation.observationTable().clear().draw();
           list.forEach((element) => {
+            let benzerlik = element.shapeSimilarity.split("%")[1];
+            if(benzerlik != undefined){
+                benzerlik = Number(benzerlik)
+
+                if(benzerlik <= 40) {
+                    benzerlik = `<span class="badge badge-rounded badge-warning" style="font-size: 18px">${element.shapeSimilarity}</span>`
+                }
+                else if(benzerlik > 40 && benzerlik <= 60) {
+                    benzerlik = `<span class="badge badge-rounded badge-primary" style="font-size: 18px">${element.shapeSimilarity}</span>`
+                }
+                else if(benzerlik > 60 && benzerlik <= 80) {
+                    benzerlik = `<span class="badge badge-rounded badge-success" style="font-size: 18px">${element.shapeSimilarity}</span>`
+                }
+
+            }
+            console.log(benzerlik);
             observation
               .observationTable()
               .row.add([
@@ -113,20 +150,23 @@ let observation = {
                     <label class="form-check-label" for="customCheckBox2"></label>
                 </div>
             </td>`,
-                element.trademarkName,
-                element.trademarkName,
-                `<a href="#" data-bs-toggle="modal" data-bs-target=".detay-modal" class="text-primary text-decoration-underline">
-                ${element.holderName}
+                // element.trademarkName,
+
+                `<a href="#"  class="text-primary text-decoration-underline">
+                ${element.trademarkName}
                 </a>
 `,
+              element.holderName,
                 element.niceClasses,
-                `<a href="#" class="text-primary text-decoration-underline">
-                ${element.bulletinNo}
-                </a>
-                `,
+                // `<a href="#" class="text-primary text-decoration-underline">
+                //  ${element.bulletinNo}
+                // </a>
+                // `,
 
                 element.applicationNo,
-                element.shapeSimilarity,
+                `
+                <span>${benzerlik}</span>
+                `,
                 ' <a href="#" class="btn btn-primary btn-sm">İtiraz Et</a>',
               ])
               .draw(false);
@@ -161,6 +201,8 @@ let observation = {
 
   init: function () {
     this.SelectClassInput();
+    this.SelectTradeMarkInput();
+    this.ClickStartObservation();
   },
   run: function () {
     this.init();

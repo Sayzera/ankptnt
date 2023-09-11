@@ -2,18 +2,27 @@
 
 namespace App\Controller\Brand;
 
+use App\Service\DomesticBrandService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DomesticBrandController extends AbstractController
 {
+    public function __construct(private DomesticBrandService $domesticBrandService)
+    {
+    }
+
     // Yurtiçi Başvuru Dosyası
     #[Route('/brand/domestic', name: 'app_brand_domestic_brand')]
     public function index(): Response
     {
+        // Yurt İçi Marka Başvuru Dosyası
+       $yim =  $this->domesticBrandService->getDomesticBrand();
+
         return $this->render('brand/domestic_brand/index.html.twig', [
             'controller_name' => 'DomesticBrandController',
+            'yim' => $yim
         ]);
     }
     // Yurtiçi Detay
