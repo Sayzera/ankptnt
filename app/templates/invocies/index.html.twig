@@ -2,7 +2,7 @@
 {# Styles Start #}
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
     <link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet"/>
 {% endblock %}
 {# Styles End #}
@@ -32,7 +32,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="applicationFileList" class="table table-bordered table-responsive-sm" >
+                                <table id="applicationFileList" class="table table-bordered table-responsive-sm">
                                     <thead>
                                     <tr>
                                         <th>No</th>
@@ -45,7 +45,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr  style="">
+                                    <tr style="">
                                         <td>
                                             C0040
                                         </td>
@@ -58,15 +58,16 @@
                                         <td>
                                             -776,28
                                         </td>
-                                        <td >
+                                        <td>
                                             CHINA PATENT DP02037 SAYILI CREDİT NOTE
 
                                         </td>
-                                        <td >
+                                        <td>
                                             AÇIK
                                         </td>
-                                        <td  class="text-center">
-                                            <i class="fas fa-search-plus text-primary c-pointer " style="font-size: 14px"></i>
+                                        <td class="text-center">
+                                            <i class="fas fa-search-plus text-primary c-pointer "
+                                               style="font-size: 14px"></i>
                                         </td>
                                     </tr>
 
@@ -91,12 +92,12 @@
         var scriptData = {{ scriptData|raw|json_encode|raw }};
         console.log(scriptData)
     </script>
-    <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/vendor/moment/moment.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/vendor/daterangepicker/daterangepicker.js') }}"></script>
-    <script src="{{ asset('assets/js/brand/application_file.js')}}"></script>
+    <script src="{{ asset('assets/js/brand/application_file.js') }}"></script>
 
 {% endblock %}
 {# Javascripts End #}
-{#    {% set myServiceInstance = my_service() %}#}
-{#    {{ dump(myServiceInstance) }}#}
+{#    {% set myServiceInstance = my_service() %} #}
+{#    {{ dump(myServiceInstance) }} #}

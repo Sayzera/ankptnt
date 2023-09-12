@@ -2,6 +2,7 @@
 
 namespace App\Controller\Observation;
 
+use App\Repository\ObservationCacheRepository;
 use App\Service\DomesticBrandService;
 use App\Service\ObservationService;
 use App\Validators\ObservationValidators;
@@ -41,7 +42,7 @@ class ObservationController extends AbstractController
         ]);
     }
     #[Route('/company/observation/observation-list', name: 'app_company_observation_list', methods: ['POST'])]
-    public function observationList(Request $request): Response
+    public function observationList(Request $request, ObservationCacheRepository $observationCacheRepository): Response
     {
         $marka = $request->request->get('marka-adi');
         $bulten = $request->request->get('bulten-no');
@@ -88,6 +89,7 @@ class ObservationController extends AbstractController
                 "NiceClasses" => $siniflar,
             ];
             // Gözlem sonucu
+
             $result = $this->observationService->getObservationList($data);
 
             return new JsonResponse(

@@ -13,10 +13,9 @@ class AuthController extends AbstractController
 {
     public function __construct(
         private ApizUserService $apizUserService,
-        private UserRepository $userRepo)
+        private UserRepository  $userRepo)
     {
     }
-
 
     #[Route('/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
@@ -25,7 +24,7 @@ class AuthController extends AbstractController
 
         return $this->render('auth/login.html.twig', [
             'controller_name' => 'AuthController',
-                       'error'         => $error,
+            'error' => $error,
         ]);
     }
 
@@ -34,6 +33,7 @@ class AuthController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
+
 
     #[Route('/register', name: 'app_auth_register')]
     public function register(): Response

@@ -40,9 +40,13 @@ open -a "PhpStorm"
 ssh-keygen -t ed25519 -C "white.code.text@gmail.com"
 
 **_ git _**
+
+<!-- https://aliozgur.gitbooks.io/ -->
+
 git rm --cached app
 git ad..
 git pull --no-rebase
+git pull --rebase
 
 ** terminal **
 mv ankptnt/\* . klasorun içindekileri bulunduğu dizine taşır

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -77,6 +79,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $col_expiry_date_watch = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: ObservationCache::class)]
+    private Collection $observationCaches;
+
+    public function __construct()
+    {
+        $this->observationCaches = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -348,6 +358,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setColExpiryDateWatch(?string $col_expiry_date_watch): static
     {
         $this->col_expiry_date_watch = $col_expiry_date_watch;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ObservationCache>
+     */
+    public function getObservationCaches(): Collection
+    {
+        return $this->observationCaches;
+    }
+
+    public function addObservationCache(ObservationCache $observationCache): static
+    {
+        if (!$this->observationCaches->contains($observationCache)) {
+            $this->observationCaches->add($observationCache);
+            $observationCache->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeObservationCache(ObservationCache $observationCache): static
+    {
+        if ($this->observationCaches->removeElement($observationCache)) {
+            // set the owning side to null (unless already changed)
+            if ($observationCache->getUser() === $this) {
+                $observationCache->setUser(null);
+            }
+        }
 
         return $this;
     }
