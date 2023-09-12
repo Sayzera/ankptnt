@@ -16,7 +16,7 @@ RUN apt update \
     && apt-get install -y libpq-dev \
     && docker-php-ext-install pdo_pgsql
 
-RUN echo 'max_execution_time = 120' >> /usr/local/etc/php/conf.d/docker-php-maxexectime.ini;
+RUN echo 'max_execution_time = 9999' >> /usr/local/etc/php/conf.d/docker-php-maxexectime.ini;
 RUN echo 'memory_limit = 512M' >> /usr/local/etc/php/conf.d/docker-php-memorylimit.ini;
 RUN echo 'upload_max_filesize = 100M' >> /usr/local/etc/php/conf.d/docker-php-uploadmaxfilesize.ini;
 RUN echo 'post_max_size = 100M' >> /usr/local/etc/php/conf.d/docker-php-postmaxsize.ini;
