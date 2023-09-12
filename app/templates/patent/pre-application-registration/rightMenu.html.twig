@@ -12,10 +12,10 @@
                     </ul>
                     <div class="tab-content">
                         <div id="faturalar" class="tab-pane fade">
-                                    Henüz fatura bulunmamaktadır.
+                                   {{ include('patent/pre-application-registration/bills.html.twig') }}
                         </div>
-                        <div id="islemler" class="tab-pane fade">
-                                    Henüz işlem bulunmamaktadır.
+                        <div id="islemler" class="tab-pane active">
+                            {{ include('patent/pre-application-registration/actions.html.twig') }}
 
                         </div>
 
