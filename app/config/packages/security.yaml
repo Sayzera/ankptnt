@@ -39,6 +39,7 @@ security:
         # - { path: ^/profile, roles: ROLE_USER }
         # geri kalan herşey için
         - { path: ^/login, roles: PUBLIC_ACCESS }
+        - { path: ^/get-pati-emplyee, roles: PUBLIC_ACCESS }
         - { path: ^/, roles: ROLE_USER }
 
 when@test:

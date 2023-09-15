@@ -1,156 +1,178 @@
 {% extends 'layout/base.html.twig' %}
 {# Styles Start #}
 {% block stylesheets %}
-    {{ parent() }}
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-    <link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet"/>
+	{{ parent() }}
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+	<link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet"/>
+	<style>
+		.dataTables_wrapper .dataTables_paginate span .paginate_button {
+			height: 50px;
+			width: 50px;
+			padding: 0;
+			margin: 0 2px;
+			line-height: 50px;
+			text-align: center;
+			font-size: 10px !important;
+			border-radius: 1rem;
+			color: var(--primary) !important;
+			border: 0 !important;
+		}
+		.dataTables_filter {
+			display: none;
+		}
+	</style>
 {% endblock %}
 {# Styles End #}
 {# Title Start #}
-{% block title %}Apiz | Markalarım{% endblock %}
+{% block title %}Apiz | Markalarım
+{% endblock %}
 {# Title End #}
 {# Page Title Start #}
-{% block page_title %} Markalarım {% endblock %}
+{% block page_title %}
+	Markalarım
+{% endblock %}
 {# Page Title End #}
 {# Page Content Start #}
 {% block body %}
-    <div class="modal fade detay-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Marka Bilgileri</h5>
-                    <div class="flex align-items-center gap-2">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal">
-                        </button>
-                    </div>
-                </div>
-                <div class="modal-body">
-                    {{
+	<div class="modal fade detay-modal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Marka Bilgileri</h5>
+					<div class="flex align-items-center gap-2">
+						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					</div>
+				</div>
+				<div class="modal-body">
+					{{
                     include('brand/domestic_brand/detail.html.twig')
                     }}
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Kapat</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="content-body">
-        <div class="container-fluid">
-            <div class="row page-titles">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item active"><a href="{{ path('app_main') }}">Anasayfa</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Markalarım</a></li>
-                </ol>
-            </div>
-            <!-- row -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Kayıt Listesi - Yurtiçi Markalar</h4>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Kapat</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="content-body">
+		<div class="container-fluid">
+			<div class="row page-titles">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item active">
+						<a href="{{ path('app_main') }}">Anasayfa</a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="javascript:void(0)">Markalarım</a>
+					</li>
+				</ol>
+			</div>
+			<!-- row -->
+			<div class="row">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Kayıt Listesi - Yurtiçi Markalar</h4>
 
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="applicationFileList" class="table table-bordered table-responsive-sm" style="min-width: 845px">
-                                    <thead>
-                                    <tr>
-                                        <th>Logo</th>
-                                        <th>Marka</th>
-                                        <th>Sınıf</th>
-                                        <th>Dosya No</th>
-                                        <th>Başvuru No</th>
-                                        <th>Başvuru Tarihi</th>
-                                        <th>Tescil No</th>
-                                        <th>Yenileme Tarihi</th>
-                                        <th>Dosya Son Durum</th>
-                                        <th>Gözlem</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {%for key, marka in yim  %}
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table id="applicationFileList" class="table table-bordered table-responsive-sm" style="min-width: 845px">
+									<thead>
+										<tr>
+											<th>Logo</th>
+											<th>Marka</th>
+											<th>Sınıf</th>
+											<th>Dosya No</th>
+											<th>Başvuru No</th>
+											<th>Başvuru Tarihi</th>
+											<th>Tescil No</th>
+											<th>Yenileme Tarihi</th>
+											<th>Dosya Son Durum</th>
+											<th>Gözlem</th>
+										</tr>
+									</thead>
+									<tbody>
+										{# {%for key, marka in yim  %}
+										
+																					<tr style="">
+																						<td>
+																							<div style="text-align: left; width: 76px;"><img class="v-image v-widget" src="http://apiz.ankarapatent.com/fileServer/tmImage?res=64&amp;appNo={{ marka.basvuru_numarasi }}" alt=""></div>
+																						</td>
+																						<td>
+																							<div>
+																								<div class="v-link v-widget">
+																									<a class="text-primary text-decoration-underline" href="#" data-bs-toggle="modal" data-bs-target=".detay-modal">
+																										<span>{{ marka.marka }}</span>
+																									</a>
+																								</div>
+																							</div>
+																						</td>
+																						<td style="min-width: 150px">
+																							<div>{{ marka.sinif }}</div>
+																						</td>
+																						<td>
+																							<div>{{ marka.dosya_numarasi }}</div>
+																						</td>
+																						<td>
+																							<div>{{ marka.basvuru_numarasi }}</div>
+																						</td>
+																						<td>
+																							<div>{{ marka.basvuru_tarihi }}</div>
+																						</td>
+																						<td>
+																							<div>{{ marka.tescil_numarasi }}</div>
+																						</td>
+																						<td>
+																							<div>
+																								{% if marka.yenileme_tarihi is not null %}
+																									{{ marka.yenileme_tarihi }}
+																								{% else %}
+																									-
+																								{% endif %}
+																							</div>
+																						</td>
+																						<td>
+																							<div>{{ marka.son_durum_detay }}</div>
+																						</td>
+																						<td>
+																							{% set sinif = marka.sinif|replace({' ': ''})|replace({',':'-'}) %}
+																							{% set markaVal = marka.marka|replace({' ': ''}) | replace({',':'-'})  %}
+										
+										
+																							<a href="{{ path('app_company_observation', { 'sinif' : sinif, 'marka': markaVal, 'id': marka.id }) }}" class="text-primary text-decoration-underline">Gözlemi Başlat</a>
+																						</td>
+																					</tr>
+																				{% endfor %} #}
 
-                                        <tr  style="">
-                                            <td>
-                                                <div  style="text-align: left; width: 76px;"><img class="v-image v-widget" src="http://apiz.ankarapatent.com/fileServer/tmImage?res=64&amp;appNo={{ marka.basvuru_numarasi }}" alt=""></div>
-                                            </td>
-                                            <td>
-                                                <div >
-                                                    <div class="v-link v-widget"><a class="text-primary text-decoration-underline" href="#" data-bs-toggle="modal" data-bs-target=".detay-modal"><span>{{ marka.marka }}</span></a></div>
-                                                </div>
-                                            </td>
-                                            <td style="min-width: 150px">
-                                                <div>{{ marka.sinif }}</div>
-                                            </td>
-                                            <td>
-                                                <div >{{ marka.dosya_numarasi }}</div>
-                                            </td>
-                                            <td >
-                                                <div >{{ marka.basvuru_numarasi }}</div>
-                                            </td>
-                                            <td >
-                                                <div >{{ marka.basvuru_tarihi }}</div>
-                                            </td>
-                                            <td >
-                                                <div>{{ marka.tescil_numarasi }}</div>
-                                            </td>
-                                            <td >
-                                                <div>
-                                                    {% if marka.yenileme_tarihi is not null %}
-                                                        {{ marka.yenileme_tarihi }}
-                                                    {% else %}
-                                                        -
-                                                    {% endif %}
-                                                </div>
-                                            </td>
-                                            <td >
-                                                <div>{{ marka.son_durum_detay }}</div>
-                                            </td>
-                                            <td>
-                                                {% set sinif = marka.sinif|replace({' ': ''})|replace({',':'-'}) %}
-                                                {% set markaVal = marka.marka|replace({' ': ''}) | replace({',':'-'})  %}
-
-
-                                                <a href="{{ path('app_company_observation',
-                                                    {
-                                                        'sinif' : sinif,
-                                                        'marka': markaVal,
-                                                        'id': marka.id
-                                                    })
-                                                 }}" class="text-primary text-decoration-underline">Gözlemi Başlat</a>
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}
 {# Page Content End #}
 {# Javascripts Start #}
 
 {% block javascripts %}
-    {{ parent() }}
-    {% set scriptData = {
-        'dataTableJsonLang' : asset('assets/lang/datatableTr.json')
+	{{ parent() }}
+	{% set scriptData = {
+        'dataTableJsonLang' : asset('assets/lang/datatableTr.json'),
+        'getTrademarkUrl': path('app_brand_domestic_brand_brand'),
     } %}
 
-    <script>
-        var scriptData = {{ scriptData|raw|json_encode|raw }};
-    </script>
+	<script>
+		var scriptData = {{ scriptData|raw|json_encode|raw }};
+	</script>
 
-    <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
+	<script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
 
-    <script type="text/javascript" src="{{ asset('assets/vendor/moment/moment.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/vendor/daterangepicker/daterangepicker.js') }}"></script>
-    <script src="{{ asset('assets/js/brand/application_file.js')}}"></script>
+	<script type="text/javascript" src="{{ asset('assets/vendor/moment/moment.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('assets/vendor/daterangepicker/daterangepicker.js') }}"></script>
+	<script src="{{ asset('assets/js/brand/application_file.js')}}"></script>
 
 {% endblock %}
 {# Javascripts End #}
