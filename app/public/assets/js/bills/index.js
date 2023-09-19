@@ -1,164 +1,144 @@
 let ApplicationFile = {
-  dataTable: function (tableId) {
-    $(`${tableId} thead tr`)
-      .clone(true)
-      .addClass("filters")
-      .appendTo(`${tableId} thead`);
-    $(tableId)
-      .DataTable({
-        orderCellsTop: true,
-        fixedHeader: true,
-        language: {
-          url: scriptData.dataTableJsonLang,
-          paginate: {
-            next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
-            previous:
-              '<i class="fa fa-angle-double-left" aria-hidden="true"></i>',
-          },
-        },
-        paging: true,
-        ordering: true,
-        info: true,
-        responsive: true,
-        autoWidth: false,
-        lengthChange: true,
-        pageLength: 10,
-        order: [[0, "desc"]],
+    trademark_id: null,
 
-        initComplete: function () {
-          var api = this.api();
+    dataTable: function (tableId) {
+        let account_ref = scriptData.session_account_ref;
+        $(tableId).DataTable({
+            destroy: true, paging: true, ordering: true, autoWidth: false, //  page length
+            pageLength: 10, dataSrc: "data", responsive: true,
 
-          // For each column
-          api
-            .columns()
-            .eq(0)
-            .each(function (colIdx) {
-              // Set the header cell to contain the input element
-              var cell = $(".filters th").eq(
-                $(api.column(colIdx).header()).index()
-              );
+            pagingType: "simple_numbers", searching: true,
 
-              var title = $(cell).text();
 
-              if (title == "Başvuru Tarihi") {
-                $(cell).html(
-                  '<input type="text" class="basvuru-tarihi"   placeholder="' +
-                    title +
-                    '" />'
-                );
-              } else if (title == "Veriliş Tarihi") {
-                $(cell).html(
-                  '<input type="text" class="verilis-tarihi"  placeholder="' +
-                    title +
-                    '" />'
-                );
-              } else if (title == "Taks. Tarihi") {
-                $(cell).html(
-                  '<input type="text" class="taks-tarihi"  placeholder="' +
-                    title +
-                    '" />'
-                );
-              } else {
-                $(cell).html(
-                  '<input type="text" placeholder="' + title + '" />'
-                );
-              }
+            ajax: {
+                url: `/brand/domestic/detail-modal?type=invoice&col_id=${account_ref}`, type: "GET", beforeSend: function (xhr) {
+                    //   $(".main-preloader").removeClass("d-none");
+                },
 
-              // On every keypress in this input
-              $(
-                "input",
-                $(".filters th").eq($(api.column(colIdx).header()).index())
-              )
-                .off("keyup change")
-                .on("change", function (e) {
-                  // Get the search value
-                  $(this).attr("title", $(this).val());
-                  var regexr = "({search})"; //$(this).parents('th').find('select').val();
+                success: function (data) {
+                    console.log(data);
+                },
 
-                  var cursorPosition = this.selectionStart;
-                  // Search the column for that value
-                  api
-                    .column(colIdx)
-                    .search(
-                      this.value != ""
-                        ? regexr.replace("{search}", "(((" + this.value + ")))")
-                        : "",
-                      this.value != "",
-                      this.value == ""
-                    )
-                    .draw();
-                })
-                .on("keyup", function (e) {
-                  e.stopPropagation();
+                error: function (xhr, error, code) {
+                    console.log(xhr);
+                },
+            },
 
-                  $(this).trigger("change");
-                  $(this)
-                    .focus()[0]
-                    .setSelectionRange(cursorPosition, cursorPosition);
-                });
-            });
-        },
-      })
-      .columns.adjust();
-  },
+            drawCallback: function (settings) {
+                // $(".main-preloader").addClass("d-none");
+                console.log(settings);
+            },
 
-  initCustomColumnDate: () => {
-    $('input[class="basvuru-tarihi"]').daterangepicker({
-      // onchange
-      autoUpdateInput: false,
-    });
-    $('input[class="basvuru-tarihi"]').on(
-      "apply.daterangepicker",
-      function (ev, picker) {
-        $(this).val(
-          picker.startDate.format("MM/DD/YYYY") +
-            " - " +
-            picker.endDate.format("MM/DD/YYYY")
-        );
-      }
-    );
+            // columnDefs: [{
+            //     targets: 0, // center
+            //     className: "text-center", // style: "width: 76px;",
+            //     render: function (data, type, row, meta) {
+            //         return `
+            // <div style="text-align: left; width: 76px;"><img class="v-image v-widget" src="http://apiz.ankarapatent.com/fileServer/tmImage?res=64&amp;appNo=${row.col_application_number}" alt=""></div>
+            // `;
+            //     },
+            // }, {
+            //     targets: 1, render: function (data, type, row, meta) {
+            //         return `
+            // <span class="text-primary text-decoration-underline " onclick="ApplicationFile.getTrademarkInfo(${row.col_id})"
+            // data-bs-toggle="modal" data-bs-target=".detay-modal">
+			// 		<span>${row.col_trademark}</span>
+			// 	</span>
+            // `;
+            //     },
+            // }, {
+            //     targets: 2, render: function (data, type, row, meta) {
+            //         return `
+            // ${row.col_class_string ? row.col_class_string : "-"}
+            // `;
+            //     },
+            // },
+            //
+            //     {
+            //         targets: 3, render: function (data, type, row, meta) {
+            //             return `
+            // ${row.col_file_number ?? "-"}
+            // `;
+            //         },
+            //     }, {
+            //         targets: 4, render: function (data, type, row, meta) {
+            //             return `
+            // ${row.col_application_number ?? "-"}
+            // `;
+            //         },
+            //     }, {
+            //         targets: 5, render: function (data, type, row, meta) {
+            //             return `
+            // ${row.col_registration_date ?? "-"}
+            // `;
+            //         },
+            //     }, {
+            //         targets: 6, render: function (data, type, row, meta) {
+            //             return `
+            // ${row.col_registration_number ?? '-'}
+            // `;
+            //         },
+            //     }, {
+            //         targets: 7, render: function (data, type, row, meta) {
+            //             return `
+            // ${row.col_renewal_date ?? "-"}
+            // `;
+            //         },
+            //     }, {
+            //         targets: 8, render: function (data, type, row, meta) {
+            //             return `
+            // ${row.col_last_status ?? "-"}
+            // `;
+            //         },
+            //     }, {
+            //         targets: 9,
+            //
+            //         render: function (data, type, row, meta) {
+            //
+            //
+            //             let siniflar = row.col_class_string.replaceAll(",", "-");
+            //
+            //             siniflar = siniflar.split("-");
+            //
+            //
+            //             siniflar = siniflar.map((item) => {
+            //                 return parseInt(item)
+            //             }).join("-")
+            //
+            //
+            //             console.log(siniflar);
+            //
+            //             let url = `/company/observation/${siniflar}/${row.col_trademark}/${row.col_id}`.replaceAll(" ", "");
+            //             return ` <a href="${url}" class="text-primary text-decoration-underline">Gözlemi Başlat</a>
+            // `;
+            //         },
+            //     },],
 
-    $('input[class="verilis-tarihi"]').daterangepicker({
-      // onchange
-      autoUpdateInput: false,
-    });
-    $('input[class="verilis-tarihi"]').on(
-      "apply.daterangepicker",
-      function (ev, picker) {
-        $(this).val(
-          picker.startDate.format("MM/DD/YYYY") +
-            " - " +
-            picker.endDate.format("MM/DD/YYYY")
-        );
-      }
-    );
+            fixedHeader: false, language: {
+                url: scriptData.dataTableJsonLang,
+                processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>Processing...',
+                paginate: {
+                    next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
+                    previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>',
+                },
+            },
 
-    $('input[class="taks-tarihi"]').daterangepicker({
-      // onchange
-      autoUpdateInput: false,
-    });
-    $('input[class="taks-tarihi"]').on(
-      "apply.daterangepicker",
-      function (ev, picker) {
-        $(this).val(
-          picker.startDate.format("MM/DD/YYYY") +
-            " - " +
-            picker.endDate.format("MM/DD/YYYY")
-        );
-      }
-    );
-  },
-  init: function () {
-    this.dataTable("#applicationFileList");
-    setTimeout(() => {
-      this.initCustomColumnDate();
-    }, 1000);
-  },
-  run: function () {
-    this.init();
-  },
+        });
+    },
+
+    init: function () {
+this.dataTable('#applicationFileList')
+    }, run: function () {
+
+        this.init();
+    },
 };
 
 $(document).ready(function () {
-  ApplicationFile.run();
+    ApplicationFile.run();
+});
+
+$('input[class="basvuru-tarihi"]').daterangepicker({
+    // onchange
+    autoUpdateInput: false,
 });

@@ -33,8 +33,7 @@ class DomesticBrandController extends AbstractController
     {
         $type = $request->query->get('type') ?? 'yim';
         // get query params
-        $col_id = $request->query->get('col_id');
-
+        $col_id = $request->query->get('col_id') ?? null;
 
         switch ($type) {
             case 'yim':
@@ -46,7 +45,12 @@ class DomesticBrandController extends AbstractController
                 return $result;
 
             case 'invoice':
-                $result = $this->domesticBrandService->findByInvoices();
+                /**
+                 * col_id = account_ref
+                 *
+                 * diğerlerinde ise trademark olarak çalışıyor
+                 */
+                $result = $this->domesticBrandService->findByInvoices($col_id);
                 return $result;
 
             case 'classes':

@@ -89,15 +89,20 @@ class DomesticBrandService
         return $result;
     }
 
-
     /**
      * fatura bilgilerini getirir
      */
-    public function findByInvoices()
+    public function findByInvoices($account_ref)
     {
+//        tfai.ref_invoice_cost_currency
         $request = new Request();
-        $account_ref = $request->getSession()->get('ref_account');
-        $query = 'select * from tbl_f_invoice tfi where ref_int_transaction_account =' . $account_ref . ' ';
+        $query = 'select * from tbl_user_account tua 
+            left join tbl_f_invoice tfi on tfi.ref_int_transaction_account  = tua.ref_account 
+            left join tbl_f_awaiting_invoice f on f.ref_int_transaction_account  = tua.ref_account 
+            where tua.ref_account = '.$account_ref.' AND f.col_is_deleted = false limit 5 
+        ';
+
+
         $stmt = $this->db->prepare($query);
         $stmt = $stmt->execute();
         $result = $stmt->fetchAllAssociative();

@@ -92,7 +92,8 @@
 {% block javascripts %}
 	{{ parent() }}
 	{% set scriptData = {
-        'dataTableJsonLang' : asset('assets/lang/datatableTr.json')
+        'dataTableJsonLang' : asset('assets/lang/datatableTr.json'),
+		'session_account_ref' : app.session.get('ref_account'),
     } %}
 	<script>
 		var scriptData = {{ scriptData|raw|json_encode|raw }};
