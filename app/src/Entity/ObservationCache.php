@@ -66,6 +66,7 @@ class ObservationCache
     private ?string $isPriority = null;
 
     #[ORM\ManyToOne(inversedBy: 'observationCaches')]
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'col_id')]
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'observation_cache')]

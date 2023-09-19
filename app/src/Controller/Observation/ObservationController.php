@@ -18,7 +18,7 @@ class ObservationController extends AbstractController
                                 private ObservationValidators $observationValidators)
     {
     }
-    #[Route('/company/observation/{sinif}/{marka}/{id}', name: 'app_company_observation',
+    #[Route('/company/observation/{sinif}/{marka}/{id}/{ydn?}', name: 'app_company_observation',
         defaults: ['sinif' => '1', 'marka' => 'test'],
         requirements: [
             'sinif' => '.*',
@@ -30,9 +30,27 @@ class ObservationController extends AbstractController
     {
         $id = $request->attributes->get('id');
 
+        // get url ydn params
+        $ydn = $request->attributes->get('ydn');
+
         $data = [];
-        if($id) {
-            $data['my_brand'] = $domesticBrandService->getDomesticBrand($id)[0];
+
+        if($ydn && $id) {
+            $result = $domesticBrandService->getYdnTrademark($id);
+            if(count($result) > 0){
+                $data['my_brand'] = $result[0];
+            }  else {
+                $data['my_brand'] = [];
+            }
+        }
+
+        if($id && !$ydn) {
+            $result = $domesticBrandService->getDomesticBrand($id);
+            if(count($result) > 0){
+                $data['my_brand'] = $result[0];
+            }  else {
+                $data['my_brand'] = [];
+            }
         }
 
 

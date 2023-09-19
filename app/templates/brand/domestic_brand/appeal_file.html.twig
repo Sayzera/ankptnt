@@ -1,131 +1,134 @@
 {% extends 'layout/base.html.twig' %}
 {# Styles Start #}
 {% block stylesheets %}
-    {{ parent() }}
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-    <link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet"/>
+	{{ parent() }}
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+	<link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet"/>
 {% endblock %}
 {# Styles End #}
 {# Title Start #}
-{% block title %}Apiz | Marka İtiraz{% endblock %}
+{% block title %}Apiz | Marka İtiraz
+{% endblock %}
 {# Title End #}
 {# Page Title Start #}
-{% block page_title %} Marka İtiraz {% endblock %}
+{% block page_title %}
+	Marka İtiraz
+{% endblock %}
 {# Page Title End #}
 {# Page Content Start #}
 {% block body %}
-    <div class="modal fade detay-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Marka Bilgileri</h5>
-                    <div class="flex align-items-center gap-2">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal">
-                        </button>
-                    </div>
-                </div>
-                <div class="modal-body">
-                    {{
+	<div class="modal fade detay-modal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Marka Bilgileri</h5>
+					<div class="flex align-items-center gap-2">
+						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					</div>
+				</div>
+				<div class="modal-body">
+					{{
                     include('brand/domestic_brand/detail.html.twig')
                     }}
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Kapat</button>
-                </div>
-            </div>
-        </div>
-    </div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Kapat</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <div class="content-body">
-        <div class="container-fluid">
-            <div class="row page-titles">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item active"><a href="{{ path('app_main') }}">Anasayfa</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Marka İtiraz</a></li>
-                </ol>
-            </div>
-            <!-- row -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Kayıt Listesi - Yurtiçi Marka İtiraz</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="applicationFileList" class="table table-bordered table-responsive-sm" style="min-width: 845px">
-                                    <thead>
-                                    <tr>
-                                        <th>Grkc. Bşvr. No</th>
-                                        <th>Grkc. Marka</th>
-                                        <th>Başvuru No</th>
-                                        <th>Marka</th>
-                                        <th>Talimat</th>
-                                        <th>Bşvr. Sahibi</th>
-                                        <th>İşlem</th>
-                                        <th>Dosya Son Durum</th>
-                                        <th>İlk İtiraz Sonucu</th>
-                                        <th>İkinci İtiraz Sonucu</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr  style="">
-                                        <td>
-                                            2012/06735
-                                        </td>
-                                        <td>
-                                          Tamara
-                                        </td>
-                                        <td style="min-width: 150px">
-                                            2023/097109
+	<div class="content-body">
+		<div class="container-fluid">
+			<div class="row page-titles">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item active">
+						<a href="{{ path('app_main') }}">Anasayfa</a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="javascript:void(0)">Marka İtiraz</a>
+					</li>
+				</ol>
+			</div>
+			<!-- row -->
+			<div class="row">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Kayıt Listesi - Yurtiçi Marka İtiraz</h4>
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table id="applicationFileList" class="table table-bordered table-responsive-sm" style="min-width: 845px">
+									<thead>
+										<tr>
+											<th>Grkc. Bşvr. No</th>
+											<th>Grkc. Marka</th>
+											<th>Başvuru No</th>
+											<th>Marka</th>
+											<th>Talimat</th>
+											<th>Bşvr. Sahibi</th>
+											<th>İşlem</th>
+											<th>Dosya Son Durum</th>
+											<th>İlk İtiraz Sonucu</th>
+											<th>İkinci İtiraz Sonucu</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr style="">
+											<td>
+												2012/06735
+											</td>
+											<td>
+												Tamara
+											</td>
+											<td style="min-width: 150px">
+												2023/097109
 
-                                        </td>
-                                        <td>
-                                           <a href="#" data-bs-toggle="modal" data-bs-target=".detay-modal" class="text-primary text-decoration-underline">ramara</a>
-                                        </td>
-                                        <td >
-                                            Bildirim
-                                        </td>
-                                        <td >
-                                            (7539787) RAMAZAN TATLI
-                                        </td>
-                                        <td ></td>
-                                        <td >
-                                            <span class="badge light badge-warning" style="font-size: 14px">Bildirilecek</span>
-                                        </td>
-                                        <td >
+											</td>
+											<td>
+												<a href="#" data-bs-toggle="modal" data-bs-target=".detay-modal" class="text-primary text-decoration-underline">ramara</a>
+											</td>
+											<td>
+												Bildirim
+											</td>
+											<td>
+												(7539787) RAMAZAN TATLI
+											</td>
+											<td></td>
+											<td>
+												<span class="badge light badge-warning" style="font-size: 14px">Bildirilecek</span>
+											</td>
+											<td></td>
+											<td></td>
+										</tr>
 
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                    </tr>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}
 {# Page Content End #}
 {# Javascripts Start #}
 {% block javascripts %}
-    {{ parent() }}
-    {% set scriptData = {
+	{{ parent() }}
+	{% set scriptData = {
         'dataTableJsonLang' : asset('assets/lang/datatableTr.json')
     } %}
-    <script>
-        var scriptData = {{ scriptData|raw|json_encode|raw }};
-        console.log(scriptData)
-    </script>
-    <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{ asset('assets/js/brand/application_file.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('assets/vendor/moment/moment.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/vendor/daterangepicker/daterangepicker.js') }}"></script>
+	<script>
+		var scriptData = {{ scriptData|raw|json_encode|raw }};
+	</script>
+	<script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
+
+	<script type="text/javascript" src="{{ asset('assets/vendor/moment/moment.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('assets/vendor/daterangepicker/daterangepicker.js') }}"></script>
+	<script src="{{ asset('assets/js/brand/trademark_opposition.js')}}"></script>
+
 
 {% endblock %}
 {# Javascripts End #}

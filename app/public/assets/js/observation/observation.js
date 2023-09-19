@@ -136,7 +136,9 @@ let observation = {
                     benzerlik = `<span class="badge badge-rounded badge-primary" style="font-size: 18px">${element.shapeSimilarity}</span>`
                 }
                 else if(benzerlik > 60 && benzerlik <= 80) {
-                    benzerlik = `<span class="badge badge-rounded badge-success" style="font-size: 18px">${element.shapeSimilarity}</span>`
+                    benzerlik = `<span class="badge badge-rounded badge-warning" style="font-size: 18px">${element.shapeSimilarity}</span>`
+                } else if (benzerlik > 80) {
+                    benzerlik = `<span class="badge badge-rounded badge-danger" style="font-size: 18px">${element.shapeSimilarity}</span>`
                 }
 
             }

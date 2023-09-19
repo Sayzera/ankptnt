@@ -13,13 +13,17 @@ class ApizUserService
         $this->db = $this->registry->getConnection('apz');
     }
 
-    public function getPatiTblEmployee() : array
+    public function getPatiTblEmployee(): array
     {
         // get tbl_employee select
-       $patiTblEmployeeUsers = $this->db->prepare('SELECT * FROM tbl_employee')->execute();
-       $patiUsers =  $patiTblEmployeeUsers->fetchAllAssociative();
-       return  $patiUsers;
+        $patiTblEmployeeUsers = $this->db->prepare('SELECT * FROM tbl_employee')->execute();
+        $patiUsers =  $patiTblEmployeeUsers->fetchAllAssociative();
+        return  $patiUsers;
     }
 
 
+    public function getApizUsers()
+    {
+        $users = $this->db->prepare('SELECT * FROM tbl_user ')->execute();
+    }
 }

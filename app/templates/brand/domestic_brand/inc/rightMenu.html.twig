@@ -5,13 +5,13 @@
             <div class="profile-tab">
                 <div class="custom-tab-1">
                     <ul class="nav nav-tabs">
-                        <li class="nav-item"><a href="#ekBilgiler" data-bs-toggle="tab" class="nav-link show active">Ek Bilgiler</a>
+                        <li class="nav-item" id="additionalInfo"><a href="#ekBilgiler" data-bs-toggle="tab" class="nav-link show active">Ek Bilgiler</a>
                         </li>
-                        <li class="nav-item"><a href="#esyaListesi" data-bs-toggle="tab" class="nav-link">Eşya Listesi</a>
+                        <li class="nav-item" onclick="ApplicationFile.getClassList()"><a href="#esyaListesi" data-bs-toggle="tab" class="nav-link">Eşya Listesi</a>
                         </li>
-                        <li class="nav-item"><a href="#faturalar" data-bs-toggle="tab" class="nav-link">Faturalar</a>
-                        </li>
-                        <li class="nav-item"><a href="#islemler" data-bs-toggle="tab" class="nav-link ">İşlemler</a>
+{#                        <li class="nav-item"><a href="#faturalar" data-bs-toggle="tab" class="nav-link">Faturalar</a>#}
+{#                        </li>#}
+                        <li class="nav-item" onclick="ApplicationFile.getActionList()" ><a href="#islemler" data-bs-toggle="tab" class="nav-link ">İşlemler</a>
                         </li>
 
                     </ul>

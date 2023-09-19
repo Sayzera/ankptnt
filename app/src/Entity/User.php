@@ -10,385 +10,123 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ORM\Table(name: 'tbl_user', schema: 'public')]
+
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
-
-    #[ORM\Column(length: 180, unique: true)]
-    private ?string $email = null;
-
-    #[ORM\Column]
-    private array $roles = [];
-
-    /**
-     * @var string The hashed password
-     */
-    #[ORM\Column]
-    private ?string $password = null;
-
-    #[ORM\Column(length: 50, nullable: true)]
-    private ?string $col_expiry_date = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?bool $col_is_customer_representative = null;
+    private ?int $col_id = null;
 
     #[ORM\Column(nullable: true)]
     private ?bool $col_is_deleted = null;
 
-    #[ORM\Column(length: 50, nullable: true)]
-    private ?string $col_last_login = null;
+    #[ORM\Column(length: 255, unique: true)]
+    private string $col_email;
 
-    #[ORM\Column(length: 10, nullable: true)]
-    private ?string $col_level = null;
+    #[ORM\Column(length: 30)]
+    private string $col_name;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $col_name = null;
+    #[ORM\Column(length: 30)]
+    private string $col_surname;
 
-    #[ORM\Column(length: 50, nullable: true)]
-    private ?string $col_startingof_employment = null;
+    #[ORM\Column]
+    private ?string $col_password = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $col_surname = null;
+    #[ORM\Column(length: 255)]
+    private string $col_username;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $col_workgroup_id = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?int $col_department_id = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $col_username = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $col_unix_username = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $col_first_page = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $col_registration_number = null;
-
-    #[ORM\Column(length: 10, nullable: true)]
-    private ?string $col_watch_auth = null;
-
-    #[ORM\Column(length: 10, nullable: true)]
-    private ?string $col_is_working_on = null;
-
-    #[ORM\Column(length: 50, nullable: true)]
-    private ?string $col_expiry_date_watch = null;
-
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: ObservationCache::class)]
-    private Collection $observationCaches;
-
-    public function __construct()
+    public function getColId(): ?int
     {
-        $this->observationCaches = new ArrayCollection();
+        return $this->col_id;
     }
 
-    public function getId(): ?int
+    public function setColId(?int $col_id): void
     {
-        return $this->id;
+        $this->col_id = $col_id;
     }
 
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): static
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
-    public function getUserIdentifier(): string
-    {
-        return (string) $this->email;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function getRoles(): array
-    {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
-    }
-
-    public function setRoles(array $roles): static
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
-
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
-    public function getPassword(): string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): static
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function eraseCredentials(): void
-    {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
-    }
-
-    public function getColExpiryDate(): ?string
-    {
-        return $this->col_expiry_date;
-    }
-
-    public function setColExpiryDate(?string $col_expiry_date): static
-    {
-        $this->col_expiry_date = $col_expiry_date;
-
-        return $this;
-    }
-
-    public function isColIsCustomerRepresentative(): ?bool
-    {
-        return $this->col_is_customer_representative;
-    }
-
-    public function setColIsCustomerRepresentative(?bool $col_is_customer_representative): static
-    {
-        $this->col_is_customer_representative = $col_is_customer_representative;
-
-        return $this;
-    }
-
-    public function isColIsDeleted(): ?bool
+    public function getColIsDeleted(): ?bool
     {
         return $this->col_is_deleted;
     }
 
-    public function setColIsDeleted(?bool $col_is_deleted): static
+    public function setColIsDeleted(?bool $col_is_deleted): void
     {
         $this->col_is_deleted = $col_is_deleted;
-
-        return $this;
     }
 
-    public function getColLastLogin(): ?string
+    public function getColEmail(): string
     {
-        return $this->col_last_login;
+        return $this->col_email;
     }
 
-    public function setColLastLogin(?string $col_last_login): static
+    public function setColEmail(string $col_email): void
     {
-        $this->col_last_login = $col_last_login;
-
-        return $this;
+        $this->col_email = $col_email;
     }
 
-    public function getColLevel(): ?string
-    {
-        return $this->col_level;
-    }
-
-    public function setColLevel(?string $col_level): static
-    {
-        $this->col_level = $col_level;
-
-        return $this;
-    }
-
-    public function getColName(): ?string
+    public function getColName(): string
     {
         return $this->col_name;
     }
 
-    public function setColName(?string $col_name): static
+    public function setColName(string $col_name): void
     {
         $this->col_name = $col_name;
-
-        return $this;
     }
 
-    public function getColStartingofEmployment(): ?string
-    {
-        return $this->col_startingof_employment;
-    }
-
-    public function setColStartingofEmployment(?string $col_startingof_employment): static
-    {
-        $this->col_startingof_employment = $col_startingof_employment;
-
-        return $this;
-    }
-
-    public function getColSurname(): ?string
+    public function getColSurname(): string
     {
         return $this->col_surname;
     }
 
-    public function setColSurname(?string $col_surname): static
+    public function setColSurname(string $col_surname): void
     {
         $this->col_surname = $col_surname;
-
-        return $this;
     }
 
-    public function getColWorkgroupId(): ?int
+    public function getColPassword(): ?string
     {
-        return $this->col_workgroup_id;
+        return $this->col_password;
     }
 
-    public function setColWorkgroupId(?int $col_workgroup_id): static
+    public function setColPassword(?string $col_password): void
     {
-        $this->col_workgroup_id = $col_workgroup_id;
-
-        return $this;
+        $this->col_password = $col_password;
     }
 
-    public function getColDepartmentId(): ?int
-    {
-        return $this->col_department_id;
-    }
-
-    public function setColDepartmentId(?int $col_department_id): static
-    {
-        $this->col_department_id = $col_department_id;
-
-        return $this;
-    }
-
-    public function getColUsername(): ?string
+    public function getColUsername(): string
     {
         return $this->col_username;
     }
 
-    public function setColUsername(?string $col_username): static
+    public function setColUsername(string $col_username): void
     {
         $this->col_username = $col_username;
-
-        return $this;
     }
 
-    public function getColUnixUsername(): ?string
+    // get 
+
+
+    public function getRoles(): array
     {
-        return $this->col_unix_username;
+        return ['ROLE_USER'];
     }
 
-    public function setColUnixUsername(?string $col_unix_username): static
+    public function eraseCredentials()
     {
-        $this->col_unix_username = $col_unix_username;
-
-        return $this;
+        // TODO: Implement eraseCredentials() method.
     }
 
-    public function getColFirstPage(): ?string
+    public function getUserIdentifier(): string
     {
-        return $this->col_first_page;
+        return $this->col_username;
     }
 
-    public function setColFirstPage(?string $col_first_page): static
+    public function getPassword(): ?string
     {
-        $this->col_first_page = $col_first_page;
-
-        return $this;
-    }
-
-    public function getColRegistrationNumber(): ?string
-    {
-        return $this->col_registration_number;
-    }
-
-    public function setColRegistrationNumber(?string $col_registration_number): static
-    {
-        $this->col_registration_number = $col_registration_number;
-
-        return $this;
-    }
-
-    public function getColWatchAuth(): ?string
-    {
-        return $this->col_watch_auth;
-    }
-
-    public function setColWatchAuth(?string $col_watch_auth): static
-    {
-        $this->col_watch_auth = $col_watch_auth;
-
-        return $this;
-    }
-
-    public function getColIsWorkingOn(): ?string
-    {
-        return $this->col_is_working_on;
-    }
-
-    public function setColIsWorkingOn(?string $col_is_working_on): static
-    {
-        $this->col_is_working_on = $col_is_working_on;
-
-        return $this;
-    }
-
-    public function getColExpiryDateWatch(): ?string
-    {
-        return $this->col_expiry_date_watch;
-    }
-
-    public function setColExpiryDateWatch(?string $col_expiry_date_watch): static
-    {
-        $this->col_expiry_date_watch = $col_expiry_date_watch;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, ObservationCache>
-     */
-    public function getObservationCaches(): Collection
-    {
-        return $this->observationCaches;
-    }
-
-    public function addObservationCache(ObservationCache $observationCache): static
-    {
-        if (!$this->observationCaches->contains($observationCache)) {
-            $this->observationCaches->add($observationCache);
-            $observationCache->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeObservationCache(ObservationCache $observationCache): static
-    {
-        if ($this->observationCaches->removeElement($observationCache)) {
-            // set the owning side to null (unless already changed)
-            if ($observationCache->getUser() === $this) {
-                $observationCache->setUser(null);
-            }
-        }
-
-        return $this;
+        return $this->col_password;
     }
 }

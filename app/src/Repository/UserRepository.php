@@ -57,11 +57,13 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
                 $user->setColWatchAuth($employee['col_watch_auth']);
                 $user->setColIsWorkingOn($employee['col_is_working_on']);
                 $user->setColExpiryDate($employee['col_expiry_date']);
+                $user->setColId($employee['col_id']);
                 $this->getEntityManager()->persist($user);
                 $this->getEntityManager()->flush();
             }
         }
     }
+
 
     public function  existsUser($email)
     {
