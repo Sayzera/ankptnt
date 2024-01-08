@@ -1,0 +1,67 @@
+<div class="col-sm-12 col-xl-8">
+	<div class="card">
+		<div class="card-body">
+			<div class="profile-tab">
+				<div class="custom-tab-1">
+					<ul class="nav nav-tabs">
+						<li class="nav-item" id="additionalInfo">
+							<a href="#itiraz_ekBilgiler" data-bs-toggle="tab" class="nav-link show active">Ek Bilgiler</a>
+						</li>
+						<li class="nav-item" onclick="ApplicationFileOpp.getClassList()">
+							<a href="#itiraz_esyaListesi" data-bs-toggle="tab" class="nav-link">Eşya Listesi</a>
+
+						</li>
+
+
+					</li>
+					<li class="nav-item" onclick="ApplicationFileOpp.getDetailInvoice()">
+						<a href="#itiraz_invoices" data-bs-toggle="tab" class="nav-link">Faturalar
+						</a>
+
+					</li>
+
+
+					<li class="nav-item" onclick="ApplicationFileOpp.getActionList()">
+						<a href="#itiraz_islemler" data-bs-toggle="tab" class="nav-link ">İşlemler</a>
+					</li>
+
+					<li class="nav-item" data-bs-toggle="modal" data-bs-target=".detay-modal-yim" id="gerekce-marka-id" onclick="ApplicationFile.getTrademarkInfo()">
+
+
+						<a 	class="nav-link ">Gerekçe Dosya Bilgileri</a>
+					</li>
+
+
+				</ul>
+				<div class="tab-content">
+					<div id="itiraz_ekBilgiler" class="tab-pane fade active show">
+						{{ include('brand/domestic_brand/appeal_file/additional-information.html.twig') }}
+					</div>
+					<div id="itiraz_esyaListesi" class="tab-pane fade p-1">
+						{{ include('brand/domestic_brand/appeal_file/inventory-list.html.twig') }}
+					</div>
+					<div id="itiraz_islemler" class="tab-pane fade p-1">
+
+						{{ include('brand/domestic_brand/appeal_file/actions.html.twig') }}
+					</div>
+
+					<div id="itiraz_invoices" class="tab-pane fade">
+						{{ include('brand/domestic_brand/appeal_file/bills.html.twig') }}
+
+
+					</div>
+
+					{# <div id="faturalar" class="tab-pane fade p-1">
+																																																																																																																																																																																																													<div id="itiraz_esyaListesi" class="tab-pane fade p-1">
+																																																																																																																																																																																																												{{ include('brand/domestic_brand/appeal_file/inventory-list.html.twig') }}
+																																																																																																																																																																																																											</div>																																				{{ include('brand/domestic_brand/appeal_file/bills.html.twig') }}
+																																																																																																																																																																																																																																																	</div> #}
+					{# <div id="islemler" class="tab-pane fade p-1">
+																																																																																																																																																																																																																																																	{{ include('brand/domestic_brand/appeal_file/actions.html.twig') }}
+																																																																																																																																																																																																																																																	</div> #}
+				</div>
+			</div>
+			<!-- Modal -->
+		</div>
+	</div>
+</div></div>

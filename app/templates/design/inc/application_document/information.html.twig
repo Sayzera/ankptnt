@@ -1,61 +1,61 @@
 <style>
-    .form-label {
-        font-weight: bold;
-    }
+	.form-label {
+		font-weight: bold;
+	}
 </style>
 <div class="basic-form p-3">
-    <form>
-        <div class="row">
-            <div class="col-sm-12 col-lg-6 ">
-                <div class="mb-3 row">
-                    <label class="form-label">Dosya Sorumlusu</label>
-                    <input type="text" class="form-control" placeholder="" value="Zehra ENLİGÜN" disabled>
-                </div>
-                <div class="mb-3 row">
-                    <label class="form-label">Tarifname Hazırlayan
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="-" disabled>
-                </div>
-            </div>
-            <div class="col-sm-12 col-lg-6 ">
-                <div class="mb-3 row">
-                    <label class="form-label">Tescil Tar.
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="27/08/2020" disabled>
-                </div>
-                <div class="mb-3 row">
-                    <label class="form-label">Yenileme Tar.
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="27/08/2023" disabled>
-                </div>
-            </div>
-            <div class="col-sm-12 col-lg-6 ">
-                <div class="mb-3 row">
-                    <label class="form-label">Tasarım Türü
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="ÇOKLU" disabled>
-                </div>
-                <div class="mb-3 row">
-                    <label class="form-label">Resim Sayısı
+	<form>
+		<div class="row">
+			<div class="col-sm-12 col-lg-6 ">
+				<div class="mb-3 row">
+					<label class="form-label">Dosya Sorumlusu</label>
+					<input type="text" class="form-control" id="dosya_sorumlusu" placeholder="" value="-" readonly>
+				</div>
+				<div class="mb-3 row">
+					<label class="form-label">Tescil Tar.
+					</label>
+					<input type="text" class="form-control" placeholder="" id="tescil_tarihi" value="-" readonly>
+				</div>
 
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="5" disabled>
-                </div>
-            </div>
-            <div class="col-sm-12 col-lg-6 ">
-                <div class="mb-3 row">
-                    <label class="form-label">Tasarım Sayısı
 
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="3" disabled>
-                </div>
-                <div class="mb-3 row">
-                    <label class="form-label">Yayın Ertelemesi
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="30Ay" disabled>
-                </div>
-            </div>
+			</div>
+			<div class="col-sm-12 col-lg-6 ">
+				<div class="mb-3 row">
+					<label class="form-label">Tasarım Türü
+					</label>
+					<input type="text" class="form-control" placeholder="" value="?" readonly>
+				</div>
 
-        </div>
-    </form>
+				<div class="mb-3 row">
+					<label class="form-label">Yenileme Tar.
+					</label>
+					<input type="text" class="form-control" placeholder="" id="yenileme_tarihi" value="-" readonly>
+				</div>
+			</div>
+			<div class="col-sm-12 col-lg-6 ">
+				<div class="mb-3 row">
+					<label class="form-label">Tasarım Sayısı
+
+					</label>
+					<input type="text" class="form-control" id="tasarim_sayisi" placeholder="" readonly>
+				</div>
+
+				<div class="mb-3 row">
+					<label class="form-label">Resim Sayısı
+
+					</label>
+					<input type="text" class="form-control" id="resim_sayisi" placeholder="" value="-" readonly>
+				</div>
+			</div>
+			<div class="col-sm-12 col-lg-6 ">
+
+				<div class="mb-3 row">
+					<label class="form-label">Yayın Ertelemesi
+					</label>
+					<input type="text" class="form-control" placeholder="" id="yayin_erteleme" value="-" readonly>
+				</div>
+			</div>
+
+		</div>
+	</form>
 </div>

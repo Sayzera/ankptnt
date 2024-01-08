@@ -1,0 +1,114 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}
+	Kullanıcı Listesi
+{% endblock %}
+{% block page_title %}
+	Ayarlar
+{% endblock %}
+
+{% block stylesheets %}
+	<link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet"/>
+
+	<style>
+		{# body {
+			background-color: #F8F8F8 !important;
+		} #}
+		.card-title {
+			text-transform: none !important;
+		}
+
+		.dataTable input {
+			max-width: 100% !important;
+		}
+
+        .dataTables_wrapper .dataTables_paginate span .paginate_button {
+    
+    font-size: 13px !important
+
+	}
+
+	
+	</style>
+
+
+{% endblock %}
+
+
+{% block body %}
+
+	<div class="content-body">
+	
+		<div class="container-fluid">
+			<div class="row page-titles">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item active">
+						<a href="{{path('app_main')}}">Anasayfa
+						</a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="javascript:void(0)">Kullanıcı Giriş Logları</a>
+					</li>
+				</ol>
+			</div>
+
+
+			<div class="row">
+				<div class="col-sm-12 col-xl-12 col-lg-12">
+					<div class="card">
+						<div class="card-header">
+							Kullanıcı Giriş Logları
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table id="userList" class="table table-bordered table-responsive-sm" style="min-width: 845px">
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>Kullanıcı Adı</th>
+											<th>Son Giriş Tarihi</th>
+										</tr>
+									</thead>
+									<tbody>
+
+										{% for item in data %}
+											<tr>
+												<td>
+                                                    {{ item.id }}
+                                                </td>
+												<td>
+													{{item.username}}
+                                                </td>
+												<td>
+													{{item.created_at|date('d.m.Y H:i:s')}}
+                                                </td>
+
+											</tr>
+
+										{% endfor %}
+
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+
+		</div>
+	</div>
+</div>{% endblock %}{% block javascripts %}
+
+<script>
+	{% set scriptData = {
+        'dataTableJsonLang' : asset('assets/lang/datatableTr.json')
+    } %}
+var scriptData = {{ scriptData|raw|json_encode|raw }};
+</script>
+
+<script src="{{ asset('assets/vendor/chart.js/Chart.bundle.min.js')}}"></script>
+<script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{ asset('assets/js/users/user.js')}}"></script>{% endblock %}

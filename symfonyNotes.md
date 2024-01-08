@@ -81,3 +81,5 @@ php bin/console doctrine:fixtures:load --purge-exclusions=Lang --purge-exclusion
 SET FOREIGN_KEY_CHECKS = 0;
 TRUNCATE TABLE Lang;
 SET FOREIGN_KEY_CHECKS = 1;
+
+

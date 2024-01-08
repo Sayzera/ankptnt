@@ -1,0 +1,143 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}
+	Marka İtiraz Listesi
+{% endblock %}
+{% block page_title %}
+	Marka İtiraz Listesi
+{% endblock %}
+
+{% block stylesheets %}
+	<link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet"/>
+
+	<style>
+		{
+			# body {
+				background-color: #F8F8F8 !important;
+			} #
+		}
+		.card-title {
+			text-transform: none !important;
+		}
+
+		.dataTable input {
+			max-width: 100% !important;
+		}
+
+		.dataTables_wrapper .dataTables_paginate span .paginate_button {
+
+			font-size: 13px !important
+		}
+	</style>
+
+
+{% endblock %}
+
+
+{% block body %}
+
+	<div class="content-body">
+
+		<div class="container-fluid">
+			<div class="row page-titles">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item active">
+						<a href="{{path('app_main')}}">Anasayfa
+						</a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="javascript:void(0)">Marka İtiraz Listesi</a>
+					</li>
+				</ol>
+			</div>
+
+
+			<div class="row">
+				<div class="col-sm-12 col-xl-12 col-lg-12">
+					<div class="card">
+						<div class="card-header">
+							Marka İtiraz Listesi
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table id="userList" class="table table-bordered table-responsive-sm" style="min-width: 845px">
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>Marka (Müvekkil)</th>
+											<th>Başvuru Numarası (Müvekkil)</th>
+											<th>Firma (Müvekkil)</th>
+											<th>Marka (Benzer Marka)</th>
+											<th>Başvuru Numarası (Benzer Marka)</th>
+											<th>İtiraz Tarihi</th>
+											<th>Bülten No</th>
+										</tr>
+									</thead>
+									<tbody>
+
+										{% for item in data %}
+											<tr style="
+											{{ item.is_new == 1 ? 'background: var(--primary) !important; 
+												color: white !important; 
+											' : '' }}}
+											">
+												<td>
+													{{ item.id }} {{ 
+														item.is_new == 1 ? ' (Yeni) ' : '' 
+													}}
+												</td>
+												<td>
+													{{item.benzer_marka}}
+												</td>
+												<td>
+													{{item.iem_col_application_number}}
+												</td>
+												<td>
+													{{item.markanin_firmasi}}
+												</td>
+												<td>
+													{{item.iem_marka}}
+												</td>
+												<td>
+													{{item.iem_col_application_number}}
+												</td>
+
+												<td>
+													{{item.itiraz_tarihi}}
+												</td>
+
+												<td>
+													{{item.bulten_no}}
+												</td>
+
+
+
+											</tr>
+
+										{% endfor %}
+
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+
+		</div>
+	</div>
+</div>{% endblock %}{% block javascripts %}
+
+<script>
+	{% set scriptData = {
+        'dataTableJsonLang' : asset('assets/lang/datatableTr.json')
+    } %}
+var scriptData = {{ scriptData|raw|json_encode|raw }};
+</script>
+
+<script src="{{ asset('assets/vendor/chart.js/Chart.bundle.min.js')}}"></script>
+<script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{ asset('assets/js/users/user.js')}}"></script>{% endblock %}

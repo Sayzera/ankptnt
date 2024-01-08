@@ -1,0 +1,64 @@
+	<div class="modal fade bulten-modal-multiple" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Bülten Bilgileri</h5>
+					<div class="flex align-items-center gap-2">
+						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					</div>
+				</div>
+				<div class="modal-body">
+                    <p>
+                        <strong>Not:</strong> Birden fazla bülten seçimi yapabilirsiniz. Seçtiğiniz bültenlerin gözlemi başlatılacaktır.
+                    </p>
+                
+                  
+
+					<div class="form-group">
+						<label class="form-label">Bülten Seçiniz</label>
+
+						<div class="row">
+							<div class="col-lg-6">
+							<div class="row">
+								<div class="col-lg-3">
+									{# checkbox #}
+											<div class="form-check">
+											<input class="form-check-input aktif-bultenler-checkbox" type="checkbox" value="1" id="bulten-checkbox-aktifler">
+												<label class="form-check-label" for="bulten-checkbox-aktifler">
+													Aktif Bültenler
+												</label>
+											</div>
+
+
+
+									</div>
+									 {% for bulten in baslangic_bulten_no..bitis_bulten_no %}
+									<div class="col-lg-3">
+									{# checkbox #}
+											<div class="form-check">
+											<input class="form-check-input bulten-checkbox" type="checkbox" value="{{bulten}}" id="bulten-checkbox-{{bulten}}">
+												<label class="form-check-label" for="bulten-checkbox-{{bulten}}">
+													{{bulten}}
+												</label>
+											</div>
+
+
+
+									</div>
+					  
+						  {% endfor %}	
+							</div>
+							</div>
+						</div>
+					
+				
+					</div>
+			
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Kapat</button>
+					<button disabled  class="btn btn-primary light" id="bulten-search-multiple" onclick="SelectBulletin.goToTrademarks()"  >Gözlemi Başlat</button>	</div>
+			</div>
+		</div>
+	</div>

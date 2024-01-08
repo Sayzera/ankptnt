@@ -1,0 +1,57 @@
+<style>
+
+    .list-group-item p {
+        line-height: 0.5;
+    }
+</style>
+
+<div class="row">
+    <div class="col-sm-12 col-xl-4">
+        <div class="card-body p-0">
+            <div class="basic-list-group">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <p class="text-primary">Firma Referans Numarası
+                        </p>
+                        <p class="text-sm-start" id="col_account_referance_number">-</p>
+                    </li>
+                    <li class="list-group-item">
+                        <p class="text-primary">Marka
+                        </p>
+                        <p class="text-sm-start" id="col_trademark">-</p>
+                    </li>
+                    <li class="list-group-item">
+                        <p class="text-primary" >Ayırtedici Unsur
+                        </p>
+                        <p class="text-sm-start" id="col_distinctive_trademark">-</p>
+                    </li>
+                    <li class="list-group-item">
+                        <p class="text-primary">Başvuru Numarası
+                        </p>
+                        <p class="text-sm-start" id="col_application_number">-</p>
+                    </li>
+                    <li class="list-group-item">
+                        <p class="text-primary">Başvuru Tarihi
+                        </p>
+                        <p class="text-sm-start" id="col_application_date">-</p>
+                    </li>
+                    <li class="list-group-item">
+                        <p class="text-primary">Dosya Numarası
+                        </p>
+                        <p class="text-sm-start" id="col_c_file_number">-</p>
+                    </li>
+                    <li class="list-group-item">
+                        <p class="text-primary">Eşya Sınıf Listesi
+                        </p>
+                        <p class="text-sm-start" id="col_class_string">-</p>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    {# right #}
+    {{ include('brand/domestic_brand/inc/rightMenu.html.twig') }}
+
+</div>

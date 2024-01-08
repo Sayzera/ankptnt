@@ -9,43 +9,84 @@
 						<div class="row no-gutters">
 							<div class="col-xl-12">
 								<div class="auth-form">
-									<div class="text-center mb-3">
-										<a href="index.html"><img src="images/logo-full.png" alt=""></a>
+									<div class="text-center mb-3" style="height: 80px; padding:5px;  width:100%; display:flex; justify-content:center; ">
+										<div style=" width:120px;  border-radius:10px">
+											<a href="/"><img src="{{ asset('assets/images/logo/apiz_3.png') }}" style="width:100px" alt=""></a>
+										</div>
 									</div>
-									<h4 class="text-center mb-4">Giriş Yapınız</h4>
+								
+									<h4 class="text-center mb-4 mt-5">Giriş Yapınız</h4>
 									{% if error %}
 										<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+									{% endif %}
+									{{ app.session.get('sozlesme') }}
+									{% if app.request.get('message') %}
+									<div class="text-success" >
+									{{  app.request.get('message') }}
+									</div>
 									{% endif %}
 									<form action=" {{ path('app_login') }}" method="post">
 										<input type="hidden" name="_target_path" value="{{ path('app_main') }}">
 
 										<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+										<input type="hidden" name="login_" value="1">
+
 
 										<div class="mb-3">
 											<label class="mb-1">
-												<strong>E Posta</strong>
+												<strong>Kullanıcı Adı
+												</strong>
+
 											</label>
-											<input type="text" id="_username" name="_username" class="form-control" value="ali.yilmaz@ankarapatent.com">
+											<input type="text" id="_username" name="_username" class="form-control">
 										</div>
-										<div class="mb-3">
+										<div class="mb-3 ">
+
 											<label class="mb-1">
-												<strong>Şifre</strong>
+												<strong>Şifre
+												</strong>
+
 											</label>
-											<input type="password" id="password" name="_password" class="form-control" value="password">
+
+
+											<div class="position-relative">
+
+												<input type="password" id="password" name="_password" class="form-control">
+
+												<i class="fas fa-eye position-absolute " id="password-show" style="    top: 18px;
+																																																																																												    right: 8px;
+																																																																																												    font-size: 21px; cursor:pointer"></i>
+
+
+											</div>
+
 										</div>
+
+
 										<div class="row d-flex justify-content-between mt-4 mb-2">
 											<div class="mb-3">
+											
+											<div class="d-flex justify-content-end mb-2">
+												<a href="{{path('app_auth_forgot_password')}}">Şifremi Unuttum</a>
+											</div>
+
 												<div class="form-check custom-checkbox ms-1">
-													<input type="checkbox" class="form-check-input" id="basic_checkbox_1">
-													<label class="form-check-label" for="basic_checkbox_1">Beni Hatırla</label>
+													<input type="checkbox" class="form-check-input" name="kullanici_sozlesmesi" id="kullanici_sozlesmesi">
+
+													<label class="form-check-label" for="kullanici_sozlesmesi">
+														Kullanıcı
+														<a href="/apiz-kullanim-kilavuzu.pdf" target="_blank" style="text-decoration:underline">Sözleşmesini</a>
+														okudum ve kabul ediyorum.
+													</label>
 												</div>
+
 											</div>
-											<div class="mb-3">
-												<a href="page-forgot-password.html">Şifremi Unuttum</a>
-											</div>
+											{# <div class="mb-3">
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																				<a href="page-forgot-password.html">Şifremi Unuttum</a>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																			</div> #}
 										</div>
 										<div class="text-center">
-											<button type="submit" name="login-btn" class="btn btn-primary btn-block">Giriş yap</button>
+											<button type="button" name="login-btn" class="btn btn-primary btn-block">Giriş yap</button>
 										</div>
 									</form>
 								</div>
@@ -56,4 +97,55 @@
 			</div>
 		</div>
 	</div>
+
+	<script>
+
+		var usernameInput = document.getElementById('_username');
+var password = document.getElementById('password');
+
+
+// input elementinin id'sini doğru şekilde belirtmelisiniz
+// Yapıştır (Ctrl+V) işlemi
+usernameInput.addEventListener('paste', function (event) { // Yapıştırılan metni alın
+_trim(event, usernameInput);
+});
+
+password.addEventListener('paste', function (event) { // Yapıştırılan metni alın
+_trim(event, password);
+});
+
+
+function _trim(event, _input) {
+var pastedText = event.clipboardData.getData('text/plain');
+// Başındaki ve sonundaki boşlukları temizle
+var trimmedText = pastedText.trim();
+// Temizlenmiş metni input alanına yerleştir
+_input.value = trimmedText;
+// Varsayılan yapıştırma işlemi engelle
+event.preventDefault();
+
+}
+
+// show password
+document.getElementById('password-show').addEventListener('click', function (e) {
+if (document.getElementById('password').type == 'password') {
+document.getElementById('password').type = 'text';
+document.getElementById('password-show').classList.remove('fa-eye');
+document.getElementById('password-show').classList.add('fa-eye-slash');
+} else {
+document.getElementById('password').type = 'password';
+document.getElementById('password-show').classList.remove('fa-eye-slash');
+document.getElementById('password-show').classList.add('fa-eye');
+}
+})
+
+
+document.querySelector('button[name="login-btn"]').addEventListener('click', function (e) {
+document.getElementById('kullanici_sozlesmesi').checked ? document.querySelector('form').submit() : alert('Kullanıcı sözleşmesini kabul etmelisiniz.');
+
+if (document.getElementById('kullanici_sozlesmesi').checked) {
+document.querySelector('form').submit();
+}
+})
+	</script>
 {% endblock %}

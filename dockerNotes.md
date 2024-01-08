@@ -1,6 +1,7 @@
 # Docker
 
 - Run
+  docker-compose up nginx -d --build
 
   - docker run node-app-image
   - docker run -p 3000:3000 -d --name node-app node-app-image

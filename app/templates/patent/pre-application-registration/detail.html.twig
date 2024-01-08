@@ -1,52 +1,59 @@
 <style>
 
-    .list-group-item p {
-        line-height: 0.5;
-    }
+	.list-group-item p {
+		line-height: 0.5;
+	}
 </style>
 
 <div class="row">
-    <div class="col-sm-12 col-xl-4">
-        <div class="card-body p-0">
-            <div class="basic-list-group">
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <p class="text-primary">Dosya Numarası</p>
-                        <p class="text-sm-start">000055</p>
-                    </li>
-                    <li class="list-group-item">
-                        <p class="text-primary">Firma Referansı
-                        </p>
-                        <p class="text-sm-start">-</p>
-                    </li>
-                    <li class="list-group-item">
-                        <p class="text-primary">Başvuru Dosya No
-                        </p>
-                        <p class="text-sm-start">-</p>
-                    </li>
-                    <li class="list-group-item">
-                        <p class="text-primary">Konu
-                        </p>
-                        <p class="text-sm-start">Ücretli Patent Bülten Takibi Yapılan Firmalar</p>
-                    </li>
-                    <li class="list-group-item">
-                        <p class="text-primary">Dosya Son Durumu
+	<div class="col-sm-12 col-xl-4">
+		<div class="card-body p-0">
+			<div class="basic-list-group">
+				<ul class="list-group">
+					<li class="list-group-item">
+						<p class="text-primary">Dosya Numarası</p>
+						<p class="text-sm-start" id="col_file_number">-</p>
 
-                        </p>
-                        <p class="text-sm-start">Bülten takibi</p>
-                    </li>
-                    <li class="list-group-item">
-                        <p class="text-primary">Durum
-                        </p>
-                        <p class="text-sm-start">-</p>
-                    </li>
+					</li>
+					<li class="list-group-item">
+						<p class="text-primary">Firma Referansı
+						</p>
+						<p class="text-sm-start" id="col_account_referance_number">-</p>
 
-                </ul>
-            </div>
-        </div>
-    </div>
 
-    {# right #}
-    {{ include('patent/pre-application-registration/rightMenu.html.twig') }}
+					</li>
+					<li class="list-group-item">
+						<p class="text-primary">Başvuru Dosya No
+						</p>
+						<p class="text-sm-start" id="col_c_file_number">-</p>
+
+					</li>
+					<li class="list-group-item">
+						<p class="text-primary">Konu
+						</p>
+						<p class="text-sm-start" id="col_invention_subject">-</p>
+
+					</li>
+					<li class="list-group-item">
+						<p class="text-primary">Dosya Son Durumu
+
+						</p>
+						<p class="text-sm-start" id="col_last_process_status">-</p>
+
+					</li>
+					<li class="list-group-item">
+						<p class="text-primary">Durum
+						</p>
+						<p class="text-sm-start" id="col_last_status">-</p>
+
+					</li>
+
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	{# right #}
+	{{ include('patent/pre-application-registration/rightMenu.html.twig') }}
 
 </div>

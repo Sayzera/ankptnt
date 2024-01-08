@@ -14,11 +14,15 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
+            custom_authenticators:
+                - App\Security\LoginFormAuthenticator
             lazy: true
-            form_login:
-                enable_csrf: true
-                login_path: app_login
-                check_path: app_login
+#            form_login:
+#                enable_csrf: true
+#                login_path: app_login
+#                check_path: app_login
+                
+                
             logout:
                 path: app_logout
                 # where to redirect after logout
@@ -38,9 +42,18 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
         # geri kalan herşey için
+        # - { path: ^/duyuru-send-mail/5343rt3244412e1243qe132, roles: PUBLIC_ACCESS }
+        - { path: ^/web/hook/whats/app, roles: PUBLIC_ACCESS }
         - { path: ^/login, roles: PUBLIC_ACCESS }
-        - { path: ^/get-pati-emplyee, roles: PUBLIC_ACCESS }
-        - { path: ^/brand/domestic/detail-modal, roles: PUBLIC_ACCESS }
+        - { path: ^/whatsapp-business-find-user, roles: PUBLIC_ACCESS }
+        - { path: ^/web/hook/whatsapp/result-file-status, roles: PUBLIC_ACCESS }
+        - { path: ^/forgot-password, roles: PUBLIC_ACCESS }
+        - { path: ^/forgot-password-send, roles: PUBLIC_ACCESS },
+        - { path: ^/reset-password, roles: PUBLIC_ACCESS }
+        # - { path: ^/send-mail/5343rt3244412e1243qe132, roles: PUBLIC_ACCESS }
+        # - { path: ^/get-pati-emplyee, roles: PUBLIC_ACCESS }
+        # - { path: ^/company/observation/auto, roles: PUBLIC_ACCESS }
+        # - { path: ^/brand/domestic/detail-modal, roles: PUBLIC_ACCESS }
         - { path: ^/, roles: ROLE_USER }
 
 when@test:

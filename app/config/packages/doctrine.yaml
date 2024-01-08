@@ -5,6 +5,8 @@ doctrine:
         url: "%env(resolve:PT_DATABASE_URL)%"
       apz:
         url: "%env(resolve:PT_DATABASE_URL)%"
+      arastirgozle:
+        url: "%env(resolve:PT_ARASTIR_GOZLE)%"
     default_connection: default
 
     # IMPORTANT: You MUST configure your server version,

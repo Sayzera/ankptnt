@@ -4,6 +4,12 @@
 	{{ parent() }}
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
 	<link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet"/>
+	<style>
+
+		.dataTables_wrapper .dataTables_paginate span .paginate_button {
+			font-size: 12px !important;
+		}
+	</style>
 {% endblock %}
 {# Styles End #}
 {# Title Start #}
@@ -18,6 +24,29 @@
 {# Page Content Start #}
 {% block body %}
 	<div class="modal fade detay-modal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Marka Bilgileri</h5>
+					<div class="flex align-items-center gap-2">
+						<button type="button" class="btn-close detay-modal-close" data-bs-dismiss="modal"></button>
+					</div>
+				</div>
+				<div class="modal-body">
+					{{
+                    include('brand/domestic_brand/appeal_file/detail.html.twig')
+                    }}
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Kapat</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{# Marka Model YİM TABLOSUNDAN #}
+
+	<div class="modal fade detay-modal-yim" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog modal-xl">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -38,12 +67,16 @@
 		</div>
 	</div>
 
+
 	<div class="content-body">
 		<div class="container-fluid">
 			<div class="row page-titles">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item active">
 						<a href="{{ path('app_main') }}">Anasayfa</a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="javascript:void(0)">Yurtiçi Marka</a>
 					</li>
 					<li class="breadcrumb-item">
 						<a href="javascript:void(0)">Marka İtiraz</a>
@@ -74,36 +107,7 @@
 											<th>İkinci İtiraz Sonucu</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr style="">
-											<td>
-												2012/06735
-											</td>
-											<td>
-												Tamara
-											</td>
-											<td style="min-width: 150px">
-												2023/097109
-
-											</td>
-											<td>
-												<a href="#" data-bs-toggle="modal" data-bs-target=".detay-modal" class="text-primary text-decoration-underline">ramara</a>
-											</td>
-											<td>
-												Bildirim
-											</td>
-											<td>
-												(7539787) RAMAZAN TATLI
-											</td>
-											<td></td>
-											<td>
-												<span class="badge light badge-warning" style="font-size: 14px">Bildirilecek</span>
-											</td>
-											<td></td>
-											<td></td>
-										</tr>
-
-									</tbody>
+									<tbody></tbody>
 								</table>
 							</div>
 						</div>
@@ -128,6 +132,9 @@
 	<script type="text/javascript" src="{{ asset('assets/vendor/moment/moment.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('assets/vendor/daterangepicker/daterangepicker.js') }}"></script>
 	<script src="{{ asset('assets/js/brand/trademark_opposition.js')}}"></script>
+
+
+	<script src="{{ asset('assets/js/brand/yim-modal-data.js')}}"></script>
 
 
 {% endblock %}

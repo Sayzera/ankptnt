@@ -1,63 +1,101 @@
 <style>
-    .form-label {
-        font-weight: bold;
-    }
+	.form-label {
+		font-weight: bold;
+	}
 </style>
 <div class="basic-form p-3">
-    <form>
-        <div class="row">
-            <div class="col-sm-12 col-lg-6 ">
-                <div class="mb-3 row">
-                    <label class="form-label">Dosya Son Durumu
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="Tescilli" disabled>
-                </div>
-                <div class="mb-3 row">
-                    <label class="form-label">Başvuru Sistemi
+	<form>
+		<div class="row">
+			<div class="col-sm-12 col-lg-6 ">
+				<div class="mb-3 row">
+					<label class="form-label">Başvuru Sistemi
+					</label>
+					<input type="text" class="form-control" placeholder="" id="col_application_system" value="-" disabled>
 
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="ULUSAL" disabled>
-                </div>
-            </div>
-            <div class="col-sm-12 col-lg-6 ">
-                <div class="mb-3 row">
-                    <label class="form-label">I. Yayın Bülteni
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="420 12/05/2023" disabled>
-                </div>
-                <div class="mb-3 row">
-                    <label class="form-label">II. Yayın Bülteni
 
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="-" disabled>
-                </div>
-            </div>
-            <div class="col-sm-12 col-lg-6 ">
-                <div class="mb-3 row">
-                    <label class="form-label">Tescil Numarası
+				</div>
+				<div class="mb-3 row">
+					<label class="form-label">TPMK Başvuru No
 
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="2021 126529" disabled>
-                </div>
-                <div class="mb-3 row">
-                    <label class="form-label">Koruma Tarihi
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="10/09/2021" disabled>
-                </div>
-            </div>
-            <div class="col-sm-12 col-lg-6 ">
-                <div class="mb-3 row">
-                    <label class="form-label">Yenileme Tarihi
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="10/09/2031" disabled>
-                </div>
-                <div class="mb-3 row">
-                    <label class="form-label">TPMK Tescil Tarihi
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="04/04/2022" disabled>
-                </div>
-            </div>
+					</label>
+					<input type="text" class="form-control" placeholder="" id="col_tpe_application_number" disabled>
 
-        </div>
-    </form>
+
+				</div>
+			</div>
+			<div class="col-sm-12 col-lg-6 ">
+				<div class="mb-3 row">
+					<label class="form-label">Yenileme Tarihi
+					</label>
+					<input type="text" class="form-control" placeholder="" id="col_renewal_date" value="-" disabled>
+				</div>
+				<div class="mb-3 row">
+					<label class="form-label">Ülke
+
+					</label>
+					<input type="text" class="form-control" placeholder="" id="col_country" value="-" disabled>
+
+
+				</div>
+			</div>
+			<div class="col-sm-12 col-lg-6 ">
+				<div class="mb-3 row">
+					<label class="form-label">Yayın Tarihi
+					</label>
+					<input type="text" class="form-control" placeholder="" id="col_publication_date" value="-" disabled>
+				</div>
+				<div class="mb-3 row">
+					<label class="form-label">Ülke Ekleme Tarihi
+					</label>
+					<input type="text" class="form-control" placeholder="" id="col_adding_country_date" disabled>
+
+				</div>
+			</div>
+			<div class="col-sm-12 col-lg-6 ">
+				<div class="mb-3 row">
+					<label class="form-label">Dosya Son Durumu
+					</label>
+					<input type="text" class="form-control" placeholder="" id="col_last_status" value="-" disabled>
+
+				</div>
+				<div class="mb-3 row">
+					<label class="form-label">Tescil Numarası
+					</label>
+					<input type="text" class="form-control" placeholder="" id="col_registration_number" value="-" disabled>
+
+				</div>
+			</div>
+
+			<div class="col-sm-12 col-lg-6 ">
+				<div class="mb-3 row">
+					<label class="form-label">Ülke Aşa. Geçiş Tarihi
+					</label>
+					<input type="text" class="form-control" placeholder="" id="col_renewal_date" value="-" disabled>
+				</div>
+				<div class="mb-3 row">
+					<label class="form-label">Yayında Kalma Süresi
+					</label>
+					<input type="text" class="form-control" placeholder="" id="" value="-" disabled>
+				</div>
+			</div>
+
+			<div class="col-sm-12 col-lg-6 ">
+				<div class="mb-3 row">
+					<label class="form-label">18 Ay Süre Sonu Tarihi
+					</label>
+					<input type="text" class="form-control" placeholder="" id="col_renewal_date" value="-" disabled>
+				</div>
+
+				<div class="mb-3 row">
+					<label class="form-label">Tescil Tarihi
+					</label>
+					<input type="text" class="form-control" placeholder="" id="col_registration_date" value="-" disabled>
+
+				</div>
+
+			</div>
+
+
+		</div>
+	</form>
 </div>

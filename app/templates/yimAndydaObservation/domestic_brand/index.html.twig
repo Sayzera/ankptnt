@@ -1,0 +1,315 @@
+{% extends 'layout/base.html.twig' %}
+{# Styles Start #}
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+	<link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet"/>
+	<link href="{{ asset('assets/vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
+	<link rel="stylesheet" href="{{ asset('assets/vendor/select2/css/select2.min.css') }}">
+	<link href="{{ asset('assets/vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
+
+	<style>
+		.dataTables_wrapper .dataTables_paginate span .paginate_button {
+			height: 50px;
+			width: 50px;
+			padding: 0;
+			margin: 0 2px;
+			line-height: 50px;
+			text-align: center;
+			font-size: 10px !important;
+			border-radius: 1rem;
+			color: var(--primary) !important;
+			border: 0 !important;
+		}
+
+		.tippy-box[data-theme~='tomato'] {
+		background-color: #886CC0;
+		color: white;
+		}
+
+		/*.dataTables_filter {*/
+		/*	display: none;*/
+		/*}*/
+
+		.ana-div-icon .alt-icon-info {
+		display: none;
+		}
+
+		.ana-div-icon:hover .alt-icon-info {
+		display: block;
+		}
+	</style>
+
+	<link
+  rel="stylesheet"
+  href="https://unpkg.com/tippy.js@6/animations/scale.css"
+/>
+{% endblock %}
+{# Styles End #}
+{# Title Start #}
+{% block title %}Apiz | Markalarım
+{% endblock %}
+{# Title End #}
+{# Page Title Start #}
+{% block page_title %}
+	Markalarım
+{% endblock %}
+{# Page Title End #}
+{# Page Content Start #}
+{% block body %}
+	<div class="modal fade detay-modal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Marka Bilgileri</h5>
+					<div class="flex align-items-center gap-2">
+						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					</div>
+				</div>
+				<div class="modal-body">
+					{{
+                    include('brand/domestic_brand/detail.html.twig')
+                    }}
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Kapat</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{# YDA MODAL  #}
+	<div class="modal fade yda-detay-modal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Marka Bilgileri</h5>
+					<div class="flex align-items-center gap-2">
+						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					</div>
+				</div>
+				<div class="modal-body">
+					{{include('yimAndydaObservation/international_trademark/detail.html.twig')}}
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Kapat</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{# Gözlem Modal #}
+	<div class="modal fade bulten-modal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Bülten Bilgileri</h5>
+					<div class="flex align-items-center gap-2">
+						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					</div>
+				</div>
+				<div class="modal-body">
+				
+
+					<div class="form-group">
+					<label class="form-label">Bülten Seçiniz</label>
+					 <select class="form-select yda-and-yim-select2" aria-label="Default select example" id="bultenler">
+						<option value="">Seçiniz</option>
+					  {% for bulten in baslangic_bulten_no..bitis_bulten_no %}
+					  <option value="{{bulten}}">{{bulten}}</option>
+					  {% endfor %}	
+
+					</select>
+					</div>
+			
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Kapat</button>
+					<a href="#"  class="btn btn-primary light" id="bulten-search-action" >Listele</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{# Toplu Gözlem  #}
+
+
+	{{ include('yimAndydaObservation/domestic_brand/inc/multiple-observation-modal.html.twig') }}
+
+	<div class="content-body">
+		<div class="container-fluid">
+			<div class="row page-titles">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item active">
+						<a href="{{ path('app_main') }}">Anasayfa</a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="javascript:void(0)">Yurtiçi Marka</a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="javascript:void(0)">Markalarım</a>
+					</li>
+				</ol>
+			</div>
+			<!-- row -->
+			<div class="row">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-header d-flex justify-content-between">
+							<div>
+							<h4 class="card-title">Kayıt Listesi 
+							</h4><span class="marka-result"></span>
+							</div>
+							{# Button Container #}
+							<div class="d-flex gap-2">
+							<div>
+								<button type="button" class="btn btn-secondary"  data-bs-toggle="modal"
+            						    data-bs-target=".bulten-modal-multiple" >
+								Toplu Gözlem
+								</button>
+							</div>
+							<div class="btn-group dropstart">
+								<button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+								{% set type = app.request.get('type') ?? 0 %}
+								  {% if(type == 0 ) %}
+									Önerilen Sıralama
+								  {% elseif(type == 1 ) %}
+								  Gözlemi Yapılmamış Markalar
+								  {% elseif(type == 2 ) %}
+								  Gözlemi Yapılmış Markalar
+								  {% elseif(type == 3 ) %}
+								  Hızlı Gözlemdeki Markalar
+								  {% elseif(type == 4 ) %}
+								  Hızlı Gözlemde Olmayan Markalar
+								  {% endif %}
+
+								</button>
+								<ul class="dropdown-menu">
+									<li>
+										<a class="dropdown-item
+										{% if(type== 0) %} active {% endif %}
+										" href="{{path('app_brand_domestic_international')}}" title="Önerilen sıralama tüm markaları getirir">
+											<span>
+												Önerilen Sıralama
+											</span>
+											<i class="fas fa-exclamation-circle"></i>
+
+										</a>
+									</li>
+									<li>
+										<a class="dropdown-item 
+										{% if(type== 1) %} active {% endif %}
+										" href="#" data-bs-toggle="modal"
+										onclick="ApplicationFile.gozlem_durumu=1"
+            						    data-bs-target=".bulten-modal" >Gözlemi Yapılmamış Markalar</a>
+									</li>
+									<li>
+										<a class="dropdown-item
+										{% if(type== 2) %} active {% endif %}
+										" href="{{path('app_brand_domestic_international', {type: "2"})}}"
+										 data-bs-toggle="modal"
+            						    data-bs-target=".bulten-modal"
+											onclick="ApplicationFile.gozlem_durumu=2"
+										>Gözlemi Yapılmış Markalar</a>
+									</li>
+									<li>
+										<a class="dropdown-item
+										{% if(type== 3) %} active {% endif %}
+										" href="{{path('app_brand_domestic_international', {type: "3"})}}">
+										Hızlı Gözlemdeki Markalar
+										</a>
+									</li>
+									<li>
+										<a class="dropdown-item
+										{% if(type== 4) %} active {% endif %}
+										" href="{{path('app_brand_domestic_international', {type: "4"})}}">
+										Hızlı Gözlemde Olmayan Markalar
+										</a>
+									</li>
+								</ul>
+							</div>
+
+							
+							{# Button Container #}
+							</div>
+						</div>
+
+			
+						<div class="card-body">
+							<div class="table-responsive">
+								<table id="applicationFileList" class="table table-bordered table-responsive-sm" style="min-width: 845px">
+									<thead>
+										<tr>
+											{# <th>Yurtiçi/Yurtdışı</th> #}
+											{# <th>Logo</th> #}<th>
+											Marka
+											</th><th>
+											Sınıf
+											</th>
+											{# <th>Dosya No</th> #}<th>
+											Başvuru No
+											</th><th>
+											Başvuru Tarihi
+											</th><th>
+											Tescil No
+											</th>
+											{# <th>Yenileme Tarihi</th> #}
+											{# <th>Dosya Son Durum</th> #}<th>
+											Gözlem
+										</th>
+										<th>
+										Aktif/Pasif
+										</th>
+									</tr>
+									</thead><tbody>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{# Page Content End #}
+{# Javascripts Start #}
+
+	{% block javascripts %}
+	{{ parent() }}
+	{% set scriptData = {
+        'dataTableJsonLang' : asset('assets/lang/datatableTr.json'),
+        'getTrademarkUrl': path('yda_and_yim_app_brand_domestic_brand_brand'),
+		'type': app.request.get('type') ?? 0,
+		'gozlem_durumu': app.request.get('gozlem_durumu') ?? '',
+		'bulten': app.request.get('bulten') ?? secili_bulten_no,
+		'secilebilir_elemanlar': secilebilir_elemanlar,
+    } %}
+
+		<script>
+var scriptData = {{ scriptData|raw|json_encode|raw }};
+
+	</script>
+	
+	<script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js')}}"> </script>
+	<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+	<script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+	<script src="{{ asset('assets/vendor/select2/js/select2.full.min.js') }}"></script>
+	<script src="{{ asset('assets/js/plugins-init/select2-init.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('assets/vendor/moment/moment.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('assets/vendor/daterangepicker/daterangepicker.js') }}"></script>
+	<script src="{{ asset('assets/js/yim-and-yda-observation/yda-and-yim.js')}}"></script>
+	<script src="{{ asset('assets/js/yim-and-yda-observation/yda.js')}}"></script>
+	<script src="{{ asset('assets/js/yim-and-yda-observation/yda-and-yim-select2.js')}}"></script>
+
+
+
+	<script>
+	// remove LocalStorage
+	localStorage.removeItem('bultenNo');
+	</script>
+{% endblock %}
+{# Javascripts End #}
+{#    {% set myServiceInstance = my_service() %}#}
+{#    {{ dump(myServiceInstance) }}#}

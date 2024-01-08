@@ -28,7 +28,7 @@
 				</div>
 				<div class="modal-body">
 					{{
-                    include('brand/domestic_brand/detail.html.twig')
+                    include('brand/international_trademark/appeal_file/detail.html.twig')
                     }}
 				</div>
 				<div class="modal-footer">
@@ -44,6 +44,9 @@
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item active">
 						<a href="{{ path('app_main') }}">Anasayfa</a>
+					</li>
+						<li class="breadcrumb-item">
+						<a href="javascript:void(0)">Yurtdışına Marka</a>
 					</li>
 					<li class="breadcrumb-item">
 						<a href="javascript:void(0)">Yurtdışı Marka İtiraz</a>
@@ -74,36 +77,7 @@
 											<th>2.İtiraz Sonucu</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr style="">
-											<td>
-												2012/06735
-											</td>
-											<td>
-												Tamara
-											</td>
-											<td style="min-width: 150px">
-												2023/097109
-
-											</td>
-											<td>
-												<a href="#" data-bs-toggle="modal" data-bs-target=".detay-modal" class="text-primary text-decoration-underline">ramara</a>
-											</td>
-											<td>
-												Bildirim
-											</td>
-											<td>
-												(7539787) RAMAZAN TATLI
-											</td>
-											<td></td>
-											<td>
-												<span class="badge light badge-warning" style="font-size: 14px">Bildirilecek</span>
-											</td>
-											<td></td>
-											<td></td>
-										</tr>
-
-									</tbody>
+									<tbody></tbody>
 								</table>
 							</div>
 						</div>
@@ -124,7 +98,6 @@
 	{{ parent() }}
 	<script>
 		var scriptData = {{ scriptData|raw|json_encode|raw }};
-console.log(scriptData)
 	</script>
 	<script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
 	<script type="text/javascript" src="{{ asset('assets/vendor/moment/moment.min.js') }}"></script>

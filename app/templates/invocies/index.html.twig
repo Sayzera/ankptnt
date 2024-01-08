@@ -4,6 +4,11 @@
 	{{ parent() }}
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
 	<link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet"/>
+	<style>
+		.dataTables_wrapper .dataTables_paginate span .paginate_button {
+			font-size: 13px !important;
+		}
+	</style>
 {% endblock %}
 {# Styles End #}
 {# Title Start #}
@@ -17,6 +22,7 @@
 {# Page Title End #}
 {# Page Content Start #}
 {% block body %}
+
 
 	<div class="content-body">
 		<div class="container-fluid">
@@ -42,7 +48,6 @@
 								<table id="applicationFileList" class="table table-bordered table-responsive-sm">
 									<thead>
 										<tr>
-											<th>No</th>
 											<th>ETTN</th>
 											<th>Tarih</th>
 											<th>Tutar(TL)</th>
@@ -52,31 +57,6 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr style="">
-											<td>
-												C0040
-											</td>
-											<td>
-												0
-											</td>
-											<td style="min-width: 150px">
-												25/03/2021
-											</td>
-											<td>
-												-776,28
-											</td>
-											<td>
-												CHINA PATENT DP02037 SAYILI CREDİT NOTE
-
-											</td>
-											<td>
-												AÇIK
-											</td>
-											<td class="text-center">
-												<i class="fas fa-search-plus text-primary c-pointer " style="font-size: 14px"></i>
-											</td>
-										</tr>
-
 									</tbody>
 								</table>
 							</div>

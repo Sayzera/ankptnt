@@ -20,20 +20,19 @@ class ObservationCacheRepository extends ServiceEntityRepository
     public function __construct(
         ManagerRegistry $registry,
         private Security $security
-    )
-    {
+    ) {
         parent::__construct($registry, ObservationCache::class);
     }
 
-    public function insertObservation($data,$observationCacheMainList)
+    public function insertObservation($data, $observationCacheMainList)
     {
 
-         $user = $this->security->getUser();
+        $user = $this->security->getUser() ?? 0;
         $observation = new ObservationCache();
         $observation->setDataSource($data['dataSource']);
         $observation->setSearchedWord($data['searchedWord']);
         $observation->setSearchedWordHtml($data['searchedWordHtml']);
-        $observation->setTrademarkName($data['trademarkName']);
+        $observation->setTrademarkName(str_replace("'", "", $data['trademarkName']));
         $observation->setTrademarkNameHtml($data['trademarkNameHtml']);
         $observation->setNiceClasses($data['niceClasses']);
         $observation->setApplicationNo($data['applicationNo']);
@@ -47,8 +46,15 @@ class ObservationCacheRepository extends ServiceEntityRepository
         $observation->setShapeSimilarity($data['shapeSimilarity']);
         $observation->setPhoneticSimilarity($data['phoneticSimilarity']);
         $observation->setIsPriority($data['isPriority']);
-        $observation->setUser($user);
+        if ($user !== 0) {
+            $observation->setUser($user);
+        }
         $observation->setObservationCacheMainList($observationCacheMainList);
+
+
+        // observationCacheMainList id 
+
+
 
 
         $this->getEntityManager()->persist($observation);
@@ -56,13 +62,14 @@ class ObservationCacheRepository extends ServiceEntityRepository
     }
 
     // Daha önce kayıt olmuş mu kontrol et
-    public function existsObservation($searchedWord, $niceClasses, $bulletinNo)
+    public function existsObservation($searchedWord, $niceClasses, $bulletinNo,$applicationNo)
     {
         $check = $this->findOneBy(
             [
                 'searchedWord' => $searchedWord,
                 'niceClasses' => $niceClasses,
-                'bulletinNo' => $bulletinNo
+                'bulletinNo' => $bulletinNo,
+                'applicationNo' => $applicationNo,
             ]
         );
 
@@ -73,28 +80,28 @@ class ObservationCacheRepository extends ServiceEntityRepository
         return false;
     }
 
-//    /**
-//     * @return ObservationCache[] Returns an array of ObservationCache objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('o')
-//            ->andWhere('o.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('o.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    //    /**
+    //     * @return ObservationCache[] Returns an array of ObservationCache objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('o')
+    //            ->andWhere('o.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('o.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
 
-//    public function findOneBySomeField($value): ?ObservationCache
-//    {
-//        return $this->createQueryBuilder('o')
-//            ->andWhere('o.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    public function findOneBySomeField($value): ?ObservationCache
+    //    {
+    //        return $this->createQueryBuilder('o')
+    //            ->andWhere('o.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

@@ -1,0 +1,113 @@
+{% extends 'layout/base.html.twig' %}
+{# Styles Start #}
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+	<link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet"/>
+	<style>
+
+		.dataTables_wrapper .dataTables_paginate span .paginate_button {
+			font-size: 12px !important;
+		}
+	</style>
+{% endblock %}
+{# Styles End #}
+{# Title Start #}
+{% block title %}Apiz | Marka İtiraz
+{% endblock %}
+{# Title End #}
+{# Page Title Start #}
+{% block page_title %}
+	Marka İtiraz
+{% endblock %}
+{# Page Title End #}
+{# Page Content Start #}
+{% block body %}
+	<div class="modal fade detay-modal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Marka Bilgileri</h5>
+					<div class="flex align-items-center gap-2">
+						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					</div>
+				</div>
+				<div class="modal-body">
+					{{
+                    include('brand/domestic_brand/appeal_file/detail.html.twig')
+                    }}
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Kapat</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="content-body">
+		<div class="container-fluid">
+			<div class="row page-titles">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item active">
+						<a href="{{ path('app_main') }}">Anasayfa</a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="javascript:void(0)">Marka İtiraz</a>
+					</li>
+				</ol>
+			</div>
+			<!-- row -->
+			<div class="row">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Kayıt Listesi - Yurtiçi Marka İtiraz</h4>
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table id="applicationFileList" class="table table-bordered table-responsive-sm" style="min-width: 845px">
+									<thead>
+										<tr>
+											<th>Grkc. Bşvr. No</th>
+											<th>Grkc. Marka</th>
+											<th>Başvuru No</th>
+											<th>Marka</th>
+											<th>Talimat</th>
+											<th>Bşvr. Sahibi</th>
+											<th>İşlem</th>
+											<th>Dosya Son Durum</th>
+											<th>İlk İtiraz Sonucu</th>
+											<th>İkinci İtiraz Sonucu</th>
+										</tr>
+									</thead>
+									<tbody></tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+{# Page Content End #}
+{# Javascripts Start #}
+{% block javascripts %}
+	{{ parent() }}
+	{% set scriptData = {
+        'dataTableJsonLang' : asset('assets/lang/datatableTr.json')
+    } %}
+	<script>
+		var scriptData = {{ scriptData|raw|json_encode|raw }};
+	</script>
+	<script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
+
+	<script type="text/javascript" src="{{ asset('assets/vendor/moment/moment.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('assets/vendor/daterangepicker/daterangepicker.js') }}"></script>
+	<script src="{{ asset('assets/js/brand/trademark_opposition.js')}}"></script>
+
+
+{% endblock %}
+{# Javascripts End #}
+{#    {% set myServiceInstance = my_service() %}#}
+{#    {{ dump(myServiceInstance) }}#}

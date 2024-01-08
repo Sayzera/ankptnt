@@ -27,6 +27,7 @@ class Lang
     #[ORM\Column(nullable: true)]
     private ?bool $status = null;
 
+
     #[ORM\OneToMany(mappedBy: 'lang', targetEntity: LangMessages::class)]
     private Collection $langMessages;
 
@@ -34,8 +35,6 @@ class Lang
     {
         // TODO: Implement __toString() method.
         return $this->getName() ?? '';
-
-
     }
 
     public function __construct()

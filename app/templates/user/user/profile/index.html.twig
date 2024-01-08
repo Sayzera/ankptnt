@@ -1,0 +1,114 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}
+	Tema Ayarları
+{% endblock %}
+{% block page_title %}
+	Ayarlar
+{% endblock %}
+
+{% block stylesheets %}
+	<link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('assets/vendor/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
+
+    <style>
+.error {
+		color :var(--bs-danger) !important;
+	}
+
+    </style>
+
+{% endblock %}
+
+
+{% block body %}
+
+
+	<div class="content-body">
+		<div data-bs-toggle="modal" data-bs-target=".user-edit-modal" class="user-edit-modal"></div>
+		<div class="container-fluid">
+			<div class="row page-titles">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item active">
+						<a href="{{path('app_main')}}">Anasayfa
+						</a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="javascript:void(0)">Profil</a>
+					</li>
+				</ol>
+			</div>
+
+			<div class="card">
+				<div class="card-header">
+					Profil Bilgileri
+				</div>
+				<div class="card-body">
+					<div class="row">
+						<form id="edit-user-profile-form"  >
+
+                        <div class="form-group">
+								<label for="firma_adi">Firma Adı</label>
+								<input type="text" class="form-control" id="firma_adi" name="firma_adi" disabled
+                                value="{{data.firma_adi|trim}}"
+                                >
+							</div>
+							<div class="form-group">
+								<label for="ad">Ad</label>
+								<input type="text" class="form-control" id="ad" name="ad"
+                                 value="{{data.col_name|trim}}"
+                                >
+							</div>
+							<div class="form-group">
+								<label for="soyad">Soyad</label>
+								<input type="text" class="form-control" id="soyad" name="soyad"
+                                 value="{{data.col_surname|trim}}"
+                                >
+							</div>
+                            <div class="form-group">
+								<label for="username">Kullanıcı Adı</label>
+								<input type="text" class="form-control" id="username" name="username"
+                                value="{{data.col_username|trim}}"
+                                >
+							</div>
+                            <div class="form-group">
+								<label for="email">E Posta</label>
+								<input type="email" class="form-control" id="email" name="email"
+                                value="{{data.col_email|trim}}"
+                                >
+							</div>
+                            <div class="form-group">
+								<label for="update_password">Şifre</label>
+								<input type="password" class="form-control" id="update_password" name="update_password">
+							</div>
+                              <div class="form-group">
+								<label for="update-re-password">Tekar Şifre</label>
+								<input type="password" class="form-control" id="update-re-password" name="update-re-password">
+							</div>
+							<div class="form-group mt-2">
+                            <button type="submit" class="btn btn-primary">Kaydet</button>
+                            </div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+</div>{% endblock %}{% block javascripts %}
+
+<script>
+	{% set scriptData = {
+        'dataTableJsonLang' : asset('assets/lang/datatableTr.json')
+    } %}
+var scriptData = {{ scriptData|raw|json_encode|raw }};
+</script>
+<script src="{{ asset('assets/vendor/jquery-validation/jquery.validate.min.js')}}"></script>
+<script src="{{ asset('assets/vendor/sweetalert2/dist/sweetalert2.min.js') }}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script src="{{ asset('assets/vendor/chart.js/Chart.bundle.min.js')}}"></script>
+<script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{ asset('assets/js/users/user.js')}}"></script>{% endblock %}

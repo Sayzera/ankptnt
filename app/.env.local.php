@@ -5,9 +5,11 @@
 return array (
   'APP_ENV' => 'dev',
   'APP_SECRET' => '36c649214535e04a4ad0c449e02b0586',
-  'DATABASE_URL' => 'mysql://root:secret@database:3306/symfony_docker?serverVersion=8&charset=utf8mb4',
-  'PT_DATABASE_URL' => 'postgresql://docker:docker123@185.98.62.150:5433/pati-dev?serverVersion=15&charset=utf8',
+  'DATABASE_URL' => 'postgresql://postgres:12345@10.0.2.12:5432/pati?serverVersion=9.3&charset=utf8',
+  'PT_DATABASE_URL' => 'postgresql://postgres:12345@10.0.2.12:5432/pati?serverVersion=9.3&charset=utf8',
+  'PT_ARASTIR_GOZLE' => 'postgresql://postgres:12345@10.0.2.12:5432/arastirgozle?serverVersion=9.3&charset=utf8',
   'MESSENGER_TRANSPORT_DSN' => 'doctrine://default?auto_setup=0',
+  'MAILER_DSN' => 'smtp://itirazbildirim@ankarapatent.com:STARTTLS@smtp.office365.com:587',
   'SERVER_HOST' => 'localhost',
   'SERVER_SCHEME' => 'http',
   'SERVER_PORT' => '8080',

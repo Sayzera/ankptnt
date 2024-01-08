@@ -1,39 +1,24 @@
+<style>
+	table.table th {
+		font-size: 12px !important
+	}
+
+	table.table td {
+		font-size: 10px !important;
+	}
+</style>
 <div class="table-responsive">
-    <table class="table table-responsive-sm">
-        <thead>
-        <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Status</th>
-            <th>Date</th>
-            <th>Price</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <th>1</th>
-            <td>Kolor Tea Shirt For Man</td>
-            <td><span class="badge badge-primary light">Sale</span>
-            </td>
-            <td>January 22</td>
-            <td class="color-primary">$21.56</td>
-        </tr>
-        <tr>
-            <th>2</th>
-            <td>Kolor Tea Shirt For Women</td>
-            <td><span class="badge badge-success">Tax</span>
-            </td>
-            <td>January 30</td>
-            <td class="color-success">$55.32</td>
-        </tr>
-        <tr>
-            <th>3</th>
-            <td>Blue Backpack For Baby</td>
-            <td><span class="badge badge-danger">Extended</span>
-            </td>
-            <td>January 25</td>
-            <td class="color-danger">$14.85</td>
-        </tr>
-        </tbody>
-    </table>
+	<table class="table table-responsive-sm">
+		<thead>
+			<tr>
+				<th>İşlem</th>
+				<th>İşlem Tarihi</th>
+				<th>İşlem Son Tarih</th>
+				<th>Açıklama</th>
+				{# <th>Kullanıcı</th> #}
+				<th>Durum</th>
+			</tr>
+		</thead>
+		<tbody id="actionsContainer"></tbody>
+	</table>
 </div>

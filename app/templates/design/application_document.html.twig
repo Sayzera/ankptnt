@@ -1,121 +1,143 @@
 {% extends 'layout/base.html.twig' %}
 {# Styles Start #}
 {% block stylesheets %}
-    {{ parent() }}
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-    <link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet"/>
+	{{ parent() }}
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+	<link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet"/>
 
-    <style>
-        table.dataTable thead th {
+	<style>
+		table.dataTable thead th {
 
-            padding: 19px 3px;
-        }
-        table.dataTable input {
-           width: 120px;
-        }
-    </style>
+			padding: 19px 3px;
+		}
+		table.dataTable input {
+			width: 120px;
+		}
+	</style>
 {% endblock %}
 {# Styles End #}
 {# Title Start #}
-{% block title %}Apiz | Başvuru Dosyası{% endblock %}
+{% block title %}Apiz | Başvuru Dosyası
+{% endblock %}
 {# Title End #}
 {# Page Title Start #}
-{% block page_title %} Başvuru Dosyası {% endblock %}
+{% block page_title %}
+	Başvuru Dosyası
+{% endblock %}
 {# Page Title End #}
 {# Page Content Start #}
 {% block body %}
-    <div class="modal fade detay-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Başvuru Bilgileri</h5>
-                    <div class="flex align-items-center gap-2">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal">
-                        </button>
-                    </div>
-                </div>
-                <div class="modal-body">
-                    {{
+	<div class="modal fade detay-modal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Başvuru Bilgileri</h5>
+					<div class="flex align-items-center gap-2">
+						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					</div>
+				</div>
+				<div class="modal-body">
+					{{
                     include('design/detail.html.twig')
                     }}
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Kapat</button>
-                </div>
-            </div>
-        </div>
-    </div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Kapat</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <div class="content-body">
-        <div class="container-fluid">
-            <div class="row page-titles">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item active"><a href="{{ path('app_main') }}">Anasayfa</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Başvuru Dosyası</a></li>
-                </ol>
-            </div>
-            <!-- row -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Kayıt Listesi - Tasarım Başvuru Dosyası</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="applicationFileList" class="table table-bordered table-responsive-sm" style="min-width: 845px">
-                                    <thead>
-                                    <tr>
-                                        <th>Dosya No</th>
-                                        <th>Firma Ref.</th>
-                                        <th>Tasarım Konusu</th>
-                                        <th>Ülke</th>
-                                        <th >Başvuru No</th>
-                                        <th>Başvuru Tarihi</th>
-                                        <th>Tescil No</th>
-                                        <th>Yenileme Tarihi</th>
-                                        <th>Son Durum</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr  style="">
-                                        <td>000001/TR-001</td>
-                                        <td>Test</td>
-                                        <td><a href="#" class="text-primary text-decoration-underline" data-bs-toggle="modal" data-bs-target=".detay-modal">apiz</a> </td>
-                                        <td>Türkiye</td>
-                                        <td>2020/99999</td>
-                                        <td>27/08/2023 </td>
-                                        <td>Tescil</td>
-                                        <td>27/08/2023</td>
-                                        <td></td>
-                                    </tr>
+	<div class="content-body">
+		<div class="container-fluid">
+			<div class="row page-titles">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item active">
+						<a href="{{ path('app_main') }}">Anasayfa</a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="javascript:void(0)">Başvuru Dosyası</a>
+					</li>
+				</ol>
+			</div>
+			<!-- row -->
+			<div class="row">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Kayıt Listesi - Tasarım Başvuru Dosyası</h4>
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table id="applicationFileList" class="table table-bordered table-responsive-sm" style="min-width: 845px">
+									<thead>
+										<tr>
+											<th>Dosya No</th>
+											<th>Firma Ref.</th>
+											<th>Tasarım Konusu</th>
+											<th>Ülke</th>
+											<th>Başvuru No</th>
+											<th>Başvuru Tarihi</th>
+											<th>Tescil No</th>
+											<th>Yenileme Tarihi</th>
+											<th>Son Durum</th>
+										</tr>
+									</thead>
+									<tbody>
+										{#                                 designList For   #}
+
+										{%
+    for design in designList
+ %}
+											<tr style="">
+												<td>
+													{{ design.dosya_numarasi }}
+												</td>
+												<td>
+													{{ design.firma_id }}
+												</td>
+												<td>
+													<span onclick="ApplicationFile.getDesignInfo({{ design.id }})" class="text-primary text-decoration-underline" data-bs-toggle="modal" data-bs-target=".detay-modal">{{ design.tasarim_konusu }}</span>
+												</td>
+												<td>{{
+                design.ulusal_ulke
+            }}</td>
+												<td>{{ design.basvuru_numarasi }}</td>
+												<td>{{ design.basvuru_tarihi}}
+												</td>
+												<td>{{ design.tescil_numarasi }}</td>
+												<td>{{ design.yenileme_tarihi }}</td>
+												<td>{{ design.son_durum_detay }}</td>
+											</tr>
+
+										{% endfor %}
 
 
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}
 {# Page Content End #}
 {# Javascripts Start #}
 {% block javascripts %}
-    {{ parent() }}
-    {% set scriptData = {
+	{{ parent() }}
+	{% set scriptData = {
         'dataTableJsonLang' : asset('assets/lang/datatableTr.json')
     } %}
 
-    <script>
-        var scriptData = {{ scriptData|raw|json_encode|raw }};
-    </script>
-    <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('assets/vendor/moment/moment.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/vendor/daterangepicker/daterangepicker.js') }}"></script>
-    <script src="{{ asset('assets/js/patent/application_file.js')}}"></script>
+	<script>
+		var scriptData = {{ scriptData|raw|json_encode|raw }};
+	</script>
+	<script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
+	<script type="text/javascript" src="{{ asset('assets/vendor/moment/moment.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('assets/vendor/daterangepicker/daterangepicker.js') }}"></script>
+	<script src="{{ asset('assets/js/design/application_file.js')}}"></script>
 
 {% endblock %}
 {# Javascripts End #}

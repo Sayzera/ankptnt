@@ -14,6 +14,12 @@
 		<!-- FAVICONS ICON -->
 		<link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
 		<link href="{{ asset('assets/css/style.css') }}" rel="stylesheet"> {% block styles %}{% endblock %}
+
+	
+	    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+		<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+			async defer>
+		</script>
 		</head>
 
 		<body class="vh-100"> {% block body %}{% endblock %}
@@ -22,7 +28,7 @@
 			<script src="{{ asset('assets/vendor/global/global.min.js')}}"></script>
 			<script src="{{ asset('assets/js/custom.js')}}"></script>
 			<script src="{{ asset('assets/js/dlabnav-init.js')}}"></script>
-			<script src="{{ asset('assets/js/styleSwitcher.js')}}"></script>
+			{# <script src="{{ asset('assets/js/styleSwitcher.js')}}"></script> #}
 
 			{% block scripts %}{% endblock %}
 		</body>

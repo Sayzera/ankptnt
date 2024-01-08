@@ -1,15 +1,41 @@
+
+{% set apiz = true %}
+
+{% set userId = app.user.getColId() %}
+
+{% if(userId == 1111)  
+or (userId == 2255)
+or (userId == 2741)
+or (userId == 1744)
+or (userId == 1409) 
+or (userId == 1409) 
+%}
+
+{% set apiz = false %}
+
+{% endif %}
+
 <div class="col-xl-12">
     <div class="row">
         <div class="col-xl-6 col-sm-6">
             <div class="card">
-                <div class="card-body d-flex px-4  justify-content-between">
+                <div class="card-body d-flex px-4  justify-content-between"
+                    style="cursor: pointer;"
+                      {% if apiz == false  %}
+                            onclick="
+                            window.open('{{path('app_brand_domestic_international_all')}}', '_blank')
+                            "
+                    {% endif %}
+                >
                     <div>
-                        <div class="">
-                            <h2 class="fs-32 font-w700">650.000</h2>
-                            <span class="fs-18 font-w500 d-block">Yurtiçi Marka Durum</span>
+                        <div class="" 
+                        
+                        >
+                            <h2 class="fs-32 font-w700" id="yim_marka_toplam">-</h2>
+                            <span class="fs-18 font-w500 d-block">Yurtiçi Markalarım</span>
                             <span class="d-block fs-16 font-w400">
-                                       <small class="text-success">+10%</small>
-                                       Bir önceki ay</span>
+                                       {# <small class="text-success">+10%</small>
+                                       Bir önceki ay</span> #}
                         </div>
                     </div>
                     <div id="NewCustomers5"></div>
@@ -18,14 +44,23 @@
         </div>
         <div class="col-xl-6 col-sm-6">
             <div class="card">
-                <div class="card-body d-flex px-4  justify-content-between">
+                <div class="card-body d-flex px-4  justify-content-between"
+                   style="cursor: pointer;"
+                    {% if apiz == false  %}
+                            onclick="
+                            window.open('{{path('app_brand_international')}}', '_blank')
+                            "
+                    {% endif %}
+                >
                     <div>
-                        <div class="">
-                            <h2 class="fs-32 font-w700">300.000</h2>
-                            <span class="fs-18 font-w500 d-block">Yurtdışı Marka Durum</span>
+                        <div class=""
+                         
+                        >
+                            <h2 class="fs-32 font-w700" id="yda_marka_toplam">-</h2>
+                            <span class="fs-18 font-w500 d-block">Yurtdışı Markalarım</span>
                             <span class="d-block fs-16 font-w400">
-                                       <small class="text-danger">-2%</small>
-                                       Bir önceki ay</span>
+                                       {# <small class="text-danger">-2%</small>
+                                       Bir önceki ay</span> #}
                         </div>
                     </div>
                     <div id="NewCustomers"></div>
@@ -34,14 +69,23 @@
         </div>
         <div class="col-xl-6 col-sm-6">
             <div class="card">
-                <div class="card-body d-flex px-4  justify-content-between">
+                <div class="card-body d-flex px-4  justify-content-between"
+                  style="cursor: pointer;"
+                         {% if apiz == false  %}
+                            onclick="
+                           window.open('{{path('app_patent_application_document')}}', '_blank')
+                            "
+                    {% endif %}
+                >
                     <div>
-                        <div class="">
-                            <h2 class="fs-32 font-w700">350.000</h2>
+                        <div class=""
+                          
+                        >
+                            <h2 class="fs-32 font-w700" id="patent_toplam">-</h2>
                             <span class="fs-18 font-w500 d-block">Patent</span>
                             <span class="d-block fs-16 font-w400">
-                                       <small class="text-success">+20%</small>
-                                       Bir önceki ay</span>
+                                       {# <small class="text-success">+20%</small>
+                                       Bir önceki ay</span> #}
                         </div>
                     </div>
                     <div id="NewCustomers1"></div>
@@ -50,17 +94,25 @@
         </div>
         <div class="col-xl-6 col-sm-6">
             <div class="card">
-                <div class="card-body d-flex px-4  justify-content-between">
+                <div class="card-body d-flex px-4  justify-content-between"
+                   style="cursor: pointer;"
+                          {% if apiz == false  %}
+                            onclick="window.open('{{path('app_design_design')}}', '_blank')
+                            "
+                    {% endif %}
+                >
                     <div>
-                        <div class="">
-                            <h2 class="fs-32 font-w700">200.000</h2>
+                        <div class=""
+                         
+                        >
+                            <h2 class="fs-32 font-w700" id="tasarım_toplam">-</h2>
                             <span class="fs-18 font-w500 d-block">Tasarım Durum</span>
                             <span class="d-block fs-16 font-w400">
-                                       <small class="text-success">+10%</small>
-                                       Bir önceki ay</span>
+                                       {# <small class="text-success">+10%</small>
+                                       Bir önceki ay</span> #}
                         </div>
                     </div>
-                    <div id="columnChart"></div>
+                     <div id="NewCustomers2"></div>
                 </div>
             </div>
         </div>

@@ -1,94 +1,92 @@
 <style>
-    .form-label {
-        font-weight: bold;
-    }
+	.form-label {
+		font-weight: bold;
+	}
 </style>
 <div class="basic-form p-3">
-    <form>
-        <div class="row">
-            <div class="col-sm-12 col-lg-6 ">
-                <div class="mb-3 row">
-                    <label class="form-label">Dosya Sorumlusu</label>
-                    <input type="text" class="form-control" placeholder="" value="Zehra ENLİGÜN" disabled>
-                </div>
-                <div class="mb-3 row">
-                    <label class="form-label">Tarifname Hazırlayan
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="-" disabled>
-                </div>
-            </div>
-            <div class="col-sm-12 col-lg-6 ">
-                <div class="mb-3 row">
-                    <label class="form-label">Dosya Hazırlayan
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="İrem ÖZŞATIR" disabled>
-                </div>
-                <div class="mb-3 row">
-                    <label class="form-label">Çeviri Yapan
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="-" disabled>
-                </div>
-            </div>
-            <div class="col-sm-12 col-lg-6 ">
-                <div class="mb-3 row">
-                    <label class="form-label">Bşvr. Sahibi Unvanı
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="Halliburton Manufacturing and Services Limited" disabled>
-                </div>
-                <div class="mb-3 row">
-                    <label class="form-label">Son Koruma Tar.
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="-" disabled>
-                </div>
-            </div>
-            <div class="col-sm-12 col-lg-6 ">
-                <div class="mb-3 row">
-                    <label class="form-label">Araştırma Raporu
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="-" disabled>
-                </div>
-                <div class="mb-3 row">
-                    <label class="form-label">İnceleme Raporu
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="-" disabled>
-                </div>
-            </div>
-            <div class="col-sm-12 col-lg-6 ">
-                <div class="mb-3 row">
-                    <label class="form-label">Buluşçular
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="-" disabled>
-                </div>
-                <div class="mb-3 row">
-                    <label class="form-label">IPC
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="-" disabled>
-                </div>
-            </div>
-            <div class="col-sm-12 col-lg-6 ">
-                <div class="mb-3 row">
-                    <label class="form-label">İstem Sayısı
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="-" disabled>
-                </div>
-                <div class="mb-3 row">
-                    <label class="form-label">Tübitak Bşvr. Türü
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="-" disabled>
-                </div>
-            </div>
-            <div class="col-sm-12 col-lg-6 ">
-                <div class="mb-3 row">
-                    <label class="form-label">Vekil Unvan
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="Vossius & Partner" disabled>
-                </div>
-                <div class="mb-3 row">
-                    <label class="form-label">Vekil Referansı
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="-" disabled>
-                </div>
-            </div>
-        </div>
-    </form>
+	<form>
+		<div class="row">
+			<div class="col-sm-12 col-lg-6 ">
+				<div class="mb-3 row">
+					<label class="form-label">Dosya Sorumlusu</label>
+					<input type="text" class="form-control" placeholder="" id="col_preparing_person-d" value="Zehra ENLİGÜN" disabled>
+
+				</div>
+				<div class="mb-3 row">
+					<label class="form-label">Tarifname Hazırlayan
+					</label>
+					<input type="text" class="form-control" placeholder="" value="?" disabled>
+				</div>
+			</div>
+			<div class="col-sm-12 col-lg-6 ">
+				<div class="mb-3 row">
+					<label class="form-label">Dosya Hazırlayan
+					</label>
+					<input type="text" class="form-control" id="col_preparing_person" placeholder="" value="-" disabled>
+
+				</div>
+				<div class="mb-3 row">
+					<label class="form-label">Çeviri Yapan
+					</label>
+					<input type="text" class="form-control" id="col_spec_creator" placeholder="" value="-" disabled>
+
+
+				</div>
+			</div>
+			<div class="col-sm-12 col-lg-6 ">
+				<div class="mb-3 row">
+					<label class="form-label">Bşvr. Sahibi Unvanı
+					</label>
+					<input type="text" class="form-control" placeholder="" id="account_title" value="-" disabled>
+
+				</div>
+				<div class="mb-3 row">
+					<label class="form-label">Son Koruma Tar.
+					</label>
+					<input type="text" class="form-control" placeholder="" value="?" disabled>
+				</div>
+			</div>
+			<div class="col-sm-12 col-lg-6 ">
+				<div class="mb-3 row">
+					<label class="form-label">Araştırma Raporu
+					</label>
+					<input type="text" class="form-control" placeholder="" value="?" disabled>
+				</div>
+				<div class="mb-3 row">
+					<label class="form-label">İnceleme Raporu
+					</label>
+					<input type="text" class="form-control" placeholder="" value="?" disabled>
+				</div>
+			</div>
+			<div class="col-sm-12 col-lg-6 ">
+				<div class="mb-3 row">
+					<label class="form-label">Buluşçular
+					</label>
+
+					<textarea name="" class="form-control" cols="30" rows="10" id="buluscular"></textarea>
+				</div>
+				<div class="mb-3 row">
+					<label class="form-label">IPC
+					</label>
+					<input type="text" class="form-control" id="col_ipc" placeholder="" value="-" disabled>
+
+				</div>
+			</div>
+			<div class="col-sm-12 col-lg-6 ">
+				<div class="mb-3 row">
+					<label class="form-label">İstem Sayısı
+					</label>
+					<input type="text" class="form-control" id="col_poll_count" placeholder="" value="-" disabled>
+
+				</div>
+				<div class="mb-3 row">
+					<label class="form-label">Tübitak Bşvr. Türü
+					</label>
+					<input type="text" class="form-control" id="tubitak_type" placeholder="" value="-" disabled>
+
+				</div>
+			</div>
+
+		</div>
+	</form>
 </div>

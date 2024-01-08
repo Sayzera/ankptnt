@@ -1,0 +1,82 @@
+<style>
+	.form-label {
+		font-weight: bold;
+	}
+</style>
+<div class="basic-form p-3">
+	<form>
+		<div class="row">
+			<div class="col-sm-12 col-lg-6 ">
+				<div class="mb-3 row">
+					<label class="form-label">Dosya Son Durumu
+					</label>
+					<input type="text" class="form-control" placeholder="" id="col_last_status" value="-" disabled>
+
+				</div>
+				<div class="mb-3 row">
+					<label class="form-label">İtiraz Tarihi
+
+					</label>
+					<input type="text" class="form-control" placeholder="" id="col_opposition_date" value="-" disabled>
+
+				</div>
+			</div>
+			<div class="col-sm-12 col-lg-6 ">
+				<div class="mb-3 row">
+					<label class="form-label">İtiraz Son Tarihi
+					</label>
+					<input type="text" class="form-control" placeholder="" id="col_opposition_due_date" value="-" disabled>
+
+
+				</div>
+				<div class="mb-3 row">
+					<label class="form-label">Talimat Durumu
+
+					</label>
+					<input type="text" class="form-control" placeholder="" id="col_opp_type" value="-" disabled>
+
+
+				</div>
+			</div>
+			<div class="col-sm-12 col-lg-6 ">
+				<div class="mb-3 row">
+					<label class="form-label">Vekil Ünvan
+
+					</label>
+					<input type="text" class="form-control" placeholder="" value="-" disabled>
+				</div>
+
+			</div>
+
+			<div class="col-sm-12 col-lg-6 ">
+				<div class="mb-3 row">
+					<label class="form-label">Vekil Referans
+
+					</label>
+					<input type="text" class="form-control" placeholder="" value="-" disabled>
+				</div>
+
+			</div>
+
+			<div>
+
+				<span class="form-label my-2">
+					Dayandırılan Marka Bilgileri
+				</span>
+
+				<table class="table table-bordered table-responsive-sm">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Dayandırılan Marka</th>
+							<th>Dayandırılan Marka No</th>
+						</tr>
+					</thead>
+					<tbody id="marka-bilgileri-container"></tbody>
+				</table>
+			</div>
+
+
+		</div>
+	</form>
+</div>

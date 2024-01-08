@@ -1,12 +1,30 @@
 <style>
 	/*Büyük ekran media query*/
 
-	@media screen and (min-width: 1900px) {
+	@media screen and(min-width: 1900px) {
 		.profile-info1 {
 			margin-left: 30px;
 		}
 	}
+
+	[data-sidebar-style="full"][data-layout="vertical"] .dlabnav .metismenu > li.mm-active > a {
+    font-weight: 600;
+    background: var(--rgba-primary-1);
+    /* border-bottom-right-radius: 5rem; */
+    /* border-top-right-radius: 0.9rem; */
+	border-bottom-right-radius:0;
+	border-top-right-radius:0;
+
+	/* GÖLGE SADECE ARKAYA */
+	box-shadow: 0 0 0 0.2rem var(--rgba-primary-1);
+	
+
+}
+
+
+
 </style>
+
 
 <div class="dlabnav">
 	<div class="dlabnav-scroll">
@@ -29,117 +47,215 @@
 			{#				</ul>#}
 
 			{#			</li>#}
-			<li><a class="has-arrow " href="javascript:void(0)" aria-expanded="false">
-					<i class="fas fa-copyright"></i>
-					<span class="nav-text">Marka</span>
+
+				{% set apiz = true %}
+
+				{% set userId = app.user.getColId() %}
+
+				{% if(userId == 1111)  
+				or (userId == 2255)
+				or (userId == 2741)
+				or (userId == 1744)
+				or (userId == 1409) 
+				or (userId == 1409) 
+				%}
+
+				{% set apiz = false %}
+
+				{% endif %}
+
+
+				{% if(apiz) %}
+
+
+					<li>
+						<a class="has-arrow " href="javascript:void(0)" aria-expanded="false"> 	<i>
+						<img src="{{ asset('assets/menu-icon/marka.png') }}" alt="" style="width:20px; height:20px; "></i>
+						<span class="nav-text">Marka</span>
+					</a>
+					<ul aria-expanded="false">
+						<li>
+							<a href="{{ path('app_brand_domestic_international') }}">Marka Gözlem</a>
+						</li>
+
+					</ul>
+				</li>
+
+			{% endif %}
+
+
+			{% if(apiz == false) %}
+
+				<li>
+					<a class="has-arrow " href="javascript:void(0)" aria-expanded="false">
+						<i>
+						<img src="{{ asset('assets/menu-icon/marka.png') }}" alt="" style="width:20px; height:20px; "></i>
+						
+						<span class="nav-text">Marka</span>
+					</a>
+					<ul aria-expanded="false">
+
+						<li>
+							<a class="has-arrow" style="font-weight:bold" href="javascript:void(0)" aria-expanded="false">Yurt içi Marka</a>
+
+							<ul aria-expanded="false">
+								<li style="padding-left:10px">
+									<a href="{{ path('app_brand_domestic_international') }}">Marka Gözlem</a>
+								</li>
+
+								<li style="padding-left:10px">
+									<a href="{{ path('app_brand_domestic_international_all') }}">Markalarım</a>
+								</li>
+								
+								<li style="padding-left:10px">  
+									<a href="{{ path('app_brand_domestic_brand_appeal_file') }}">Marka İtiraz</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a class="has-arrow" style="font-weight:bold" href="javascript:void()" aria-expanded="false">Yurt dışı Marka</a>
+							<ul aria-expanded="false">
+								<li style="padding-left:10px">
+									<a href="{{ path('app_brand_international') }}">Markalarım</a>
+								</li>
+								<li style="padding-left:10px">
+									<a href="{{ path('app_brand_international_appeal_file') }}">Marka İtiraz</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+
+
+				{# <li><a class="has-arrow " href="javascript:void(0)" aria-expanded="false">
+				<i class="fas fa-copyright"></i>
+				<span class="nav-text">Marka</span>
 				</a>
 				<ul aria-expanded="false">
-					<li><a class="has-arrow" href="javascript:void(0)" aria-expanded="false">Yurtiçi Marka</a>
-						<ul aria-expanded="false">
-							<li><a href="{{ path('app_brand_domestic_brand') }}">Markalarım</a></li>
-							<li><a href="{{ path('app_brand_domestic_brand_appeal_file') }}">Marka İtiraz</a></li>
-						</ul>
-					</li>
-					<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Yurtdışına Marka</a>
-						<ul aria-expanded="false">
-							<li><a href="{{ path('app_brand_international') }}">Markalarım</a></li>
-							<li><a href="{{ path('app_brand_international_appeal_file') }}">Marka İtiraz</a></li>
-						</ul>
-					</li>
+				<li><a href="{{ path('app_company_observation_auto_get_company_list') }}">Otomatik Gözlem Robotu</a></li>
+				
+				<li><a class="has-arrow" href="javascript:void(0)" aria-expanded="false">Yurt içi Marka</a>
+				
+				<ul aria-expanded="false">
+				<li><a href="{{ path('app_brand_domestic_brand') }}">Markalarım</a></li>
+				<li><a href="{{ path('app_brand_domestic_brand_appeal_file') }}">Marka İtiraz</a></li>
 				</ul>
-			</li>
-			<li>
+				</li>
+				<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Yurt dışına Marka</a>
+				<ul aria-expanded="false">
+				<li><a href="{{ path('app_brand_international') }}">Markalarım</a></li>
+				<li><a href="{{ path('app_brand_international_appeal_file') }}">Marka İtiraz</a></li>
+				</ul>
+				</li>
+				</ul>
+				</li> #}
+				<li>
+					<a class="has-arrow " href="javascript:void(0)" aria-expanded="false">
+		<i>
+						<img src="{{ asset('assets/menu-icon/patent.png') }}" alt="" style="width:20px; height:20px; "></i>
+						<span class="nav-text">Patent</span>
+					</a>
+					<ul aria-expanded="false">
+						<li>
+							<a href="{{ path('app_patent_pre_application_registration') }}">Başvuru Öncesi Kayıt</a>
+						</li>
+						<li>
+							<a href="{{ path('app_patent_application_document') }}">Başvuru Dosyası</a>
+						</li>
+						<li>
+							<a href="{{ path('app_patent_documents') }}">Dokümanlar</a>
+						</li>
+
+					</ul>
+
+				</li>
+				<li>
+					<a class="has-arrow " href="javascript:void(0)" aria-expanded="false">
+						<i>
+						<img src="{{ asset('assets/menu-icon/tasarim.png') }}" alt="" style="width:20px; height:20px; "></i>
+						<span class="nav-text">Tasarım</span>
+					</a>
+					<ul aria-expanded="false">
+						<li>
+							<a href="{{ path('app_design_design') }}">Başvuru Dosyası</a>
+						</li>
+					</ul>
+
+				</li>
+				<li>
+					<a class="has-arrow " href="javascript:void(0)" aria-expanded="false">
+						<i>
+						<img src="{{ asset('assets/menu-icon/finans.png') }}" alt="" style="width:20px; height:20px; "></i>
+						<span class="nav-text">Finans</span>
+					</a>
+					<ul aria-expanded="false">
+						<li>
+							<a href="{{ path('app_invocies_invocies') }}">Fatura</a>
+						</li>
+					</ul>
+
+				</li>
+			{% endif %}
+				<li>
 				<a class="has-arrow " href="javascript:void(0)" aria-expanded="false">
-					<i class="far fa-lightbulb"></i>
-					<span class="nav-text">Patent</span>
-				</a>
-				<ul aria-expanded="false">
-					<li>
-						<a href="{{ path('app_patent_pre_application_registration') }}">Başvuru Öncesi Kayıt</a>
-					</li>
-					<li>
-						<a href="{{ path('app_patent_application_document') }}">Başvuru Dosyası</a>
-					</li>
-					<li>
-						<a href="{{ path('app_patent_documents') }}">Dökümanlar</a>
-					</li>
+						<i class="fas fa-cog" style="color:#339999"></i>
+						<span class="nav-text">Ayarlar</span>
+					</a>
+					<ul aria-expanded="false">
+						<li>
+							<a href="{{path('app_user_list')}}">Kullanıcılar</a>
+						</li>
 
-				</ul>
+						<li>
+							<a href="{{path('audit_log')}}">Giriş Logları</a>
+						</li>
 
-			</li>
-			<li>
-				<a class="has-arrow " href="javascript:void(0)" aria-expanded="false">
-					<i class="fas fa-image"></i>
-					<span class="nav-text">Tasarım</span>
-				</a>
-				<ul aria-expanded="false">
-					<li>
-						<a href="{{ path('app_design_design') }}">Başvuru Dosyası</a>
-					</li>
-				</ul>
+						<li>
+							<a href="{{path('trademark_objection_list')}}">Marka İtirazları</a>
+						</li>
 
-			</li>
-			<li>
-				<a class="has-arrow " href="javascript:void(0)" aria-expanded="false">
-					<i class="far fa-money-bill-alt"></i>
-					<span class="nav-text">Finans</span>
-				</a>
-				<ul aria-expanded="false">
-					<li>
-						<a href="{{ path('app_invocies_invocies') }}">Fatura</a>
-					</li>
-				</ul>
 
-			</li>
-{#			<li>#}
-{#				<a class="has-arrow " href="javascript:void(0)" aria-expanded="false">#}
-{#					<i class="fas fa-cog"></i>#}
-{#					<span class="nav-text">Ayarlar</span>#}
-{#				</a>#}
-{#				<ul aria-expanded="false">#}
-{#					<li>#}
-{#						<a href="{{path('add_app_lang_message')}}">Uygulama Başlıkları</a>#}
-{#					</li>#}
+						{# <li>
+							<a href="{{path('theme_settings')}}">Tema Ayarları</a>
+						</li> #}
 
-{#				</ul>#}
 
-{#			</li>#}
+					</ul>
+
+				</li>
 
 
 		</ul>
 		<div class="side-bar-profile">
-			<div class="d-flex align-items-center justify-content-between mb-3">
+			{# <div class="d-flex align-items-center justify-content-between mb-3">
 				<div class="side-bar-profile-img">
 					<img src="{{ asset('assets/images/users/user.png') }}" alt="">
 				</div>
 				<div class="profile-info1 ">
 					<h4 class="fs-18 font-w500">
-						 {{ app.user.colName }}
+						{{ app.session.get('firma_adi')}}
 					</h4>
 					<span>{{ app.user.colEmail }}</span>
 				</div>
-{#				<div class="profile-button">#}
-{#					<i class="fas fa-caret-down scale5 text-light"></i>#}
-{#				</div>#}
-			</div>
-{#			<div class="d-flex justify-content-between mb-2 progress-info">#}
-{#				<span class="fs-12">#}
-{#					<i class="fas fa-star text-orange me-2"></i>Task Progress</span>#}
-{#				<span class="fs-12">20/45</span>#}
-{#			</div>#}
-{#			<div class="progress default-progress">#}
-{#				<div class="progress-bar bg-gradientf progress-animated" style="width: 45%; height:10px;" role="progressbar">#}
-{#					<span class="sr-only">45% Complete</span>#}
-{#				</div>#}
-{#			</div>#}
+		
+			</div> #}
+			{#			<div class="d-flex justify-content-between mb-2 progress-info">#}
+		{#				<span class="fs-12">#}
+			{#					<i class="fas fa-star text-orange me-2"></i>Task Progress</span>#}
+			{#				<span class="fs-12">20/45</span>#}
+			{#			</div>#}
+			{#			<div class="progress default-progress">#}
+			{#				<div class="progress-bar bg-gradientf progress-animated" style="width: 45%; height:10px;" role="progressbar">#}
+			{#					<span class="sr-only">45% Complete</span>#}
+			{#				</div>#}
+			{#			</div>#}
 		</div>
 
-		<div class="copyright">
+		<div class="copyright" style="position:absolute; bottom:0">
 			<p>
-				<strong>Apiz Yönetim Paneli</strong>
-				© 2023 Tüm Hakları Saklıdır.</p>
+				© 2024 Tüm Hakları Saklıdır.</p>
 			<p class="fs-12">Made with
-				<span class="heart"></span>
+				
 				by Niltek Yazılım Teknolojileri</p>
 		</div>
 	</div>

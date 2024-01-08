@@ -23,9 +23,9 @@ class ObservationValidators
                 new Assert\NotBlank(['message' => 'Marka adı alanı boş bırakılamaz.']),
                 new Assert\Length(['min' => $min, 'max' => $max, 'minMessage' => "Marka alanı en az {$min} karakter olmalıdır."])
             ],
-            'bulten-no' => [
-                new Assert\NotBlank(['message' => 'Bülten no alanı boş bırakılamaz.']),
-            ],
+            // 'bulten-no' => [
+            //     new Assert\NotBlank(['message' => 'Bülten no alanı boş bırakılamaz.']),
+            // ],
             'siniflar' => [
                 new Assert\NotBlank(['message' => 'Sınıf alanı boş bırakılamaz.']),
             ],

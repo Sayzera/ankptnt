@@ -1,53 +1,315 @@
 <div class="items">
-    <div class="card-header border-0">
-        <div>
-            <h4 class="fs-20 font-w700">
-                Yurtdışı Marka Durum
-            </h4>
-        </div>
-    </div>
-    <div class="card-body">
-        <div id="emailchart"></div>
-        <div class="mb-3 mt-4">
-            <h4 class="fs-18 font-w600">Özet</h4>
-        </div>
-        <div>
-            <div class="d-flex align-items-center justify-content-between mb-4">
-            <span class="fs-18 font-w500">
-               <svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect width="20" height="20" rx="6" fill="#886CC0"/>
-               </svg>
-               Başvuru (27%)
-            </span>
-                <span class="fs-18 font-w600">85.000</span>
-            </div>
-            <div class="d-flex align-items-center justify-content-between  mb-4">
-            <span class="fs-18 font-w500">
-               <svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect width="20" height="20" rx="6" fill="#26E023"/>
-               </svg>
-               Yayın (11%)
-            </span>
-                <span class="fs-18 font-w600">50.000</span>
-            </div>
-            <div class="d-flex align-items-center justify-content-between  mb-4">
-            <span class="fs-18 font-w500">
-               <svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect width="20" height="20" rx="6" fill="#61CFF1"/>
-               </svg>
-               Yenileme Terk (22%)
-            </span>
-                <span class="fs-18 font-w600">30.000</span>
-            </div>
-            <div class="d-flex align-items-center justify-content-between  mb-4">
-            <span class="fs-18 font-w500">
-               <svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect width="20" height="20" rx="6" fill="#FFDA7C"/>
-               </svg>
-               Tescilli (30%)
-            </span>
-                <span class="fs-18 font-w600">60.000</span>
-            </div>
-        </div>
-    </div>
+	<div class="card-header border-0">
+		<div>
+			<h4 class="fs-20 font-w700">
+				Yurtdışı Marka Durum
+			</h4>
+		</div>
+	</div>
+	<div class="card-body">
+		<div id="emailchart"></div>
+		<div class="mb-3 mt-4">
+			<h4 class="fs-18 font-w600 yurtdisi">Sonuç bulunamadı</h4>
+		</div>
+		<div>
+			<div class="d-flex align-items-center justify-content-between mb-4 yda_basvuru_sayisi_cart d-none">
+				<span class="fs-18 font-w500">
+					<svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="20" height="20" rx="6" fill="#00FF00"/>
+					</svg>
+					Başvuru
+				</span>
+				<span class="fs-18 font-w600" id="yda_basvuru_sayisi_cart">-</span>
+			</div>
+			<div class="d-flex align-items-center justify-content-between  mb-4 yda_yayin_sayisi d-none">
+				<span class="fs-18 font-w500">
+					<svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="20" height="20" rx="6" fill="#0000FF"/>
+					</svg>
+					Yayın
+				</span>
+				<span class="fs-18 font-w600" id="yda_yayin_sayisi">-</span>
+			</div>
+
+			<div class="d-flex align-items-center justify-content-between  mb-4 yda_tescil_sayisi d-none">
+				<span class="fs-18 font-w500">
+					<svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="20" height="20" rx="6" fill="#FFFF00"/>
+					</svg>
+					Tescil
+				</span>
+				<span class="fs-18 font-w600" id="yda_tescil_sayisi">-</span>
+			</div>
+
+			<div class="d-flex align-items-center justify-content-between  mb-4 yda_terk_sayisi d-none">
+				<span class="fs-18 font-w500">
+					<svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="20" height="20" rx="6" fill="#FF00FF"/>
+					</svg>
+					Terk
+				</span>
+				<span class="fs-18 font-w600" id="yda_terk_sayisi">-</span>
+			</div>
+
+			<div class="d-flex align-items-center justify-content-between  mb-4 yda_arastirma_yapildi_sayisi d-none">
+				<span class="fs-18 font-w500">
+					<svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="20" height="20" rx="6" fill="#00FFFF"/>
+					</svg>
+					Araştırma yapıldı
+				</span>
+				<span class="fs-18 font-w600" id="yda_arastirma_yapildi_sayisi">-</span>
+			</div>
+
+
+			<div class="d-flex align-items-center justify-content-between  mb-4 yda_kismi_tescil_sayisi d-none">
+				<span class="fs-18 font-w500">
+					<svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="20" height="20" rx="6" fill="#800000"/>
+					</svg>
+					Kısmi Tescil
+				</span>
+				<span class="fs-18 font-w600" id="yda_kismi_tescil_sayisi">-</span>
+			</div>
+
+			<div class="d-flex align-items-center justify-content-between  mb-4 yda_basvuru_yapilmadi_sayisi d-none">
+				<span class="fs-18 font-w500">
+					<svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="20" height="20" rx="6" fill="#808000"/>
+					</svg>
+					Başvuru Yapılmadı
+				</span>
+				<span class="fs-18 font-w600" id="yda_basvuru_yapilmadi_sayisi">-</span>
+			</div>
+
+
+			<div class="d-flex align-items-center justify-content-between  mb-4 yda_talimat_bekleniyor_sayisi d-none">
+				<span class="fs-18 font-w500">
+					<svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="20" height="20" rx="6" fill="#008000"/>
+					</svg>
+					Talimat bekleniyor
+				</span>
+				<span class="fs-18 font-w600" id="yda_talimat_bekleniyor_sayisi">-</span>
+			</div>
+
+
+			<div class="d-flex align-items-center justify-content-between  mb-4 yda_yenilenmedi_sayisi d-none">
+				<span class="fs-18 font-w500">
+					<svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="20" height="20" rx="6" fill="#008080"/>
+					</svg>
+					Yenilenmedi
+				</span>
+				<span class="fs-18 font-w600" id="yda_yenilenmedi_sayisi"></span>
+			</div>
+
+			<div class="d-flex align-items-center justify-content-between  mb-4 yda_red_sayisi d-none">
+				<span class="fs-18 font-w500">
+					<svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="20" height="20" rx="6" fill="#000080"/>
+					</svg>
+					Red
+
+				</span>
+				<span class="fs-18 font-w600" id="yda_red_sayisi">-</span>
+			</div>
+
+			<div class="d-flex align-items-center justify-content-between  mb-4 yda_red_kararina_cevap_verildi_sayisi d-none"  >
+				<span class="fs-18 font-w500">
+					<svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="20" height="20" rx="6" fill="#800080"/>
+					</svg>
+					Red kararına cevap verildi
+
+				</span>
+				<span class="fs-18 font-w600" id="yda_red_kararina_cevap_verildi_sayisi">-</span>
+			</div>
+
+
+			<div class="d-flex align-items-center justify-content-between  mb-4 yda_basvuru_icin_bekleniyor_sayisi d-none">
+				<span class="fs-18 font-w500">
+					<svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="20" height="20" rx="6" fill="#C0C0C0"/>
+					</svg>
+					Başvuru için bekleniyor
+
+				</span>
+				<span class="fs-18 font-w600" id="yda_basvuru_icin_bekleniyor_sayisi">-</span>
+			</div>
+
+			<div class="d-flex align-items-center justify-content-between  mb-4 yda_tescil_karari_alindi_sayisi d-none">
+				<span class="fs-18 font-w500">
+					<svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="20" height="20" rx="6" fill="#808080"/>
+					</svg>
+					Tescil Kararı alındı
+
+				</span>
+				<span class="fs-18 font-w600" id="yda_tescil_karari_alindi_sayisi">-</span>
+			</div>
+
+
+			<div class="d-flex align-items-center justify-content-between  mb-4 yda_hukumsuz_sayisi d-none">
+				<span class="fs-18 font-w500">
+					<svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="20" height="20" rx="6" fill="#26E023"/>
+					</svg>
+					Hükümsüz
+
+				</span>
+				<span class="fs-18 font-w600" id="yda_hukumsuz_sayisi">-</span>
+			</div>
+
+
+			<div class="d-flex align-items-center justify-content-between  mb-4 yda_kismi_red_sayisi d-none">
+				<span class="fs-18 font-w500">
+					<svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="20" height="20" rx="6" fill="#751a1a"/>
+					</svg>
+					Kısmi Red
+
+				</span>
+				<span class="fs-18 font-w600" id="yda_kismi_red_sayisi">-</span>
+			</div>
+
+
+			<div class="d-flex align-items-center justify-content-between  mb-4 yda_musteri_takibinde_sayisi d-none">
+				<span class="fs-18 font-w500">
+					<svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="20" height="20" rx="6" fill="#3cb256"/>
+					</svg>
+					Müşteri Takibinde
+
+				</span>
+				<span class="fs-18 font-w600" id="yda_musteri_takibinde_sayisi">-</span>
+			</div>
+
+			<div class="d-flex align-items-center justify-content-between  mb-4 yda_itiraza_cevap_verildi_sayisi d-none">
+				<span class="fs-18 font-w500">
+					<svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="20" height="20" rx="6" fill="#8f31b7"/>
+					</svg>
+					İtiraza cevap verildi
+				</span>
+				<span class="fs-18 font-w600" id="yda_itiraza_cevap_verildi_sayisi">-</span>
+			</div>
+
+			<div class="d-flex align-items-center justify-content-between  mb-4 yda_kabul_sayisi d-none">
+				<span class="fs-18 font-w500">
+					<svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="20" height="20" rx="6" fill="#419616"/>
+					</svg>
+					Kabul
+				</span>
+				<span class="fs-18 font-w600" id="yda_kabul_sayisi">-</span>
+			</div>
+
+
+			<div class="d-flex align-items-center justify-content-between  mb-4 d-none yda_basvuru_talimati_iletildi_sayisi" >
+				<span class="fs-18 font-w500">
+					<svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="20" height="20" rx="6" fill="#7291bf"/>
+					</svg>
+					Başvuru talimatı iletildi
+				</span>
+				<span class="fs-18 font-w600" id="yda_basvuru_talimati_iletildi_sayisi">-</span>
+			</div>
+
+
+			<div class="d-flex align-items-center justify-content-between  mb-4 d-none yda_geri_cekildi_sayisi">
+				<span class="fs-18 font-w500">
+					<svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="20" height="20" rx="6" fill="#33dd46"/>
+					</svg>
+					Geri Çekildi
+				</span>
+				<span class="fs-18 font-w600" id="yda_geri_cekildi_sayisi">-</span>
+			</div>
+
+			<div class="d-flex align-items-center justify-content-between  mb-4 d-none yda_kismi_kabul_sayisi">
+				<span class="fs-18 font-w500">
+					<svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="20" height="20" rx="6" fill="#db2b98"/>
+					</svg>
+					Kısmi Kabul
+				</span>
+				<span class="fs-18 font-w600" id="yda_kismi_kabul_sayisi">-</span>
+			</div>
+
+
+			<div class="d-flex align-items-center justify-content-between  mb-4 d-none yda_iptal_sayisi">
+				<span class="fs-18 font-w500">
+					<svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="20" height="20" rx="6" fill="#2ea091"/>
+					</svg>
+					İptal
+				</span>
+				<span class="fs-18 font-w600" id="yda_iptal_sayisi">-</span>
+			</div>
+
+			<div class="d-flex align-items-center justify-content-between  mb-4 d-none yda_arastirma_sayisi">
+				<span class="fs-18 font-w500">
+					<svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="20" height="20" rx="6" fill="#800000"/>
+					</svg>
+					Araştırma
+				</span>
+				<span class="fs-18 font-w600" id="yda_arastirma_sayisi">-</span>
+			</div>
+
+			<div class="d-flex align-items-center justify-content-between  mb-4 yda_ulusal_basvuruya_donusturulmustur_sayisi d-none">
+				<span class="fs-18 font-w500">
+					<svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="20" height="20" rx="6" fill="#ce0cce"/>
+					</svg>
+					Ulusal başvuruya dönüştürülmüştür
+				</span>
+				<span class="fs-18 font-w600" id="yda_ulusal_basvuruya_donusturulmustur_sayisi">-</span>
+			</div>
+
+
+			<div class="d-flex align-items-center justify-content-between  mb-4 d-none yda_itiraz_sayisi">
+				<span class="fs-18 font-w500">
+					<svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="20" height="20" rx="6" fill="#ce0cce"/>
+					</svg>
+					İtiraz
+				</span>
+				<span class="fs-18 font-w600" id="yda_itiraz_sayisi">-</span>
+			</div>
+
+			<div class="d-flex align-items-center justify-content-between  mb-4 d-none yda_dava_sayisi">
+				<span class="fs-18 font-w500">
+					<svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="20" height="20" rx="6" fill="#961abf"/>
+					</svg>
+					Dava
+				</span>
+				<span class="fs-18 font-w600" id="yda_dava_sayisi">-</span>
+			</div>
+
+			<div class="d-flex align-items-center justify-content-between  mb-4 d-none yda_islemde_sayisi">
+				<span class="fs-18 font-w500">
+					<svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="20" height="20" rx="6" fill="#800000"/>
+					</svg>
+					İşlemde
+				</span>
+				<span class="fs-18 font-w600" id="yda_islemde_sayisi">-</span>
+			</div>
+
+			<div class="d-flex align-items-center justify-content-between  mb-4 yda_yayinlanacak_sayisi d-none">
+				<span class="fs-18 font-w500">
+					<svg class="me-3" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="20" height="20" rx="6" fill="#0da5aa"/>
+					</svg>
+					Yayınlanacak
+				</span>
+				<span class="fs-18 font-w600" id="yda_yayinlanacak_sayisi">-</span>
+			</div>
+
+
+		</div>
+	</div>
 </div>

@@ -1,0 +1,180 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}
+	Kullanıcı Listesi
+{% endblock %}
+{% block page_title %}
+	Ayarlar
+{% endblock %}
+
+{% block stylesheets %}
+	<link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link href="{{ asset('assets/vendor/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
+
+	<style>
+		{# body {
+			background-color: #F8F8F8 !important;
+		} #}
+		.card-title {
+			text-transform: none !important;
+		}
+
+		.dataTable input {
+			max-width: 100% !important;
+		}
+
+        .dataTables_wrapper .dataTables_paginate span .paginate_button {
+    
+    font-size: 13px !important
+
+	}
+
+	.error {
+		color :var(--bs-danger) !important;
+	}
+
+	
+	</style>
+
+
+{% endblock %}
+
+
+{% block body %}
+
+    {% include 'user/user/_components/edit-user-modal.html.twig' %}
+	{% include 'user/user/_components/create-user-modal.html.twig' %}
+
+
+	<div class="content-body">
+	<div  data-bs-toggle="modal" data-bs-target=".user-edit-modal" class="user-edit-modal">
+	</div>
+		<div class="container-fluid">
+			<div class="row page-titles">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item active">
+						<a href="{{path('app_main')}}">Anasayfa
+						</a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="javascript:void(0)">Kullanıcı Listesi</a>
+					</li>
+				</ol>
+			</div>
+
+
+			<div class="row">
+				<div class="col-sm-12 col-xl-12 col-lg-12">
+					<div class="card">
+						<div class="card-header d-flex justify-content-between align-items-center">
+							<div>
+							Kullanıcılar
+							</div>
+
+							<div>
+							<button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target=".user-create-modal" class="user-create-modal">
+								Kullanıcı Oluştur
+							</button>
+							</div>
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table id="userList" class="table table-bordered table-responsive-sm" style="min-width: 845px">
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>Firma</th>
+											<th>Ad Soyad</th>
+                                            <th>Kullanıcı Adı*</th>
+											<th>E Posta</th>
+											<th>İşlemler</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for item in data   %}
+												{% if item.company_name != '' %}
+	<tr>
+												<td>
+                                                    {{ item.id }}
+                                                </td>
+												<td>
+													{{ item.company_name|raw }}
+                                                </td>
+												<td>
+                                                {{item.full_name}}
+                                                </td>
+                                                <td>
+                                                {{item.username}}
+                                                </td>
+												<td>
+                                                {{item.email}}
+                                                </td>
+												<td>
+                                                <div class="d-flex gap-2" style="width:100% !important" >
+                                             
+												 <a href="#" class="btn btn-primary btn-sm"
+                                              	    onclick="user.editUserModal(this)"
+                                                    data-id="{{item.id}}"
+                                                    data-full-name="{{item.full_name}}"
+                                                    data-email="{{item.email}}"
+                                                    data-company-name="{{item.company_name}}"
+                                                    data-username="{{item.username}}"
+                                                 >Düzenle</a>
+
+												 
+											     <a class="btn 
+												 {% if(item.is_deleted)%} 
+												 btn-success
+												 {% else %}
+												 btn-danger
+												 {% endif %}
+												  btn-sm"
+												 onclick="user.deleteUser({{item.id}})"
+												 >
+												 {% if(item.is_deleted)%} 
+												  Aktif Et
+												 {% else %}
+												  Pasif Et
+												 {% endif %}
+												 </a>
+
+                                                </div>
+                                                </td>
+											</tr>
+												{% endif %}
+										
+
+										{% endfor %}
+
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+
+		</div>
+	</div>
+</div>{% endblock %}{% block javascripts %}
+
+<script>
+	{% set scriptData = {
+        'dataTableJsonLang' : asset('assets/lang/datatableTr.json')
+    } %}
+var scriptData = {{ scriptData|raw|json_encode|raw }};
+</script>
+<script src="{{ asset('assets/vendor/sweetalert2/dist/sweetalert2.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script src="{{ asset('assets/vendor/jquery-validation/jquery.validate.min.js')}}"></script>
+<script src="{{ asset('assets/vendor/chart.js/Chart.bundle.min.js')}}"></script>
+<script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{ asset('assets/js/users/user.js')}}"></script>
+{% endblock %}
+
+

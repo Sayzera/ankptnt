@@ -1,0 +1,110 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}
+	Tema Ayarları
+{% endblock %}
+{% block page_title %}
+	Ayarlar
+{% endblock %}
+
+{% block stylesheets %}
+	<link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet"/>
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+
+	<style>
+		{
+			# body {
+				background-color: #F8F8F8 !important;
+			} #
+		}
+		.card-title {
+			text-transform: none !important;
+		}
+
+		.dataTable input {
+			max-width: 100% !important;
+		}
+
+		.dataTables_wrapper .dataTables_paginate span .paginate_button {
+
+			font-size: 13px !important
+		}
+		.color-list {
+			display: flex;
+			flex-flow: wrap;
+		}
+		.color-list li {
+			position: relative;
+			width: 90px;
+			margin-right: 10px;
+			margin-bottom: 10px;
+		}
+		.color-list li .overlay-text {
+			height: 90px;
+			line-height: 90px;
+			width: 90px;
+			border-radius: 4px;
+			text-align: center;
+		}
+	</style>
+
+
+{% endblock %}
+
+
+{% block body %}
+
+	{% include 'user/user/_components/edit-user-modal.html.twig' %}
+	{% include 'user/user/_components/create-user-modal.html.twig' %}
+
+
+	<div class="content-body">
+		<div data-bs-toggle="modal" data-bs-target=".user-edit-modal" class="user-edit-modal"></div>
+		<div class="container-fluid">
+			<div class="row page-titles">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item active">
+						<a href="{{path('app_main')}}">Anasayfa
+						</a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="javascript:void(0)">Tema Ayarları</a>
+					</li>
+				</ol>
+			</div>
+
+
+			<div class="row">
+				<div class="col-sm-12 col-xl-12 col-lg-12">
+					<div class="card">
+						<div class="card-body">
+                            
+							<ul class="list-group list-group-flush">
+                                <li class="list-group-item">An item</li>
+                                <li class="list-group-item">A second item</li>
+                                <li class="list-group-item">A third item</li>
+                                <li class="list-group-item">A fourth item</li>
+                                <li class="list-group-item">And a fifth one</li>
+                            </ul>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+
+		</div>
+	</div>
+</div>{% endblock %}{% block javascripts %}
+
+<script>
+	{% set scriptData = {
+        'dataTableJsonLang' : asset('assets/lang/datatableTr.json')
+    } %}
+var scriptData = {{ scriptData|raw|json_encode|raw }};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script src="{{ asset('assets/vendor/chart.js/Chart.bundle.min.js')}}"></script>
+<script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{ asset('assets/js/users/user.js')}}"></script>{% endblock %}

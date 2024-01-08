@@ -1,94 +1,110 @@
 <style>
-    .form-label {
-        font-weight: bold;
-    }
+	.form-label {
+		font-weight: bold;
+	}
 </style>
 <div class="basic-form p-3">
-    <form>
-        <div class="row">
-            <div class="col-sm-12 col-lg-6 ">
-                <div class="mb-3 row">
-                    <label class="form-label">Yayın Bülteni
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="-" disabled>
-                </div>
-                <div class="mb-3 row">
-                    <label class="form-label">Yayın Bülteni
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="-" disabled>
-                </div>
-            </div>
-            <div class="col-sm-12 col-lg-6 ">
-                <div class="mb-3 row">
-                    <label class="form-label">Araştırma Rap. Yyn. Tar.
+	<form>
+		<div class="publishing-container-message"></div>
 
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="-" disabled>
-                </div>
-                <div class="mb-3 row">
-                    <label class="form-label">Erken Yyn. Talep Tar.
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="-" disabled>
-                </div>
-            </div>
-            <div class="col-sm-12 col-lg-6 ">
-                <div class="mb-3 row">
-                    <label class="form-label">Mucbire Düş. Yyn. Tar.
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="" disabled>
-                </div>
-                <div class="mb-3 row">
-                    <label class="form-label">Patent/FM Belgesi Verildi
+		<div class="row publishing-container ">
+			<div class="col-sm-12 col-lg-6 ">
+				<div class="mb-3 row">
+					<label class="form-label">Yayın Bülteni
+					</label>
+					<input type="text" class="form-control" id="yayin_no" placeholder="" value="-" readonly>
 
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="Evet" disabled>
-                </div>
-            </div>
-            <div class="col-sm-12 col-lg-6 ">
-                <div class="mb-3 row">
-                    <label class="form-label">Sistem
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="-" disabled>
-                </div>
-                <div class="mb-3 row">
-                    <label class="form-label">Patent/FM Numarası
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="-" disabled>
-                </div>
-            </div>
-            <div class="col-sm-12 col-lg-6 ">
-                <div class="mb-3 row">
-                    <label class="form-label">Patent/FM Belge Tarihi
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="-" disabled>
-                </div>
-                <div class="mb-3 row">
-                    <label class="form-label">Patent/FM Veriliş Tarihi
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="-" disabled>
-                </div>
-            </div>
-            <div class="col-sm-12 col-lg-6 ">
-                <div class="mb-3 row">
-                    <label class="form-label">Lisans Teklif Tarihi
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="-" disabled>
-                </div>
-                <div class="mb-3 row">
-                    <label class="form-label">İspat Sunulma Son Tarihi
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="-" disabled>
-                </div>
-            </div>
-            <div class="col-sm-12 col-lg-6 ">
-                <div class="mb-3 row">
-                    <label class="form-label">Kullanım İspatı Tarihi
+				</div>
+				<div class="mb-3 row">
+					<label class="form-label">Yayın Bülteni
+					</label>
+					<input type="text" class="form-control" id="yayin_no-2" placeholder="" value="-" readonly>
 
-                    </label>
-                    <input type="text" class="form-control" placeholder="" value="-" disabled>
-                </div>
+				</div>
+			</div>
+			<div class="col-sm-12 col-lg-6 ">
+				<div class="mb-3 row">
+					<label class="form-label">Araştırma Rap. Yyn. Tar.
 
-            </div>
-        </div>
-    </form>
+					</label>
+					<input type="text" class="form-control" placeholder="" id="col_report_pub_date" value="-" readonly>
+
+				</div>
+				<div class="mb-3 row">
+					<label class="form-label">Erken Yyn. Talep Tar.
+					</label>
+					<input type="text" class="form-control" id="col_early_period_pub_date" placeholder="" value="-" readonly>
+
+				</div>
+			</div>
+			<div class="col-sm-12 col-lg-6 ">
+				<div class="mb-3 row">
+					<label class="form-label">Mucbire Düş. Yyn. Tar.
+					</label>
+					<input type="text" class="form-control" id="col_force_major_pub_date" placeholder="" value="" readonly>
+
+				</div>
+				<div class="mb-3 row">
+					<label class="form-label">Patent/FM Belgesi Verildi
+
+					</label>
+					<input type="text" class="form-control" id="patent_fm_verildi_mi" placeholder="" value="Evet" readonly>
+
+				</div>
+			</div>
+			<div class="col-sm-12 col-lg-6 ">
+				<div class="mb-3 row">
+					<label class="form-label">Sistem
+					</label>
+					<input type="text" class="form-control" id="basvuru_sistemi" placeholder="" value="-" readonly>
+
+				</div>
+				<div class="mb-3 row">
+					<label class="form-label">Patent/FM Numarası
+					</label>
+					<input type="text" class="form-control" id="col_patent_number" placeholder="" value="-" readonly>
+
+				</div>
+			</div>
+			<div class="col-sm-12 col-lg-6 ">
+				<div class="mb-3 row">
+					<label class="form-label">Patent/FM Belge Tarihi
+					</label>
+					<input type="text" class="form-control" id="col_patent_paper_date" placeholder="" value="-" readonly>
+
+				</div>
+				<div class="mb-3 row">
+					<label class="form-label">Patent/FM Veriliş Tarihi
+					</label>
+					<input type="text" class="form-control" id="col_patent_paper_cert_date" placeholder="" value="-" readonly>
+
+				</div>
+			</div>
+			<div class="col-sm-12 col-lg-6 ">
+				<div class="mb-3 row">
+					<label class="form-label">Lisans Teklif Tarihi
+					</label>
+					<input type="text" class="form-control" placeholder="" value="-" readonly>
+				</div>
+				<div class="mb-3 row">
+					<label class="form-label">İspat Sunulma Son Tarihi
+					</label>
+					<input type="text" class="form-control" placeholder="" id="col_disposal_evidence_due_date" value="-" readonly>
+
+				</div>
+
+			</div>
+			<div class="col-sm-12 col-lg-6 ">
+				<div class="mb-3 row">
+					<label class="form-label">Kullanım İspatı Tarihi
+
+					</label>
+					<input type="text" class="form-control" id="col_disposal_evidence_date" placeholder="" value="-" readonly>
+
+
+				</div>
+
+			</div>
+		</div>
+	</form>
 </div>

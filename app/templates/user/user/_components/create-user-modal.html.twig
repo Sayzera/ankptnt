@@ -1,0 +1,61 @@
+<div class="modal fade user-create-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-xl">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Kullanıcı Oluştur</h5>
+				<div class="flex align-items-center gap-2">
+					<a href="#" class="text-primary text-decoration-underline" style="font-size: 18px"></a>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				</div>
+			</div>
+			<div class="modal-body">
+
+				<form id="create-user-form" method="get" action="">
+
+					<div class="form-group">
+						<label for="full-name" id="firma-id">Firma Seç</label>
+						<select class="select2-accounts" name="firma-id" id="firma-id"></select>
+					</div>
+
+					<div class="form-group">
+						<label for="full-name">Ad
+						</label>
+						<input type="text" class="form-control" id="user-ad" name="user-ad" placeholder="">
+					</div>
+					<div class="form-group">
+						<label for="full-name">Soyad
+						</label>
+						<input type="text" class="form-control" id="user-lastname" name="user-lastname" placeholder="">
+					</div>
+
+					<div class="form-group">
+						<label for="full-name">Kullanıcı Adı</label>
+						<input type="text" class="form-control" id="user-name" name="user-name" placeholder="">
+					</div>
+
+					<div class="form-group">
+						<label for="e-posta">E Posta</label>
+						<input type="text" class="form-control" id="e-posta" name="e-posta" placeholder="">
+					</div>
+
+					<div class="form-group">
+						<label for="password-create">Şifre</label>
+						<input type="password" class="form-control" id="password-create" name="password-create" placeholder="">
+					</div>
+
+					<div class="form-group">
+						<label for="password_again">Tekrar Şifre</label>
+						<input type="password" class="form-control" id="password_again" name="password_again" >
+					</div>
+
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Kapat</button>
+					<button type="submit" class="btn btn-primary" id="create-user-btn">Kaydet</button>
+				</div>
+			</form>
+
+		</div>
+	</div>
+</div>

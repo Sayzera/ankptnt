@@ -2,6 +2,8 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
 		<title>
 			{% block title %}Ankara Patent
 			{% endblock %}
@@ -10,12 +12,18 @@
 		rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
 
 		<!-- FAVICONS ICON -->
-		<link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
+		<link
+		rel="shortcut icon" type="image/png" href="images/favicon.png"/>
 
 		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 		{% block stylesheets %}
-			{{ encore_entry_link_tags('app') }}
+			{# {{ encore_entry_link_tags('app') }} #}
 		{% endblock %}
+
+		{% block googleScripts %}
+
+		{% endblock %}
+	
 
 		{{ include('layout/css.html.twig') }}
 
@@ -23,8 +31,8 @@
 		<style>
 
 
-
-			.dataTable td, .dataTable th {
+			.dataTable td,
+			.dataTable th {
 				padding: 10px !important;
 			}
 
@@ -35,17 +43,17 @@
 			}
 
 
-
-
-
-			.dataTable td, .dataTable th {
-	          width: 80px !important;
+			.dataTable td,
+			.dataTable th {
+				width: 80px !important;
 			}
-			.dataTable  div  {
+			.dataTable div {
 				font-size: 10px !important;
 				width: 50px !important;
 			}
-			.dataTable  td, table th, table span {
+			.dataTable td,
+			table th,
+			table span {
 				font-size: 10px !important;
 			}
 
@@ -53,13 +61,15 @@
 				font-weight: normal !important;
 			}
 
-			table.dataTable thead th, table.dataTable thead td {
+			table.dataTable thead th,
+			table.dataTable thead td {
 				border-bottom: 2px solid #EEEEEE;
 				border-top: 1px solid #EEEEEE;
 				padding: 16px 3px !important;
 			}
 
-			table.dataTable thead th, table.dataTable thead td {
+			table.dataTable thead th,
+			table.dataTable thead td {
 				border-bottom: 2px solid #EEEEEE;
 				border-top: 1px solid #EEEEEE;
 				padding: 14px 20px !important;
@@ -77,7 +87,8 @@
 				max-width: 110px !important;
 			}
 
-			table.dataTable thead th, table.dataTable thead td {
+			table.dataTable thead th,
+			table.dataTable thead td {
 				padding: 10px 5px !important;
 			}
 			.dataTables_wrapper .dataTables_paginate span .paginate_button {
@@ -86,14 +97,23 @@
 				line-height: 30px !important;
 
 			}
-			.dataTables_wrapper .dataTables_paginate .paginate_button.previous, .dataTables_wrapper .dataTables_paginate .paginate_button.next {
+			.dataTables_wrapper .dataTables_paginate .paginate_button.previous,
+			.dataTables_wrapper .dataTables_paginate .paginate_button.next {
 				font-size: 12px !important;
 			}
 			.paging_simple_numbers.dataTables_paginate {
-				 background: white;
+				background: white;
 			}
-		</style>
 
+			.list-group-item p {
+				line-height: 1 !important;
+			}
+
+			    .header-profile .nav-link:before {
+  
+      background: linear-gradient(to right, #339999, #28e0ca) !important; 
+    }
+		</style>
 
 
 	</head>
@@ -116,8 +136,26 @@
 
 		{{ include('layout/js.html.twig') }}</body>
 
-		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
-		{% endblock %}
+	{% block javascripts %}
+		{# {{ encore_entry_script_tags('app') }} #}
+	{% endblock %}
 
+	<script>
+	{# var isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+    
+    if (isFirefox) {
+      // Kullanıcının Firefox tarayıcısını kullandığını doğrula
+      var firefoxVersion = parseInt(navigator.userAgent.match(/Firefox\/(\d+)/)[1], 10);
+	  console.log(firefoxVersion);
+
+      // Eğer kullanıcı Firefox kullanıyorsa ve sürümü en son sürümden düşükse uyarı ver
+      var latestVersion = 118; // En son sürüm numarasını buraya ekleyin
+      if (firefoxVersion <= latestVersion) {
+       if (window.confirm('Firefox tarayıcınızın güncel olmadığını tespit ettik. Lütfen güncelleyiniz.')) 
+			{
+			window.location.href='https://www.mozilla.org/tr/firefox/new/';
+			};
+      }
+    } #}
+	</script>
 </html>

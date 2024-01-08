@@ -23,6 +23,51 @@
 			width: 100%;
 			padding: 0 10px;
 		}
+
+	
+		.ana-div-icon .alt-icon-info {
+		display: none;
+		}
+
+		.ana-div-icon:hover .alt-icon-info {
+		display: block;
+		}
+
+		table {
+			width: 100% !important;
+		}
+
+		input[type="text"] {
+			z-index: 30;
+		}
+
+		.dataTables_filter {
+			display: none !important;
+		}
+
+				.sabitle {
+		position: fixed !important;
+		top: 0 !important;
+		z-index: 1005 !important;
+		position: -webkit-sticky;
+		left: 33px
+		}
+
+		.sabit table th {
+		background: var(--primary);
+		color: white;
+		opacity: 0.7;
+		}
+
+
+
+		.sabit table th span {
+			font-size: 12px !important
+		}
+
+
+
+
 	</style>
 {% endblock %}
 {# Styles End #}
@@ -41,24 +86,22 @@
 		class="content-body">
 		<!-- row -->
 		<div
-			class="container-fluid">
+			class="container-fluid" style="">
 			<!-- Modal -->
-			{{ include('observation/inc/similarity_model.html.twig') }}
-			{{ include('observation/inc/other_brans.html.twig') }}
+
 			<div class="modal fade detay-modal" tabindex="-1" role="dialog" aria-hidden="true">
 				<div class="modal-dialog modal-xl">
 					<div class="modal-content">
 						<div class="modal-header">
 							<h5 class="modal-title">Marka Bilgileri</h5>
 							<div class="flex align-items-center gap-2">
-								<a href="#" class="text-primary text-decoration-underline" style="font-size: 18px">Bülten</a>
 								<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 							</div>
 						</div>
 						<div class="modal-body">
 							{{
-                  include('brand/international_trademark/detail.html.twig')
-                  }}
+							include('brand/domestic_brand/detail.html.twig')
+							}}
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Kapat</button>
@@ -66,31 +109,147 @@
 					</div>
 				</div>
 			</div>
+
+			{# YDA MODAL  #}
+			<div class="modal fade yda-detay-modal" tabindex="-1" role="dialog" aria-hidden="true">
+				<div class="modal-dialog modal-xl">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Marka Bilgileri</h5>
+							<div class="flex align-items-center gap-2">
+								<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+							</div>
+						</div>
+						<div class="modal-body">
+							{{include('yimAndydaObservation/international_trademark/detail.html.twig')}}
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Kapat</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			{# Eşya Listesi #}
+			<div class="modal fade envanter-listesi" tabindex="-1" role="dialog" aria-hidden="true">
+				<div class="modal-dialog modal-xl">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Eşya Listesi</h5>
+							<div class="flex align-items-center gap-2">
+								<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+							</div>
+						</div>
+						<div class="modal-body">
+							<div class="d-flex justify-content-between gap-2" style="min-height:400px;
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																overflow-y: auto;
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																max-height: 400px;
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																">
+								{% set _brand = data.my_brand %}
+								<div class="w-50" style="border-right: 1px solid #6C4BAE; padding-right:20px">
+									<p id="esya-listesi-markaniz" class="text-bold text-primary bold text-decoration-underline text-uppercase ">{{_brand.marka}}
+										({{_brand.basvuru_numarasi}})</p>
+									<div>
+										{# Eşya listesi #}
+										<div class="bootstrap-badge" id="esya-listesi-marka-numaralari"></div>
+
+									</div>
+									<div class="accordion accordion-active-header mt-3" id="my-envanter-listesi-container"></div>
+								</div>
+
+
+								<div class="w-50">
+									<p id="esya-listesi-gozlem-markasi" class="text-bold text-bold text-danger bold text-decoration-underline text-uppercase">-</p>
+									<div>
+										{# Eşya listesi #}
+										<div class="bootstrap-badge" id="esya-listesi-marka-numaralari-itiraz"></div>
+
+									</div>
+
+									<div class="accordion accordion-active-header mt-3" id="envanter-listesi-container"></div>
+								</div>
+							</div>
+
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Kapat</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			{# Back #}
 			<div class="row">
+				<div class="col-sm-12 col-xl-12">
+							<div class="card-body d-flex justify-content-between align-items-center gap-2">
+								<button type="button" class="btn btn-rounded btn-primary" onclick="
+								window.location.href = '{{ path('app_brand_domestic_international') }}'
+								">
+									<span class="btn-icon-start text-primary">
+										<i class="fas fa-arrow-left"></i>
+									</span>Marka listesine git</button>
+								<div class="w-25  d-none gozlem-btn">
+							</div>
+				</div>
+			</div>
+			{# Back #}
+
+			{# Gözlem yapma kartı #}
+			<div class="row
+						 {% if app.request.get('bultenler') %}
+						 d-none
+						 {% endif %}
+					">
 				<div class="col-sm-12 col-xl-12">
 					<div class="card ">
 						<div class="card-header d-block">
 							<h4 class="card-title">Gözlem Yap</h4>
-							<p class="m-0 subtitle">İlgili alanlarda seçim yapıp sonrasında "Gözlemi başlat" butonuna tıklayıp arama yapabilirsiniz.</p>
 						</div>
 						<form onsubmit="observation.getObservationListOnSubmit(event)">
-							<div class="px-4 form-errors d-none mt-4"></div>
+
+							{% if(_brand.tescil_tarihi_durumu) %}
+								<div class="px-4 form-errors mt-4 alert alert-primary mx-4">
+									Bu markanızın tescil tarihinden itibaren 5 yıldan fazla zaman geçtiği için karşı taraf markanızın kullanıldığına dair kanıt isteyebilir.
+									<a href="#">Daha fazla bilgi için tıklayınız</a>
+								</div>
+							{% endif %}
+
 							<div class="card-body d-flex justify-content-between align-items-center gap-2">
+
 								<div class="w-75 d-flex align-items-center gap-2">
 									<div class="w-50">
+										<label class="form-label">
+											Bülten No</label>
+										{# {% set urlbultenNo = app.request.query.get('bultenNo') %}
+																																																												{% if(urlbultenNo == null) %}
+																																																													{% set urlbultenNo = lastBulletinNo %}
+																																																												{% endif %} #}
+										{# 
+																																																																						{{ myService.setSession('test', 'test') }} #}
+
 										<select id="brand-select" name="bulten-no">
 											<option value="AL">Bülten Seç</option>
-											{%  for i in 0..426 %}
-												<option {% if i == 426 %} selected {% endif %} value="{{ i + 1 }}">
-													{{ i +1  }}</option>
+											{%  for i in lastBulletinNo..endBulletinNo %}
+
+												<option {% if i == selectedBulletinNo %} selected {% endif %} value={{i}}>{{i}}</option>
+
+
 											{% endfor %}
 										</select>
+
+										{# hidden input brand-select #}
+										<input type="hidden" name="hidden-brand-select" id="hidden-brand-select" value="427">
 									</div>
 									<div class="w-50">
-										<input type="text" class="custom-input" name="marka-adi" placeholder="Marka">
+										<label class="form-label">
+											Marka</label>
+										<input type="text" class="custom-input" name="marka-adi" placeholder="Marka" disabled>
 									</div>
 									<div class="w-50">
-										<select id="class-select" name="sinif" class="form-control" multiple>
+										<label class="form-label">
+											Sınıf</label>
+										<select id="class-select" name="sinif" class="form-control" multiple disabled>
 											{%  for i in 0..49 %}
 												<option value="{{ i + 1 }}">
 													{{ i +1  }}
@@ -99,7 +258,8 @@
 										</select>
 									</div>
 								</div>
-								<div class="w-25">
+								<div class="w-25  d-none gozlem-btn">
+
 									<button type="submit" class="btn btn-rounded btn-primary" name="start-observation">
 										<span class="btn-icon-start text-primary">
 											<i class="fas fa-search"></i>
@@ -109,44 +269,77 @@
 						</form>
 					</div>
 				</div>
+
 			</div>
+
+
+
+
 			<div class="d-flex justify-content-center gozlem-container-preloader">
 				<dotlottie-player src="{{ asset('assets/lottie/machineAi.json') }}" background="transparent" speed="1" style="width: 300px; height: 300px" direction="1" mode="normal" loop autoplay></dotlottie-player>
 			</div>
-			<div class="row gozlem-container d-none">
-				<div>
+			<div class="row gozlem-container d-none d-flex "  style="
+				position: relative;
+				 min-height: 700px;
+
+			">
+				<div class="sabit ">
 					<div class="card">
-						<div class="card-body">
-							<div class="table-responsive">
-								<table class="table table-bordered table-responsive-sm">
+						<div class="card-body" style="position:relative">
+							<div class="table-responsive" >
+								<table class="table table-bordered table-responsive-sm my-trademark-table">
 									<thead>
 										<tr>
-											<th>#</th>
-											<th>Logo</th>
+											<th>
+
+											<div style="width:100%; display:flex; justify-content: space-between">
+												<span>
+											Markanız
+											</span>
+											
+											<span>
+											<i class="far fa-check-circle"></i>
+											</span>
+											</div>
+										
+											</th>
 											<th>Marka</th>
-											<th>Firma</th>
+											<th>Başvuru Sahibi</th>
 											<th>Sınıf</th>
 											<th>Başvuru No</th>
+											<th>Benzerlik</th>
+											<th>Bülten No</th>
+											<th>İşlemler</th>
 										</tr>
 									</thead>
 									<tbody>
-									{% set brand = data.my_brand %}
+										{% set brand = data.my_brand %}
 										<tr>
 											<td>
-												<p class="badge-primary" style="font-size: 16px;color: white;padding: 5px">Markanız</p>
+												<div style="text-align: left; width: 76px;"><img class="v-image v-widget" src="http://apiz.ankarapatent.com/fileServer/tmImage?res=64&amp;appNo={{ brand.basvuru_numarasi }}" alt=""></div>
 											</td>
-											<td style="width: 200px ">
-												<div  style="text-align: left; width: 76px;"><img class="v-image v-widget" src="http://apiz.ankarapatent.com/fileServer/tmImage?res=64&amp;appNo={{ brand.basvuru_numarasi }}" alt=""></div>
+											<td
+												data-search="2">
+
+												{# get query type #}
+												{% set trademarkType = app.request.get('type') %}
+												{% if(trademarkType == 1) %}
+
+													<span class="text-primary text-decoration-underline " onclick="ApplicationFile.getTrademarkInfo({{brand.id}})" data-bs-toggle="modal" data-bs-target=".detay-modal">
+														<span>{{brand.marka}}</span>
+													</span>
+												{% elseif (trademarkType == 2) %}
+													<span class="text-primary text-decoration-underline " onclick="YDAApplicationFile.getTrademarkInfo({{brand.id}})" data-bs-toggle="modal" data-bs-target=".yda-detay-modal">
+														<span>{{brand.marka}}</span>
+													</span>
+												{% endif %}
+
+
 											</td>
-											<td data-search="2">
-												<a href="#" data-bs-toggle="modal" data-bs-target=".detay-modal" class="text-primary text-decoration-underline">
-													{{ brand.marka }}
-												</a>
-												</td>
-											<td style="min-width: 200px">
-													{{ brand.firma_unvan }}
+											<td >
+												{{ brand.firma_unvan }}
 											</td>
-											<td style="width: 200px;">
+											<td >
 												<div class="d-flex align-items-center gap-2 flex-wrap w-100" style="width: 100% !important;">
 													{{ brand.sinif }}
 												</div>
@@ -155,15 +348,26 @@
 											<td>
 												{{ brand.basvuru_numarasi }}
 											</td>
+											<td>-</td>
+											<td>-</td>
+											<td>-</td>
 										</tr>
 									</tbody>
 								</table>
 							</div>
+
+							<div class="d-none marka-kapat-btn" style=" position: absolute;
+													right: 29px;
+													top: 5px;
+													cursor: pointer;
+													">
+								Kapat
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-12 col-xl-12">
-					<div class="row">
+				<div class="col-sm-12 col-xl-12 gozlem-sonuclar-container">
+					<div class="row" style="">
 						<div class="col-xl-12 ">
 							<div
 								class="tab-content ">
@@ -182,75 +386,54 @@
 																Seçili olan 6 markayı bildir
 															</a>
 														</p>
+
+														<div></div>
+
+
+														<div class="d-flex gap-4 align-items-center">
+
+
+															<div class="d-flex justify-content-start mt-2 onceki-marka" ondblclick="" onclick="observation.sonrakiMarkaDetay()">
+																<div class="bootstrap-popover d-inline-block">
+																	<a href="#" class="btn btn-info btn-sm px-4 onceki-marka-text" style="background-color:
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																				#1b55e2 !important; border-color: #1b55e2 !important;
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																				">-</a>
+																</div>
+															</div>
+
+															<div class="d-flex justify-content-start mt-2 sonraki-marka" ondblclick="" onclick="observation.sonrakiMarkaDetay()">
+																<div class="bootstrap-popover d-inline-block">
+																	<a href="#" class="btn btn-success btn-sm px-4 sonraki-marka-text">-</a>
+																</div>
+															</div>
+														</div>
 													</div>
-													<div>
-														<i class="fas fa-file-excel text-primary" style="font-size: 30px"></i>
-													</div>
+
+
+													{# <div>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																<i class="fas fa-file-excel text-primary" style="font-size: 30px"></i>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															</div> #}
 												</div>
 											</div>
 										</div>
-										<div class="card-body">
+										<div class="card-body marka-tablosu" >
 											<div class="table-responsive">
 												<table id="example5" class="table table-bordered table-responsive-sm marka-gozlem-list" style="min-width: 845px">
 													<thead>
 														<tr>
 															<th>
-																<div class="form-check custom-checkbox ms-2">
-																	<input type="checkbox" class="form-check-input" id="checkAll" required="">
-																	<label class="form-check-label" for="checkAll"></label>
-																</div>
+																Marka Görseli
 															</th>
-															<th>Marka</th>
-															<th>Firma</th>
-															<th>Sınıf</th>
-															<th>Başvuru No</th>
-															<th>Benzerlik</th>
-															<th>İşlemler</th>
+															<th class="no-sort">Marka</th>
+															<th class="no-sort">Başvuru Sahibi</th>
+															<th class="no-sort">Sınıf</th>
+															<th class="no-sort">Başvuru No</th>
+															<th class="no-sort">Benzerlik</th>
+															<th class="no-sort">Bülten No</th>
+															<th class="no-sort">İşlemler</th>
 														</tr>
 													</thead>
-													<tbody>
-														{# 
-																																																																																																																																																										<tr>
-																																																																																																																																																											<td>
-																																																																																																																																																												<div class="form-check custom-checkbox ms-2">
-																																																																																																																																																													<input type="checkbox" class="form-check-input" id="customCheckBox3" required="">
-																																																																																																																																																													<label class="form-check-label" for="customCheckBox2"></label>
-																																																																																																																																																												</div>
-																																																																																																																																																											</td>
-																																																																																																																																																											<td style="width: 200px ">
-																																																																																																																																																												<img src="{{ asset('assets/images/logo/anadol.png') }}" style="width: 150px; height: 100px; object-fit: contain"/>
-																																																																																																																																																											</td>
-																																																																																																																																																											<td data-search="2">Anada</td>
-																																																																																																																																																											<td style="min-width: 200px">
-																																																																																																																																																												<a href="#" data-bs-toggle="modal" data-bs-target=".detay-modal" class="text-primary text-decoration-underline">
-																																																																																																																																																													(7501626) ANADA OTOMOTİV SANAYİ VE TİCARET LİMİTED ŞİRKETİ
-																																																																																																																																																												</a>
-																																																																																																																																																											</td>
-																																																																																																																																																											<td style="width: 200px;">
-																																																																																																																																																												<div class="d-flex align-items-center gap-2 flex-wrap w-100" style="width: 100% !important;">
-																																																																																																																																																													<a href="javascript:void(0)" class="badge badge-circle badge-warning">35</a>
-																																																																																																																																																													<a href="javascript:void(0)" class="badge badge-circle badge-outline-primary">12</a>
-																																																																																																																																																												</div>
-																																																																																																																																																											</td>
-																																																																																																																																																											<td>
-																																																																																																																																																												<a href="#" class="text-primary text-decoration-underline">
-																																																																																																																																																													426
-																																																																																																																																																												</a>
-																																																																																																																																																											</td>
-																																																																																																																																																											<td>
-																																																																																																																																																												<p>2023/090976</p>
-																																																																																																																																																												<p>13/07/2023</p>
-																																																																																																																																																											</td>
-																																																																																																																																																											<td>
-																																																																																																																																																												100%
-																																																																																																																																																											</td>
-																																																																																																																																																											<td>
-																																																																																																																																																												<a href="#" class="text-primary bold text-decoration-underline">
-																																																																																																																																																													İtiraz Et</a>
-																																																																																																																																																											</td>
-																																																																																																																																																										</tr> #}
-
-													</tbody>
+													<tbody></tbody>
 												</table>
 											</div>
 										</div>
@@ -264,13 +447,12 @@
 		</div>
 	</div>
 	<!--**********************************
-												   Content body end
-												   ***********************************-->
-{% endblock %}
-{# Page Content End #}
-{# Javascripts Start #}
-{% block javascripts %}
+																																																																																															   Content body end
+																																																																																															   ***********************************-->
+{% endblock %}{# Page Content End #}{# Javascripts Start #}{% block javascripts %}
 	{{ parent() }}
+	<script src="{{ asset('assets/js/diff/diff.js') }}"></script>
+
 	<script src="{{ asset('assets/vendor/select2/js/select2.full.min.js') }}"></script>
 	<script src="{{ asset('assets/js/plugins-init/select2-init.js') }}"></script>
 	<script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
@@ -283,10 +465,135 @@
 		'id': app.request.get('id'),
 		'marka': app.request.get('marka'),
 		'sinif': app.request.get('sinif'),
+		'lastBulletin': lastBulletinNo,
+		'endBulletin': endBulletinNo,
+		'selectable_elements': selectable_elements,
+		'arrBulletin': app.request.get('bultenler') ? app.request.get('bultenler'): [],
+		'bulten_tarihleri': bulten_tarihleri,
+	
 } %}
 	<script>
 		var twigData = {{ twigData|json_encode|raw }};
+
+	console.log(twigData);
+var _brand = {{ data.my_brand | json_encode | raw }}
 	</script>
+
+	<script>
+		let localStorageBultenNo = localStorage.getItem('bulten');
+if (localStorageBultenNo != null) {
+$('#brand-select').val(localStorageBultenNo);
+$('#brand-select').trigger('change');
+localStorage.setItem('bultenNo', localStorageBultenNo)
+localStorage.removeItem('bulten');
+}
+	</script>
+
 	<script src="{{ asset('assets/js/observation/observation.js') }}"></script>
+	<script src="{{ asset('assets/js/observation/yda-and-yim.js') }}"></script>
+	<script src="{{ asset('assets/js/observation/yda.js') }}"></script>
+
+
+	<script>
+
+
+		$('#brand-select').on('change', function () {
+$('.gozlem-btn').css('margin-top', '22px');
+$('.gozlem-btn').removeClass('d-none');
+
+
+localStorage.setItem('bultenNo', $(this).val());
+
+// urlin sonunda bultenNo olarak ekle
+var url = window.location.href;
+var bultenNo = $(this).val();
+var newUrl = url + '&bultenNo=' + bultenNo;
+
+// bultenNo var mı
+if (url.indexOf('bultenNo') > -1) { // varsa bultenNo'yu güncelle
+var bultenNoIndex = url.indexOf('bultenNo');
+var bultenNoLastIndex = url.indexOf('&', bultenNoIndex); // sonundaki & işaretinin indexi
+var bultenNoLastIndex = bultenNoLastIndex == -1 ? url.length : bultenNoLastIndex;
+var bultenNoString = url.substring(bultenNoIndex, bultenNoLastIndex); // eğer -1 gelirsa örnek 70,-1 gelirse 70, urlin sonuna kadar alır
+var newUrl = url.replace(bultenNoString, 'bultenNo=' + bultenNo);
+}
+
+// urli güncelle
+window.history.pushState("", "", newUrl);
+
+})
+
+$('.gozlem-btn').on('click', function () {
+$(this).addClass('d-none');
+})
+
+
+function isScrolledIntoView(elem) {
+	
+	// elem sayfa üzerindeki yüksekliği 
+	var docViewTop = $(window).scrollTop();
+	var docViewBottom = docViewTop + $(window).height();
+
+
+	// scrolun anlık yüksekliği
+	var elemTop = $(elem).offset().top;
+	var elemBottom = elemTop + $(elem).height();
+
+	// scrolun divi geçip geçmediğini kontrol ediyoruz
+	return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+}
+
+$(document).ready(function () {
+
+// divin genişliğini al
+setInterval(function () {
+	var divWidth = $('.gozlem-sonuclar-container').width();
+$('.sabit .card').css('width', divWidth + 'px');
+$('.sabit .card').css({
+	margin: '0 auto',
+})
+},500)
+
+// example5 ile diğer tablonun tum th'leri aynı genişlikte olsun
+setInterval(function () {
+	
+	$('#example5 th').each(function (index, element) {
+		var thWidth = $(element).width();
+		$('.my-trademark-table th').eq(index).css('width', thWidth + 'px');
+	})
+},500)
+
+
+
+$(window).scroll(function () {
+var distance = $('.marka-tablosu').offset().top; 
+
+     if ($(window).scrollTop() >= distance) {
+         $('.sabit').addClass("sabitle");
+		 $('.marka-kapat-btn').removeClass("d-none");
+
+     } else {
+         $('.sabit').removeClass("sabitle");
+		 $('.marka-kapat-btn').addClass("d-none");
+     }
+ });
+})
+
+// fixed divi kapatma 
+$('.marka-kapat-btn').on('click', function() {
+	$('.sabit').removeClass("sabitle");
+	$('.marka-kapat-btn').addClass("d-none");
+})
+
+$(document).ready(function () {
+	$(document).on('click','input[type="text"]', function (e) {
+		// stopPropagation
+		e.stopPropagation();
+
+	});
+})
+
+
+	</script>
 {% endblock %}
 {# Javascripts End #}

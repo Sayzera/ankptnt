@@ -1,41 +1,42 @@
-
 <div class="col-sm-12 col-xl-8">
-    <div class="card">
-        <div class="card-body">
-            <div class="profile-tab">
-                <div class="custom-tab-1">
-                    <ul class="nav nav-tabs">
-                        <li class="nav-item" id="additionalInfo"><a href="#ekBilgiler" data-bs-toggle="tab" class="nav-link show active">Ek Bilgiler</a>
-                        </li>
-                        <li class="nav-item" onclick="ApplicationFile.getClassList()"><a href="#esyaListesi" data-bs-toggle="tab" class="nav-link">Eşya Listesi</a>
-                        </li>
-{#                        <li class="nav-item"><a href="#faturalar" data-bs-toggle="tab" class="nav-link">Faturalar</a>#}
-{#                        </li>#}
-                        <li class="nav-item" onclick="ApplicationFile.getActionList()" ><a href="#islemler" data-bs-toggle="tab" class="nav-link ">İşlemler</a>
-                        </li>
+	<div class="card">
+		<div class="card-body">
+			<div class="profile-tab">
+				<div class="custom-tab-1">
+					<ul class="nav nav-tabs">
+						<li class="nav-item" id="additionalInfo">
+							<a href="#ekBilgiler" data-bs-toggle="tab" class="nav-link show active">Ek Bilgiler</a>
+						</li>
+						<li class="nav-item" onclick="ApplicationFile.getClassList()">
+							<a href="#esyaListesi" data-bs-toggle="tab" class="nav-link">Eşya Listesi</a>
+						</li>
+						<li class="nav-item" onclick="ApplicationFile.getDetailInvoice()">
+							<a href="#faturalar" data-bs-toggle="tab" class="nav-link">Faturalar</a>
+						</li>
+						<li class="nav-item" onclick="ApplicationFile.getActionList()">
+							<a href="#islemler" data-bs-toggle="tab" class="nav-link ">İşlemler</a>
+						</li>
 
-                    </ul>
-                    <div class="tab-content">
-                        <div id="ekBilgiler" class="tab-pane fade active show">
-                            {{ include('brand/domestic_brand/inc/additional-information.html.twig') }}
-                        </div>
-                        <div id="esyaListesi" class="tab-pane fade p-1">
-                            {{ include('brand/domestic_brand/inc/inventory-list.html.twig') }}
-                        </div>
-                        <div id="faturalar" class="tab-pane fade p-1">
-                            {{ include('brand/domestic_brand/inc/bills.html.twig') }}
-                        </div>
-                        <div id="islemler" class="tab-pane fade p-1">
-                            {{ include('brand/domestic_brand/inc/actions.html.twig') }}
-                        </div>
+					</ul>
+					<div class="tab-content">
+						<div id="ekBilgiler" class="tab-pane fade active show">
+							{{ include('brand/domestic_brand/inc/additional-information.html.twig') }}
+						</div>
+						<div id="esyaListesi" class="tab-pane fade p-1">
+							{{ include('brand/domestic_brand/inc/inventory-list.html.twig') }}
+						</div>
+						<div id="faturalar" class="tab-pane fade p-1">
+							{{ include('brand/domestic_brand/inc/bills.html.twig') }}
+						</div>
+						<div id="islemler" class="tab-pane fade p-1">
+							{{ include('brand/domestic_brand/inc/actions.html.twig') }}
+						</div>
 
 
-
-                    </div>
-                </div>
-                <!-- Modal -->
-            </div>
-        </div>
-    </div>
+					</div>
+				</div>
+				<!-- Modal -->
+			</div>
+		</div>
+	</div>
 </div>
-

@@ -4,15 +4,21 @@
 	{{ parent() }}
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
 	<link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet"/>
+
+	<style>
+		.dataTables_wrapper .dataTables_paginate span .paginate_button {
+			font-size: 11px !important;
+		}
+	</style>
 {% endblock %}
 {# Styles End #}
 {# Title Start #}
-{% block title %}Apiz | Dökümanlar
+{% block title %}Apiz | Dokümanlar
 {% endblock %}
 {# Title End #}
 {# Page Title Start #}
 {% block page_title %}
-	Dökümanlar
+	Dokümanlar
 {% endblock %}
 {# Page Title End #}
 {# Page Content Start #}
@@ -32,8 +38,9 @@
 				</div>
 				<div class="modal-body">
 					{{
-                    include('patent/pre-application-registration/detail.html.twig')
+                    include('patent/detail.html.twig')
                     }}
+
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Kapat</button>
@@ -50,7 +57,7 @@
 						<a href="{{ path('app_main') }}">Anasayfa</a>
 					</li>
 					<li class="breadcrumb-item">
-						<a href="javascript:void(0)">Dökümanlar</a>
+						<a href="javascript:void(0)">Dokümanlar</a>
 					</li>
 				</ol>
 			</div>
@@ -73,30 +80,7 @@
 											<th>İndirme</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr style="">
-											<td>
-												wipo - recordal of assignment recorded.pdf
-											</td>
-											<td>
-												46.671
-
-											</td>
-											<td style="min-width: 150px">
-												10/02/2023
-
-											</td>
-											<td>
-												<a href="#" data-bs-toggle="modal" data-bs-target=".detay-modal" class="text-primary text-decoration-underline">
-													Ücretli Patent Bülten Takibi Yapılan Firmalar</a>
-
-											</td>
-											<td>
-												<a href="#" class="text-primary text-decoration-underline">İndir</a>
-											</td>
-										</tr>
-
-									</tbody>
+									<tbody></tbody>
 								</table>
 							</div>
 						</div>

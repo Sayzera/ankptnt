@@ -1,0 +1,156 @@
+{% extends 'layout/base.html.twig' %}
+{# Styles Start #}
+{% block stylesheets %}
+	{{ parent() }}
+	<link
+	href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
+	<!-- Custom Stylesheet -->
+	<link href="{{ asset('assets/vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
+	<link rel="stylesheet" href="{{ asset('assets/vendor/select2/css/select2.min.css') }}">
+	<link href="{{ asset('assets/vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
+	<link href="{{ asset('assets/vendor/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
+	<script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.js"></script>
+	<link href="{{ asset('assets/vendor/toastr/css/toastr.min.css') }}" rel="stylesheet">
+	<style>
+		.dataTable input[type="checkbox"] {
+			width: 20px !important;
+		}
+		.custom-input {
+			border-radius: 1.25rem;
+			border: 0.0625rem solid #c8c8c8;
+			height: 2.5rem;
+			background: #fff;
+			width: 100%;
+			padding: 0 10px;
+		}
+	</style>
+{% endblock %}
+{# Styles End #}
+{# Title Start #}
+{% block title %}Apiz | Otomatik Gözlem Robotu
+{% endblock %}
+{# Title End #}
+{# Page Title Start #}
+{% block page_title %}
+	Otomatik Gözlem Robotu
+{% endblock %}
+{# Page Title End #}
+{# Page Content Start #}
+{% block body %}
+	<div
+		class="content-body">
+		<!-- row -->
+		<div
+			class="container-fluid">
+			<!-- Modal -->
+			{{ include('observation/inc/similarity_model.html.twig') }}
+			{{ include('observation/inc/other_brans.html.twig') }}
+			<div class="modal fade detay-modal" tabindex="-1" role="dialog" aria-hidden="true">
+				<div class="modal-dialog modal-xl">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Marka Bilgileri</h5>
+							<div class="flex align-items-center gap-2">
+								<a href="#" class="text-primary text-decoration-underline" style="font-size: 18px">Bülten</a>
+								<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+							</div>
+						</div>
+						<div class="modal-body">
+							{{
+                  include('brand/international_trademark/detail.html.twig')
+                  }}
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Kapat</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+			<div class="d-flex justify-content-center gozlem-container-preloader position-relative" >
+				<dotlottie-player src="{{ asset('assets/lottie/machineAi.json') }}" background="transparent" speed="1" style="width: 300px; height: 300px" direction="1" mode="normal" loop autoplay></dotlottie-player>
+                <div class="position-absolute" style="    top: -15px;">
+                  {# Loading #}
+                  <button type="button" class="btn btn-primary position-relative">
+                    <span>
+                    Lütfen bekleyin sizin için verileri hazırlıyorum...
+                    </span>
+                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="position-absolute top-100 start-50 translate-middle mt-1 bi bi-caret-down-fill" fill="#212529" xmlns="http://www.w3.org/2000/svg"><path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>
+                    </button>
+                </div>
+        	</div>
+			<div class="row gozlem-container d-none ">
+			
+				<div class="col-sm-12 col-xl-12">
+					<div class="row">
+						<div class="col-xl-12 ">
+							<div
+								class="tab-content ">
+								<div class="tab-pane fade active show ">
+									<div class="card full-screen-observation-list">
+										<div class="card-header">
+											<div class="d-flex justify-content-between align-items-center w-100">
+												<div class="d-flex justify-content-between w-100">
+													<div>
+														<h4 class="card-title">Otomatik Gözlem Listesi
+															<span class="observation-brand-result"></span>
+														</h4>
+													
+													</div>
+													<div>
+														<i class="fas fa-file-excel text-primary" style="font-size: 30px"></i>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="card-body">
+											<div class="table-responsive">
+												<table id="example5" class="table table-bordered table-responsive-sm marka-gozlem-list" style="min-width: 845px">
+													<thead>
+														<tr>
+															<th>
+																<div class="form-check custom-checkbox ms-2">
+																	<input type="checkbox" class="form-check-input" id="checkAll" required="">
+																	<label class="form-check-label" for="checkAll"></label>
+																</div>
+															</th>
+															<th>Marka</th>
+															<th>Firma</th>
+															<th>Sınıf</th>
+															<th>Başvuru No</th>
+															<th>Benzerlik</th>
+															<th>İşlemler</th>
+														</tr>
+													</thead>
+													<tbody>
+				
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--**********************************
+													   Content body end
+													   ***********************************-->
+{% endblock %}
+{# Page Content End #}
+{# Javascripts Start #}
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('assets/vendor/select2/js/select2.full.min.js') }}"></script>
+	<script src="{{ asset('assets/js/plugins-init/select2-init.js') }}"></script>
+	<script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
+	<script src="{{ asset('assets/vendor/sweetalert2/dist/sweetalert2.min.js') }}"></script>
+	<script src="{{ asset('assets/vendor/toastr/js/toastr.min.js') }}"></script>
+
+	<script src="{{ asset('assets/js/auto-observation/auto-observation.js') }}"></script>
+{% endblock %}
+{# Javascripts End #}

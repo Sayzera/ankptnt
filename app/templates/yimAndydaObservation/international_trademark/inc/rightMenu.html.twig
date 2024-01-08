@@ -1,0 +1,41 @@
+<div class="col-sm-12 col-xl-8">
+	<div class="card">
+		<div class="card-body">
+			<div class="profile-tab">
+				<div class="custom-tab-1">
+					<ul class="nav nav-tabs">
+						<li class="nav-item" id="yda_additionalInfo">
+							<a href="#yda_ekBilgiler" data-bs-toggle="tab" class="nav-link show active">Ek Bilgiler</a>
+						</li>
+						<li class="nav-item" onclick="YDAApplicationFile.getClassList()">
+							<a href="#yda_esyaListesi" data-bs-toggle="tab" class="nav-link">Eşya Listesi</a>
+						</li>
+						{#                        <li class="nav-item"><a href="#yda_faturalar" data-bs-toggle="tab" class="nav-link">Faturalar</a>#}
+						{#                        </li>#}
+						<li class="nav-item" onclick="YDAApplicationFile.getActionList()">
+							<a href="#yda_islemler" data-bs-toggle="tab" class="nav-link ">İşlemler</a>
+						</li>
+
+					</ul>
+					<div class="tab-content">
+						<div id="yda_ekBilgiler" class="tab-pane fade active show">
+							{{ include('yimAndydaObservation/international_trademark/inc/additional-information.html.twig') }}
+						</div>
+						<div id="yda_esyaListesi" class="tab-pane fade p-1">
+							{{ include('yimAndydaObservation/international_trademark/inc/inventory-list.html.twig') }}
+						</div>
+						<div id="yda_faturalar" class="tab-pane fade p-1">
+							{{ include('yimAndydaObservation/international_trademark/inc/bills.html.twig') }}
+						</div>
+						<div id="yda_islemler" class="tab-pane fade p-1">
+							{{ include('yimAndydaObservation/international_trademark/inc/actions.html.twig') }}
+						</div>
+
+
+					</div>
+				</div>
+				<!-- Modal -->
+			</div>
+		</div>
+	</div>
+</div>

@@ -17,7 +17,6 @@
 			color: var(--primary) !important;
 			border: 0 !important;
 		}
-
 	</style>
 {% endblock %}
 {# Styles End #}
@@ -43,7 +42,7 @@
 				</div>
 				<div class="modal-body">
 					{{
-					include('brand/domestic_brand/detail.html.twig')
+					include('brand/international_trademark/detail.html.twig')
 					}}
 				</div>
 				<div class="modal-footer">
@@ -58,6 +57,9 @@
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item active">
 						<a href="{{ path('app_main') }}">Anasayfa</a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="javascript:void(0)">Yurtdışına Marka</a>
 					</li>
 					<li class="breadcrumb-item">
 						<a href="javascript:void(0)">Markalarım</a>
@@ -76,71 +78,71 @@
 							<div class="table-responsive">
 								<table id="applicationFileList" class="table table-bordered table-responsive-sm" style="min-width: 845px">
 									<thead>
-									<tr>
-										<th>Logo</th>
-										<th>Marka</th>
-										<th>Sınıf</th>
-										<th>Dosya No</th>
-										<th>Başvuru No</th>
-										<th>Başvuru Tarihi</th>
-										<th>Tescil No</th>
-										<th>Yenileme Tarihi</th>
-										<th>Dosya Son Durum</th>
-										<th>Gözlem</th>
-									</tr>
+										<tr>
+											<th>Logo</th>
+											<th>Marka</th>
+											<th>Sınıf</th>
+											<th>Dosya No</th>
+											<th>Başvuru No</th>
+											<th>Başvuru Tarihi</th>
+											<th>Tescil No</th>
+											<th>Yenileme Tarihi</th>
+											<th>Dosya Son Durum</th>
+											{# <th>Gözlem</th> #}
+										</tr>
 									</thead>
 									<tbody>
-									{# {%for key, marka in yim  %}
-
-																																									<tr style="">
-																																										<td>
-																																											<div style="text-align: left; width: 76px;"><img class="v-image v-widget" src="http://apiz.ankarapatent.com/fileServer/tmImage?res=64&amp;appNo={{ marka.basvuru_numarasi }}" alt=""></div>
-																																										</td>
-																																										<td>
-																																											<div>
-																																												<div class="v-link v-widget">
-																																													<a class="text-primary text-decoration-underline" href="#" data-bs-toggle="modal" data-bs-target=".detay-modal">
-																																														<span>{{ marka.marka }}</span>
-																																													</a>
-																																												</div>
-																																											</div>
-																																										</td>
-																																										<td style="min-width: 150px">
-																																											<div>{{ marka.sinif }}</div>
-																																										</td>
-																																										<td>
-																																											<div>{{ marka.dosya_numarasi }}</div>
-																																										</td>
-																																										<td>
-																																											<div>{{ marka.basvuru_numarasi }}</div>
-																																										</td>
-																																										<td>
-																																											<div>{{ marka.basvuru_tarihi }}</div>
-																																										</td>
-																																										<td>
-																																											<div>{{ marka.tescil_numarasi }}</div>
-																																										</td>
-																																										<td>
-																																											<div>
-																																												{% if marka.yenileme_tarihi is not null %}
-																																													{{ marka.yenileme_tarihi }}
-																																												{% else %}
-																																													-
-																																												{% endif %}
-																																											</div>
-																																										</td>
-																																										<td>
-																																											<div>{{ marka.son_durum_detay }}</div>
-																																										</td>
-																																										<td>
-																																											{% set sinif = marka.sinif|replace({' ': ''})|replace({',':'-'}) %}
-																																											{% set markaVal = marka.marka|replace({' ': ''}) | replace({',':'-'})  %}
-
-
-																																											<a href="{{ path('app_company_observation', { 'sinif' : sinif, 'marka': markaVal, 'id': marka.id }) }}" class="text-primary text-decoration-underline">Gözlemi Başlat</a>
-																																										</td>
-																																									</tr>
-																																								{% endfor %} #}
+										{# {%for key, marka in yim  %}
+																														
+																																																																							<tr style="">
+																																																																								<td>
+																																																																									<div style="text-align: left; width: 76px;"><img class="v-image v-widget" src="http://apiz.ankarapatent.com/fileServer/tmImage?res=64&amp;appNo={{ marka.basvuru_numarasi }}" alt=""></div>
+																																																																								</td>
+																																																																								<td>
+																																																																									<div>
+																																																																										<div class="v-link v-widget">
+																																																																											<a class="text-primary text-decoration-underline" href="#" data-bs-toggle="modal" data-bs-target=".detay-modal">
+																																																																												<span>{{ marka.marka }}</span>
+																																																																											</a>
+																																																																										</div>
+																																																																									</div>
+																																																																								</td>
+																																																																								<td style="min-width: 150px">
+																																																																									<div>{{ marka.sinif }}</div>
+																																																																								</td>
+																																																																								<td>
+																																																																									<div>{{ marka.dosya_numarasi }}</div>
+																																																																								</td>
+																																																																								<td>
+																																																																									<div>{{ marka.basvuru_numarasi }}</div>
+																																																																								</td>
+																																																																								<td>
+																																																																									<div>{{ marka.basvuru_tarihi }}</div>
+																																																																								</td>
+																																																																								<td>
+																																																																									<div>{{ marka.tescil_numarasi }}</div>
+																																																																								</td>
+																																																																								<td>
+																																																																									<div>
+																																																																										{% if marka.yenileme_tarihi is not null %}
+																																																																											{{ marka.yenileme_tarihi }}
+																																																																										{% else %}
+																																																																											-
+																																																																										{% endif %}
+																																																																									</div>
+																																																																								</td>
+																																																																								<td>
+																																																																									<div>{{ marka.son_durum_detay }}</div>
+																																																																								</td>
+																																																																								<td>
+																																																																									{% set sinif = marka.sinif|replace({' ': ''})|replace({',':'-'}) %}
+																																																																									{% set markaVal = marka.marka|replace({' ': ''}) | replace({',':'-'})  %}
+																														
+																														
+																																																																									<a href="{{ path('app_company_observation', { 'sinif' : sinif, 'marka': markaVal, 'id': marka.id }) }}" class="text-primary text-decoration-underline">Gözlemi Başlat</a>
+																																																																								</td>
+																																																																							</tr>
+																																																																						{% endfor %} #}
 
 									</tbody>
 								</table>
@@ -160,6 +162,7 @@
 	{% set scriptData = {
 		'dataTableJsonLang' : asset('assets/lang/datatableTr.json'),
 		'getTrademarkUrl': path('app_brand_international_brand_brand'),
+		'type' : app.request.get('type'),
 	} %}
 
 	<script>
